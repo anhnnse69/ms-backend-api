@@ -1,0 +1,34 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using MS.Infrastructure.Persistence;
+
+namespace MS.Infrastructure
+{
+    /// <summary>
+    /// Provides extension methods for registering infrastructure-level services 
+    /// within the dependency injection container.
+    /// </summary>
+    public static class DependencyInjection
+    {
+        /// <summary>
+        /// Registers infrastructure services, including database contexts and repositories.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
+        /// <param name="configuration">The <see cref="IConfiguration"/> to retrieve connection strings.</param>
+        /// <returns>The same <see cref="IServiceCollection"/> for method chaining.</returns>
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            // Configure DbContext using SQL Server based on the connection string in configuration
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+            // Register Infrastructure Services (e.g., JWT, Guid services)
+            // services.AddScoped<IGuidService, GuidService>();
+            // Register Repositories for data access
+            // services.AddScoped<IPatientRepository, PatientRepository>();
+            return services;
+        }
+    }
+}
