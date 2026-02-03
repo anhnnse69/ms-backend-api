@@ -8,7 +8,7 @@
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>ms-api</DockerServiceName>
-	<DockerComposeProjectName>ms-backend-project</DockerComposeProjectName>
+    <DockerComposeProjectName>ms-backend-project</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
@@ -16,6 +16,6 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
-    <None Include="Dockerfile" />
+    <None Include="MS.API/Dockerfile" />
   </ItemGroup>
 </Project>
