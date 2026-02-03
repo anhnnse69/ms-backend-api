@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260127162204_Mig_20260127_232156")]
-    partial class Mig_20260127_232156
+    [Migration("20260203042139_Initial_Reset")]
+    partial class Initial_Reset
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,7 +158,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.7999999999999998,
                             BioEn = "Cardiologist with 20 years of experience",
                             BioVi = "Chuyên gia tim mạch với 20 năm kinh nghiệm",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7102),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7884),
                             Email = "bs.an@vinmec.com",
                             FullName = "TS.BS Nguyễn Văn An",
                             IsActive = true,
@@ -176,7 +176,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.9000000000000004,
                             BioEn = "Leading oncology specialist",
                             BioVi = "Chuyên gia ung thư hàng đầu",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7105),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7894),
                             Email = "pgs.binh@vinmec.com",
                             FullName = "PGS.TS Trần Thị Bình",
                             IsActive = true,
@@ -194,7 +194,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.7000000000000002,
                             BioEn = "Experienced pediatrician",
                             BioVi = "Bác sĩ Nhi khoa giàu kinh nghiệm",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7111),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7911),
                             Email = "bs.cuong@vinmec.com",
                             FullName = "BS.CK2 Lê Văn Cường",
                             IsActive = true,
@@ -212,7 +212,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.9000000000000004,
                             BioEn = "Obstetrics and gynecology specialist",
                             BioVi = "Chuyên gia sản phụ khoa",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7115),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7920),
                             Email = "bs.dung@vinmec.com",
                             FullName = "TS.BS Phạm Thị Dung",
                             IsActive = true,
@@ -230,7 +230,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.5999999999999996,
                             BioEn = "Gastroenterology specialist",
                             BioVi = "Chuyên gia tiêu hóa - gan mật",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7132),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7928),
                             Email = "bs.em@vinmec.com",
                             FullName = "BS.CK1 Hoàng Văn Em",
                             IsActive = true,
@@ -394,56 +394,56 @@ namespace MS.Infrastructure.Migrations
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000001"),
                             FacilityId = new Guid("11111111-1111-1111-1111-111111111111"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7157),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8020),
                             IsPrimary = true
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000001"),
                             FacilityId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7159),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8024),
                             IsPrimary = false
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000002"),
                             FacilityId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7161),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8027),
                             IsPrimary = true
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000003"),
                             FacilityId = new Guid("11111111-1111-1111-1111-111111111111"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7162),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8030),
                             IsPrimary = true
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000003"),
                             FacilityId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7164),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8033),
                             IsPrimary = false
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000004"),
                             FacilityId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7165),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8036),
                             IsPrimary = true
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000004"),
                             FacilityId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7166),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8039),
                             IsPrimary = false
                         },
                         new
                         {
                             DoctorId = new Guid("d0000000-0000-0000-0000-000000000005"),
                             FacilityId = new Guid("11111111-1111-1111-1111-111111111111"),
-                            AssignedDate = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7168),
+                            AssignedDate = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8042),
                             IsPrimary = true
                         });
                 });
@@ -553,7 +553,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
                             Address = "458 Minh Khai, Hai Bà Trưng, Hà Nội",
                             City = "Hà Nội",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6900),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(6985),
                             Email = "info.timescity@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Times City International Hospital",
@@ -566,7 +566,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             Address = "208 Nguyễn Hữu Cảnh, Bình Thạnh, TP. Hồ Chí Minh",
                             City = "TP. Hồ Chí Minh",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6906),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(6996),
                             Email = "info.centralpark@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Central Park International Hospital",
@@ -579,7 +579,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
                             Address = "107-109 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng",
                             City = "Đà Nẵng",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6908),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7001),
                             Email = "info.danang@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Da Nang Hospital",
@@ -592,7 +592,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("44444444-4444-4444-4444-444444444444"),
                             Address = "Lô D20 Lê Hồng Phong, Ngô Quyền, Hải Phòng",
                             City = "Hải Phòng",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6912),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7010),
                             Email = "info.haiphong@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Hai Phong Hospital",
@@ -605,7 +605,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("55555555-5555-5555-5555-555555555555"),
                             Address = "Khu đô thị Vinpearl, Vĩnh Nguyên, Nha Trang",
                             City = "Khánh Hòa",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6914),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7015),
                             Email = "info.nhatrang@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Nha Trang Hospital",
@@ -618,7 +618,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("66666666-6666-6666-6666-666666666666"),
                             Address = "Đảo Tuần Châu, Hạ Long, Quảng Ninh",
                             City = "Quảng Ninh",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6916),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7020),
                             Email = "info.halong@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Ha Long Hospital",
@@ -631,7 +631,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("77777777-7777-7777-7777-777777777777"),
                             Address = "Bãi Dài, Gành Dầu, Phú Quốc, Kiên Giang",
                             City = "Kiên Giang",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6919),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7023),
                             Email = "info.phuquoc@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Phu Quoc Hospital",
@@ -644,7 +644,7 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("88888888-8888-8888-8888-888888888888"),
                             Address = "Đường 30/4, Xuân Khánh, Ninh Kiều, Cần Thơ",
                             City = "Cần Thơ",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(6921),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7027),
                             Email = "info.cantho@vinmec.com",
                             IsActive = true,
                             NameEn = "Vinmec Can Tho Hospital",
@@ -688,7 +688,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000001-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2000",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7390),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8821),
                             Language = "vi",
                             Text = "Thành công"
                         },
@@ -696,7 +696,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000001-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2000",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7395),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8877),
                             Language = "en",
                             Text = "Success"
                         },
@@ -704,7 +704,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000002-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2001",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7397),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8884),
                             Language = "vi",
                             Text = "Đặt lịch khám thành công"
                         },
@@ -712,7 +712,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000002-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2001",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7399),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8888),
                             Language = "en",
                             Text = "Appointment booked successfully"
                         },
@@ -720,7 +720,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000003-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2002",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7400),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8893),
                             Language = "vi",
                             Text = "Lịch hẹn đang chờ xác nhận"
                         },
@@ -728,7 +728,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000003-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2002",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7402),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8901),
                             Language = "en",
                             Text = "Appointment pending confirmation"
                         },
@@ -736,7 +736,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000004-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2003",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7404),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8906),
                             Language = "vi",
                             Text = "Lịch hẹn đã được xác nhận"
                         },
@@ -744,7 +744,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000004-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2003",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7441),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8912),
                             Language = "en",
                             Text = "Appointment confirmed"
                         },
@@ -752,7 +752,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000005-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2004",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7443),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8916),
                             Language = "vi",
                             Text = "Hủy lịch hẹn thành công"
                         },
@@ -760,7 +760,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000005-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2004",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7445),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8927),
                             Language = "en",
                             Text = "Appointment cancelled successfully"
                         },
@@ -768,7 +768,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000006-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2005",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7447),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8932),
                             Language = "vi",
                             Text = "Tạo hồ sơ bệnh nhân thành công"
                         },
@@ -776,7 +776,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000006-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2005",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7448),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8937),
                             Language = "en",
                             Text = "Patient record created successfully"
                         },
@@ -784,7 +784,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000007-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_2006",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7450),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8941),
                             Language = "vi",
                             Text = "Cập nhật thông tin bệnh nhân thành công"
                         },
@@ -792,7 +792,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000007-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_2006",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7451),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8944),
                             Language = "en",
                             Text = "Patient information updated successfully"
                         },
@@ -800,7 +800,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000008-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4001",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7453),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8949),
                             Language = "vi",
                             Text = "Số điện thoại không hợp lệ"
                         },
@@ -808,7 +808,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000008-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4001",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7454),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8953),
                             Language = "en",
                             Text = "Invalid phone number"
                         },
@@ -816,7 +816,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000009-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4002",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7456),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8957),
                             Language = "vi",
                             Text = "Ngày sinh không hợp lệ"
                         },
@@ -824,7 +824,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000009-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4002",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7458),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8963),
                             Language = "en",
                             Text = "Invalid date of birth"
                         },
@@ -832,7 +832,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000010-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4003",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7459),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8967),
                             Language = "vi",
                             Text = "Thiếu trường bắt buộc"
                         },
@@ -840,7 +840,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000010-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4003",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7461),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8972),
                             Language = "en",
                             Text = "Missing required field"
                         },
@@ -848,7 +848,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000011-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4004",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7462),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8976),
                             Language = "vi",
                             Text = "Thời gian khám không hợp lệ"
                         },
@@ -856,7 +856,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000011-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4004",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7464),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8980),
                             Language = "en",
                             Text = "Invalid appointment time"
                         },
@@ -864,7 +864,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000012-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4005",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7465),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8985),
                             Language = "vi",
                             Text = "Thời gian khám đã qua"
                         },
@@ -872,7 +872,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000012-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4005",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7467),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8989),
                             Language = "en",
                             Text = "Appointment time is in the past"
                         },
@@ -880,7 +880,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000013-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4006",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7468),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8993),
                             Language = "vi",
                             Text = "Bác sĩ không có lịch khám"
                         },
@@ -888,7 +888,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000013-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4006",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7469),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(8998),
                             Language = "en",
                             Text = "Doctor not available"
                         },
@@ -896,7 +896,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000014-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4007",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7471),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9003),
                             Language = "vi",
                             Text = "Khung giờ đã được đặt"
                         },
@@ -904,7 +904,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000014-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4007",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7472),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9008),
                             Language = "en",
                             Text = "Time slot already booked"
                         },
@@ -912,7 +912,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000015-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4008",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7473),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9012),
                             Language = "vi",
                             Text = "Không tìm thấy cơ sở y tế"
                         },
@@ -920,7 +920,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000015-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4008",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7474),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9016),
                             Language = "en",
                             Text = "Facility not found"
                         },
@@ -928,7 +928,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000016-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4009",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7476),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9020),
                             Language = "vi",
                             Text = "Không tìm thấy chuyên khoa"
                         },
@@ -936,7 +936,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000016-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4009",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7477),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9024),
                             Language = "en",
                             Text = "Specialty not found"
                         },
@@ -944,7 +944,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000017-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4010",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7478),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9029),
                             Language = "vi",
                             Text = "Không tìm thấy bệnh nhân"
                         },
@@ -952,7 +952,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000017-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4010",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7481),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9035),
                             Language = "en",
                             Text = "Patient not found"
                         },
@@ -960,7 +960,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000018-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4011",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7482),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9040),
                             Language = "vi",
                             Text = "Không tìm thấy bác sĩ"
                         },
@@ -968,7 +968,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000018-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4011",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7483),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9044),
                             Language = "en",
                             Text = "Doctor not found"
                         },
@@ -976,7 +976,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000019-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4012",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7485),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9048),
                             Language = "vi",
                             Text = "Không tìm thấy lịch hẹn"
                         },
@@ -984,7 +984,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000019-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4012",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7486),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9052),
                             Language = "en",
                             Text = "Appointment not found"
                         },
@@ -992,7 +992,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000020-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4013",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7487),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9057),
                             Language = "vi",
                             Text = "Trạng thái lịch hẹn không hợp lệ"
                         },
@@ -1000,7 +1000,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000020-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4013",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7488),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9061),
                             Language = "en",
                             Text = "Invalid appointment status"
                         },
@@ -1008,7 +1008,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000021-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4014",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7490),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9065),
                             Language = "vi",
                             Text = "Không có quyền truy cập"
                         },
@@ -1016,7 +1016,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000021-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4014",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7491),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9070),
                             Language = "en",
                             Text = "Unauthorized access"
                         },
@@ -1024,7 +1024,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000022-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4015",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7492),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9074),
                             Language = "vi",
                             Text = "Lịch hẹn trùng lặp"
                         },
@@ -1032,7 +1032,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000022-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4015",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7494),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9131),
                             Language = "en",
                             Text = "Duplicate appointment"
                         },
@@ -1040,7 +1040,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000023-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4016",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7495),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9136),
                             Language = "vi",
                             Text = "Thông tin đăng nhập không đúng"
                         },
@@ -1048,7 +1048,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000023-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4016",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7496),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9140),
                             Language = "en",
                             Text = "Invalid credentials"
                         },
@@ -1056,7 +1056,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000024-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4017",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7497),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9143),
                             Language = "vi",
                             Text = "Email đã tồn tại trong hệ thống"
                         },
@@ -1064,7 +1064,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000024-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4017",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7499),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9147),
                             Language = "en",
                             Text = "Email already exists"
                         },
@@ -1072,7 +1072,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000025-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_4018",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7500),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9152),
                             Language = "vi",
                             Text = "Số điện thoại đã được sử dụng"
                         },
@@ -1080,7 +1080,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000025-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_4018",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7501),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9156),
                             Language = "en",
                             Text = "Phone number already in use"
                         },
@@ -1088,7 +1088,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000026-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_5001",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7503),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9161),
                             Language = "vi",
                             Text = "Lỗi hệ thống"
                         },
@@ -1096,7 +1096,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000026-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_5001",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7504),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9165),
                             Language = "en",
                             Text = "Internal server error"
                         },
@@ -1104,7 +1104,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000027-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_5002",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7530),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9170),
                             Language = "vi",
                             Text = "Lỗi cơ sở dữ liệu"
                         },
@@ -1112,7 +1112,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000027-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_5002",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7532),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9174),
                             Language = "en",
                             Text = "Database error"
                         },
@@ -1120,7 +1120,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000028-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_5003",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7533),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9178),
                             Language = "vi",
                             Text = "Dịch vụ không khả dụng"
                         },
@@ -1128,7 +1128,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000028-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_5003",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7534),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9183),
                             Language = "en",
                             Text = "Service unavailable"
                         },
@@ -1136,7 +1136,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000029-0000-0000-0000-000000000001"),
                             Code = "APP_MESSAGE_5004",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7536),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9187),
                             Language = "vi",
                             Text = "Lỗi dịch vụ bên ngoài"
                         },
@@ -1144,7 +1144,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("00000029-0000-0000-0000-000000000002"),
                             Code = "APP_MESSAGE_5004",
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7537),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(9192),
                             Language = "en",
                             Text = "External service error"
                         });
@@ -1244,7 +1244,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000001"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7049),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7615),
                             DescriptionEn = "Specializes in cardiovascular diseases",
                             DescriptionVi = "Chuyên điều trị các bệnh lý tim mạch",
                             DisplayOrder = 1,
@@ -1256,7 +1256,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000002"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7052),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7621),
                             DescriptionEn = "Cancer treatment specialists",
                             DescriptionVi = "Chuyên điều trị ung thư",
                             DisplayOrder = 2,
@@ -1268,7 +1268,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000003"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7054),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7625),
                             DescriptionEn = "Children's healthcare",
                             DescriptionVi = "Chăm sóc sức khỏe trẻ em",
                             DisplayOrder = 3,
@@ -1280,7 +1280,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000004"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7057),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7633),
                             DescriptionEn = "Obstetrics and reproductive health",
                             DescriptionVi = "Sản phụ khoa và sức khỏe sinh sản",
                             DisplayOrder = 4,
@@ -1292,7 +1292,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000005"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7059),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7639),
                             DescriptionEn = "Digestive system and liver diseases",
                             DescriptionVi = "Chuyên khoa tiêu hóa và gan mật",
                             DisplayOrder = 5,
@@ -1304,7 +1304,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000006"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7061),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7648),
                             DescriptionEn = "Neurological disorders diagnosis and treatment",
                             DescriptionVi = "Chẩn đoán và điều trị bệnh lý thần kinh",
                             DisplayOrder = 6,
@@ -1316,7 +1316,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000007"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7063),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7654),
                             DescriptionEn = "Trauma and orthopedic treatment",
                             DescriptionVi = "Điều trị chấn thương và chỉnh hình",
                             DisplayOrder = 7,
@@ -1328,7 +1328,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000008"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7065),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7657),
                             DescriptionEn = "Comprehensive eye care",
                             DescriptionVi = "Chăm sóc mắt toàn diện",
                             DisplayOrder = 8,
@@ -1340,7 +1340,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000009"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7067),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7666),
                             DescriptionEn = "Premium dental services",
                             DescriptionVi = "Dịch vụ nha khoa cao cấp",
                             DisplayOrder = 9,
@@ -1352,7 +1352,7 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("a0000000-0000-0000-0000-000000000010"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7068),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 35, 842, DateTimeKind.Utc).AddTicks(7673),
                             DescriptionEn = "Skin care and aesthetics",
                             DescriptionVi = "Chăm sóc da và thẩm mỹ",
                             DisplayOrder = 10,
@@ -1421,11 +1421,11 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("f0000000-0000-0000-0000-000000000001"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7644),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 36, 218, DateTimeKind.Utc).AddTicks(6253),
                             Email = "admin@vinmec.com",
                             FullName = "Quản trị viên hệ thống",
                             IsActive = true,
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ9z8ZqI5vYzJ5vZQ5vZQ5vZQ==",
+                            PasswordHash = "$2a$12$/IqJWmWiH1J9uj3srevMxuuZYdlXiXGVHgWRsl0bVfhDOKWJimZoW",
                             PhoneNumber = "0900000000",
                             Role = 1,
                             Username = "admin"
@@ -1433,12 +1433,12 @@ namespace MS.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("f0000000-0000-0000-0000-000000000002"),
-                            CreatedAt = new DateTime(2026, 1, 27, 16, 22, 3, 1, DateTimeKind.Utc).AddTicks(7647),
+                            CreatedAt = new DateTime(2026, 2, 3, 4, 21, 36, 603, DateTimeKind.Utc).AddTicks(6319),
                             Email = "bs.an@vinmec.com",
                             FacilityId = new Guid("11111111-1111-1111-1111-111111111111"),
                             FullName = "TS.BS Nguyễn Văn An",
                             IsActive = true,
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ9z8ZqI5vYzJ5vZQ5vZQ5vZQ==",
+                            PasswordHash = "$2a$12$/JoaY6f/u1KHAeGPcvQOeeS2vxXdyAao0HZJW6mot2Hp.GjZRa2pW",
                             PhoneNumber = "0901234567",
                             Role = 2,
                             Username = "doctor.an"

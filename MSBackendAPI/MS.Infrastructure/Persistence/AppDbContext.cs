@@ -2,6 +2,7 @@
 using MS.Domain.Entities;
 using MS.Domain.Enums.Roles;
 using MS.Domain.Enums.Types;
+using MS.Domain.Shared.Utility;
 namespace MS.Infrastructure.Persistence
 {
     public class AppDbContext : DbContext
@@ -810,7 +811,7 @@ namespace MS.Infrastructure.Persistence
                     Id = Guid.Parse("f0000000-0000-0000-0000-000000000001"),
                     Username = "admin",
                     // TODO: Hash this password properly using BCrypt or Identity
-                    PasswordHash = "AQAAAAEAACcQAAAAEJ9z8ZqI5vYzJ5vZQ5vZQ5vZQ==",
+                    PasswordHash = PasswordHelper.HashPassword("Admin@123!"),
                     FullName = "Quản trị viên hệ thống",
                     Email = "admin@vinmec.com",
                     PhoneNumber = "0900000000",
@@ -824,7 +825,7 @@ namespace MS.Infrastructure.Persistence
                     Id = Guid.Parse("f0000000-0000-0000-0000-000000000002"),
                     Username = "doctor.an",
                     // TODO: Hash this password properly using BCrypt or Identity
-                    PasswordHash = "AQAAAAEAACcQAAAAEJ9z8ZqI5vYzJ5vZQ5vZQ5vZQ==",
+                    PasswordHash = PasswordHelper.HashPassword("Doctor@123!"),
                     FullName = "TS.BS Nguyễn Văn An",
                     Email = "bs.an@vinmec.com",
                     PhoneNumber = "0901234567",
