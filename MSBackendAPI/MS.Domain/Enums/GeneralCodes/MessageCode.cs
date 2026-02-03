@@ -33,11 +33,12 @@
         APP_MESSAGE_4016, // Invalid login credentials (wrong username or password)
         APP_MESSAGE_4017, // Email address already exists in the system
         APP_MESSAGE_4018, // Phone number already in use by another user
+        APP_MESSAGE_4019, // General validation error (Model state invalid)
 
         // Server error codes (5xxx series)
-        APP_MESSAGE_5001, // General internal server error (unexpected exception)
-        APP_MESSAGE_5002, // Database operation failed (e.g., connection issue or query error)
-        APP_MESSAGE_5003, // Service is temporarily unavailable (e.g., maintenance or overload)
-        APP_MESSAGE_5004  // Error from external service (e.g., API integration failure)
+        APP_MESSAGE_5000, // General internal server error (unexpected exception)
+        APP_MESSAGE_5001, // Database operation failed (e.g., connection issue or query error)
+        APP_MESSAGE_5002, // Service is temporarily unavailable (e.g., maintenance or overload)
+        APP_MESSAGE_5003  // Error from external service (e.g., API integration failure)
     }
 }

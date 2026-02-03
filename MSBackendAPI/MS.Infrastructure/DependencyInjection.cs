@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
+using MS.Infrastructure.Repositories.UserRepositories.GetUserByEmail;
 
 namespace MS.Infrastructure
 {
@@ -25,7 +27,8 @@ namespace MS.Infrastructure
                     configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
             // Register Infrastructure Services (e.g., JWT, Guid services)
-            // services.AddScoped<IGuidService, GuidService>();
+             services.AddScoped<IJwtTokenService, JwtTokenService>();
+             services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             // Register Repositories for data access
             // services.AddScoped<IPatientRepository, PatientRepository>();
             return services;
