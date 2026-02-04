@@ -13,7 +13,7 @@ namespace MS.API.Controllers.Common
     /// </summary>
     /// <remarks>This controller provides endpoints related to authentication and is intended to be used as
     /// part of the application's API layer. All routes are prefixed with 'api/auth'.</remarks>
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {

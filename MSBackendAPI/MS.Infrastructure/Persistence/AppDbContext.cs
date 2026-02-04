@@ -765,11 +765,12 @@ namespace MS.Infrastructure.Persistence
                 ["APP_MESSAGE_4016"] = ("Thông tin đăng nhập không đúng", "Invalid credentials"),
                 ["APP_MESSAGE_4017"] = ("Email đã tồn tại trong hệ thống", "Email already exists"),
                 ["APP_MESSAGE_4018"] = ("Số điện thoại đã được sử dụng", "Phone number already in use"),
+                ["APP_MESSAGE_4019"] = ("Dữ liệu không hợp lệ", "General validation error"),
                 // Server error messages (5xxx)
-                ["APP_MESSAGE_5001"] = ("Lỗi hệ thống", "Internal server error"),
-                ["APP_MESSAGE_5002"] = ("Lỗi cơ sở dữ liệu", "Database error"),
-                ["APP_MESSAGE_5003"] = ("Dịch vụ không khả dụng", "Service unavailable"),
-                ["APP_MESSAGE_5004"] = ("Lỗi dịch vụ bên ngoài", "External service error")
+                ["APP_MESSAGE_5000"] = ("Lỗi hệ thống", "Internal server error"),
+                ["APP_MESSAGE_5001"] = ("Lỗi cơ sở dữ liệu", "Database error"),
+                ["APP_MESSAGE_5002"] = ("Dịch vụ không khả dụng", "Service unavailable"),
+                ["APP_MESSAGE_5003"] = ("Lỗi dịch vụ bên ngoài", "External service error")
             };
             // Create translation entries for each message in both languages
             int counter = 1;
