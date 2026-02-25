@@ -1,15 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MS.Domain.Entities.General;
+using MS.Domain.Entities.General.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace MS.Domain.Entities
 {
-    public class MessageTranslation
+    public class MessageTranslation : EntityAuditBase<Guid>, IUserTracking, IEntityBase<Guid>
     {
-        [Key]
-        public Guid Id { get; set; }
-
         public string Code { get; set; }
         public string Language { get; set; }
         public string Text { get; set; }
-        public DateTime CreatedAt { get; set; }
+
+        // Tracking fields for auditing
+        public string CreateBy { get; set; }
+        public string LastModifiedBy { get; set; }
     }
 }
