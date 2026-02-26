@@ -40,23 +40,28 @@ public class RepositoryBase<T, K, TContext>
 
     public async Task<IList<K>> CreateListAsync(IEnumerable<T> entities)
     {
-        await _dbContext.Set<T>().AddRangeAsync(entities);
+        var list = entities.ToList();
+        await _dbContext.Set<T>().AddRangeAsync(list);
         return entities.Select(x => x.Id).ToList();
     }
 
-    public Task UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     {
         if (_dbContext.Entry(entity).State == EntityState.Unchanged)
-            return Task.CompletedTask;
+            return;
 
-        T exist = _dbContext.Set<T>().Find(entity.Id);
-        _dbContext.Entry(exist).CurrentValues.SetValues(entity);
+        var existing = await _dbContext.Set<T>().FindAsync(entity.Id)
+            ?? throw new KeyNotFoundException(
+                $"Entity of type {typeof(T).Name} with id '{entity.Id}' was not found.");
 
-        return Task.CompletedTask;
+        _dbContext.Entry(existing).CurrentValues.SetValues(entity);
     }
 
-    public Task UpdateListAsync(IEnumerable<T> entities) =>
-        _dbContext.Set<T>().AddRangeAsync(entities);
+    public Task UpdateListAsync(IEnumerable<T> entities)
+    {
+        _dbContext.Set<T>().UpdateRange(entities);
+        return Task.CompletedTask;
+    }
 
     public Task DeleteAsync(T entity)
     {
