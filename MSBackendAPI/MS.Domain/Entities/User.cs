@@ -1,16 +1,17 @@
-﻿using MS.Domain.Enums.Roles;
+﻿using MS.Domain.Entities.General;
+using MS.Domain.Entities.General.Interfaces;
+using MS.Domain.Enums.Roles;
 using System.ComponentModel.DataAnnotations;
 
 namespace MS.Domain.Entities
 {
-    public class User
+    public class User : EntityAuditBase<Guid>, IUserTracking, IEntityBase<Guid>
     {
-        [Key]
-        public Guid Id { get; set; }
-
         public string Username { get; set; }
         public string PasswordHash { get; set; }
+        public string DisplayName { get; set; } // For UI display
         public string FullName { get; set; }
+        public string AvatarUrl { get; set; } // UI avatar
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
@@ -20,7 +21,10 @@ namespace MS.Domain.Entities
         public Facility Facility { get; set; }
 
         public bool IsActive { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? LastLoginAt { get; set; }
+        public DateTimeOffset? LastLoginAt { get; set; }
+
+        // Tracking fields for auditing
+        public string CreateBy { get; set; }
+        public string LastModifiedBy { get; set; }
     }
 }
