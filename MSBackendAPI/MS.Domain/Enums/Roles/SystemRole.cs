@@ -6,11 +6,13 @@
     /// - ITAdmin: Full system rights
     /// - Manager: System management (e.g., for facility managers or doctors)
     /// - Patient: Users who create accounts and book appointments (e.g., patients)
+    /// - Doctor: Users who create accounts and manage appointments (e.g., doctors)
     /// </summary>
     public enum SystemRole
     {
         ITAdmin = 1,
         Manager = 2,
-        Patient = 3
+        Patient = 3,
+        Doctor = 4
     }
 }
