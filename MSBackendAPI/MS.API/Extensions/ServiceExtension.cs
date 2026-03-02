@@ -127,6 +127,9 @@ public static class ServiceExtension
             options.AddPolicy("PatientOnly", policy =>
                 policy.RequireRole(((int)SystemRole.Patient).ToString()));
 
+            options.AddPolicy("DoctorOnly", policy =>
+                policy.RequireRole(((int)SystemRole.Doctor).ToString()));
+
             options.AddPolicy("AdminOrManager", policy =>
                 policy.RequireRole(
                     ((int)SystemRole.ITAdmin).ToString(),
