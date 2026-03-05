@@ -34,7 +34,9 @@
         APP_MESSAGE_4017, // Email address already exists in the system
         APP_MESSAGE_4018, // Phone number already in use by another user
         APP_MESSAGE_4019, // General validation error (Model state invalid)
-
+        APP_MESSAGE_4020, // Specified user not found in the system
+        APP_MESSAGE_4021, // Cannot delete active admin user
+        APP_MESSAGE_4022, // Invalid role change
         // Server error codes (5xxx series)
         APP_MESSAGE_5000, // General internal server error (unexpected exception)
         APP_MESSAGE_5001, // Database operation failed (e.g., connection issue or query error)
