@@ -3,6 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
+using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
+using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
+using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.UserRepositories.GetUserByEmail;
 
 namespace MS.Infrastructure
@@ -31,6 +34,9 @@ namespace MS.Infrastructure
              services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             // Register Repositories for data access
             // services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IGetDoctorAvailabilities, GetDoctorAvailabilitiesImpl>();
+            services.AddScoped<IGetDoctorAppointments, GetDoctorAppointmentsImpl>();
+            services.AddScoped<IGetDoctorByUserId, GetDoctorByUserIdImpl>();
             return services;
         }
     }

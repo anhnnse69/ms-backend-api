@@ -104,6 +104,12 @@ namespace MS.Infrastructure.Persistence
                 .WithMany(s => s.Doctors)
                 .HasForeignKey(d => d.SpecialtyId)
                 .OnDelete(DeleteBehavior.Restrict);
+            // Doctor relationships with User
+            modelBuilder.Entity<Doctor>()
+                .HasOne(d => d.User)
+                .WithOne(u => u.Doctor)
+                .HasForeignKey<Doctor>(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             // DoctorAvailability relationships
             modelBuilder.Entity<DoctorAvailability>()
                 .HasOne(da => da.Doctor)

@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Common.AnnotationValidationBehavior;
+using MS.Application.Services.DoctorAppointmentService;
+using MS.Application.Services.DoctorAvailabilityService;
 using MS.Application.Services.LoginService;
 
 namespace MS.Application
@@ -21,6 +23,8 @@ namespace MS.Application
             // Register your Application Services here (e.g., Use Case handlers, domain services)
             // services.AddScoped<IPatientService, PatientService>();
              services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IDoctorAvailabilityService, DoctorAvailabilityService>();
+            services.AddScoped<IDoctorAppointmentService, DoctorAppointmentService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
