@@ -23,15 +23,14 @@ namespace MS.Domain.Entities
         public Doctor Doctor { get; set; }
 
         public DateTimeOffset AppointmentTime { get; set; }
-        public string Reason { get; set; }
         public string Notes { get; set; }
         public AppointmentStatus Status { get; set; }
 
         public DateTimeOffset? CancelledAt { get; set; }
-        public string CancellationReason { get; set; }
+        public string? CancellationReason { get; set; }
 
         // Tracking fields for auditing
         public string CreateBy { get; set; }
-        public string LastModifiedBy { get; set; }
+        public string? LastModifiedBy { get; set; }
     }
 }
