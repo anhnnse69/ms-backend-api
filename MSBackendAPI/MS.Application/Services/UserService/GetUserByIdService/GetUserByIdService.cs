@@ -13,9 +13,8 @@ namespace MS.Application.Services.UserService.GetUserByIdService
         private readonly IGetUserById _getUserById;
 
         /// <summary>
-        /// Get user by id service constructor
+        /// Constructor
         /// </summary>
-        /// <param name="getUserById"></param>
         public GetUserByIdService(IGetUserById getUserById)
         {
             _getUserById = getUserById;
@@ -24,16 +23,35 @@ namespace MS.Application.Services.UserService.GetUserByIdService
         /// <summary>
         /// Process get user by id request
         /// </summary>
-        /// <param name="id">The unique identifier of the user.</param>
-        /// <returns></returns>
         public async Task<ApiResponse<User>> Process(Guid id)
         {
-            var user = await _getUserById.Execute(id);
+            var user = await RetrieveUser(id);
+            return CreateResponse(user);
+        }
 
+        /// <summary>
+        /// Retrieve user from repository
+        /// </summary>
+        private async Task<User> RetrieveUser(Guid id)
+        {
+            return await _getUserById.Execute(id);
+        }
+
+        /// <summary>
+        /// Create API response
+        /// </summary>
+        private ApiResponse<User> CreateResponse(User user)
+        {
             if (user == null)
-                return ApiResponse<User>.Fail(MessageCode.APP_MESSAGE_4020.ToString());
-
-            return ApiResponse<User>.Success("APP_MESSAGE_2000", user);
+            {
+                return ApiResponse<User>.Fail(
+                    MessageCode.APP_MESSAGE_4020.ToString()
+                );
+            }
+            return ApiResponse<User>.Success(
+                MessageCode.APP_MESSAGE_2000.ToString(),
+                user
+            );
         }
     }
 }

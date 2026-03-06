@@ -12,9 +12,8 @@ namespace MS.Application.Services.UserService.GetAllUsersService
         private readonly IGetAllUsers _getAllUsers;
 
         /// <summary>
-        /// Get all users service constructor
+        /// Constructor
         /// </summary>
-        /// <param name="getAllUsers"></param>
         public GetAllUsersService(IGetAllUsers getAllUsers)
         {
             _getAllUsers = getAllUsers;
@@ -23,10 +22,25 @@ namespace MS.Application.Services.UserService.GetAllUsersService
         /// <summary>
         /// Process get all users request
         /// </summary>
-        /// <returns></returns>
         public async Task<ApiResponse<List<User>>> Process()
         {
-            var users = await _getAllUsers.Execute();
+            var users = await RetrieveUsers();
+            return CreateResponse(users);
+        }
+
+        /// <summary>
+        /// Retrieve users from repository
+        /// </summary>
+        private async Task<List<User>> RetrieveUsers()
+        {
+            return await _getAllUsers.Execute();
+        }
+
+        /// <summary>
+        /// Create API response
+        /// </summary>
+        private ApiResponse<List<User>> CreateResponse(List<User> users)
+        {
             return ApiResponse<List<User>>.Success("APP_MESSAGE_2000", users);
         }
     }
