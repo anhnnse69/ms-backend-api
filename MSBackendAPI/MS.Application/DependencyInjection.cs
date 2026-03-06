@@ -4,6 +4,8 @@ using MS.Application.Common.AnnotationValidationBehavior;
 using MS.Application.Services.GetDoctorAppointmentService;
 using MS.Application.Services.GetDoctorAvailabilityService;
 using MS.Application.Services.LoginService;
+using MS.Application.Services.UserService.GetAllUsersService;
+using MS.Application.Services.UserService.GetUserByIdService;
 
 namespace MS.Application
 {
@@ -25,6 +27,8 @@ namespace MS.Application
              services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IGetDoctorAvailabilityService, GetDoctorAvailabilityService>();
             services.AddScoped<IGetDoctorAppointmentService, GetDoctorAppointmentService>();
+             services.AddScoped<IGetAllUsersService, GetAllUsersService>();
+             services.AddScoped<IGetUserByIdService, GetUserByIdService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;

@@ -6,7 +6,9 @@ using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
+using MS.Infrastructure.Repositories.UserRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.UserRepositories.GetUserByEmail;
+using MS.Infrastructure.Repositories.UserRepositories.GetUserById;
 
 namespace MS.Infrastructure
 {
@@ -37,6 +39,8 @@ namespace MS.Infrastructure
             services.AddScoped<IGetDoctorAvailabilities, GetDoctorAvailabilitiesImpl>();
             services.AddScoped<IGetDoctorAppointments, GetDoctorAppointmentsImpl>();
             services.AddScoped<IGetDoctorByUserId, GetDoctorByUserIdImpl>();
+             services.AddScoped<IGetAllUsers, GetAllUsersImpl>();
+             services.AddScoped<IGetUserById, GetUserByIdImpl>();
             return services;
         }
     }
