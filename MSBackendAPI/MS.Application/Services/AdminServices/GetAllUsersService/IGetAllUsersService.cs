@@ -1,5 +1,4 @@
 ﻿using MS.Application.Common.Response;
-using MS.Domain.Entities;
 
 namespace MS.Application.Services.AdminServices.GetAllUsersService
 {
@@ -12,6 +11,6 @@ namespace MS.Application.Services.AdminServices.GetAllUsersService
         /// Process get all users request
         /// </summary>
         /// <returns></returns>
-        Task<ApiResponse<List<GetAllUsersResponse>>> Process();
+        Task<ApiResponse<IEnumerable<GetAllUsersResponse>>> Process(int page, int size);
     }
 }

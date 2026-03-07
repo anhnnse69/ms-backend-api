@@ -30,14 +30,18 @@ namespace MS.API.Controllers.AdminController
         }
 
         /// <summary>
-        /// Retrieves all users from the system.
+        /// Execute API to retrieve all users with pagination support.
         /// </summary>
+        /// <param name="page">Current page index (default = 1)</param>
+        /// <param name="size">Number of records per page (default = 10)</param>
         /// <returns>
-        /// An <see cref="IActionResult"/> containing the result of the get-all-users operation.
-        /// Returns a 200 OK response with a list of users if the request is successful.
+        /// Returns a paginated list of users including metadata information.
         /// </returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-            => Ok(await _service.Process());
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int size = 10)
+        {
+            var result = await _service.Process(page, size);
+            return Ok(result);
+        }
     }
 }

@@ -48,9 +48,7 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
                     MessageCode.APP_MESSAGE_4020.ToString()
                 );
             }
-
             var result = MapToResponse(user);
-
             return ApiResponse<GetUserByIdResponse>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(),
                 result

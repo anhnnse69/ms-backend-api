@@ -25,9 +25,9 @@ namespace MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers
         /// <returns>
         /// A list of <see cref="User"/> entities representing all users in the system.
         /// </returns>
-        public async Task<List<User>> Execute()
+        public IQueryable<User> Execute()
         {
-            return await FindAll(trackChanges: false).ToListAsync();
+            return FindAll(trackChanges: false);
         }
     }
 }
