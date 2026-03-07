@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MS.Domain.Entities.General;
+using MS.Domain.Entities.General.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace MS.Domain.Entities
 {
@@ -6,6 +8,7 @@ namespace MS.Domain.Entities
     /// Represents doctor's working schedule
     /// </summary>
     public class DoctorAvailability
+    : EntityAuditBase<Guid>, IEntityBase<Guid>, IUserTracking
     {
         [Key]
         public Guid Id { get; set; }
@@ -21,5 +24,9 @@ namespace MS.Domain.Entities
         public TimeSpan EndTime { get; set; }
         public int SlotDurationMinutes { get; set; }
         public bool IsActive { get; set; }
+
+        // Tracking fields for auditing
+        public string CreateBy { get; set; }
+        public string LastModifiedBy { get; set; }
     }
 }

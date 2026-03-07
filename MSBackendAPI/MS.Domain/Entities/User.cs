@@ -23,6 +23,8 @@ namespace MS.Domain.Entities
         public bool IsActive { get; set; }
         public DateTimeOffset? LastLoginAt { get; set; }
 
+        public Doctor Doctor { get; set; }
+
         // Tracking fields for auditing
         public string CreateBy { get; set; }
         public string LastModifiedBy { get; set; }

@@ -10,6 +10,8 @@ namespace MS.Domain.Entities
     /// </summary>
     public class Doctor : EntityAuditBase<Guid>, IUserTracking, IEntityBase<Guid>
     {
+        public Guid? UserId { get; set; } //ket noi 1 - 1 voi User
+        public User User { get; set; }
         public string DisplayName { get; set; } // For UI display
         public string FullName { get; set; }
         public string BioVi { get; set; }
