@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Commons\" />
+    <Folder Include="Controllers\CommonController\" />
   </ItemGroup>
 
 </Project>
