@@ -6,9 +6,9 @@ using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
-using MS.Infrastructure.Repositories.UserRepositories.GetAllUsers;
-using MS.Infrastructure.Repositories.UserRepositories.GetUserByEmail;
-using MS.Infrastructure.Repositories.UserRepositories.GetUserById;
+using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
+using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 
 namespace MS.Infrastructure
 {
@@ -32,15 +32,15 @@ namespace MS.Infrastructure
                     configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
             // Register Infrastructure Services (e.g., JWT, Guid services)
-             services.AddScoped<IJwtTokenService, JwtTokenService>();
-             services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             // Register Repositories for data access
             // services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IGetDoctorAvailabilities, GetDoctorAvailabilitiesImpl>();
             services.AddScoped<IGetDoctorAppointments, GetDoctorAppointmentsImpl>();
             services.AddScoped<IGetDoctorByUserId, GetDoctorByUserIdImpl>();
-             services.AddScoped<IGetAllUsers, GetAllUsersImpl>();
-             services.AddScoped<IGetUserById, GetUserByIdImpl>();
+            services.AddScoped<IGetAllUsers, GetAllUsersImpl>();
+            services.AddScoped<IGetUserById, GetUserByIdImpl>();
             return services;
         }
     }

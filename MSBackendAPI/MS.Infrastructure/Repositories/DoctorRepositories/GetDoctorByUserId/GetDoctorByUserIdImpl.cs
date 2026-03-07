@@ -2,21 +2,15 @@
 using MS.Domain.Entities;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId
 {
     /// <summary>
     /// Repository implementation used to retrieve doctor entity by user identifier
     /// </summary>
-    public class GetDoctorByUserIdImpl
-        : RepositoryQueryBase<Doctor, Guid, AppDbContext>,
-          IGetDoctorByUserId
+    public class GetDoctorByUserIdImpl : RepositoryQueryBase<Doctor, Guid, AppDbContext>, IGetDoctorByUserId
     {
+
         /// <summary>
         /// Constructor for GetDoctorByUserId repository
         /// </summary>
