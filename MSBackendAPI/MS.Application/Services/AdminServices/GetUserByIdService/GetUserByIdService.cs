@@ -23,7 +23,7 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
         /// <summary>
         /// Process get user by id request
         /// </summary>
-        public async Task<ApiResponse<User>> Process(Guid id)
+        public async Task<ApiResponse<GetUserByIdResponse>> Process(Guid id)
         {
             var user = await RetrieveUser(id);
             return CreateResponse(user);
@@ -40,18 +40,39 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
         /// <summary>
         /// Create API response
         /// </summary>
-        private ApiResponse<User> CreateResponse(User user)
+        private ApiResponse<GetUserByIdResponse> CreateResponse(User user)
         {
             if (user == null)
             {
-                return ApiResponse<User>.Fail(
+                return ApiResponse<GetUserByIdResponse>.Fail(
                     MessageCode.APP_MESSAGE_4020.ToString()
                 );
             }
-            return ApiResponse<User>.Success(
+
+            var result = MapToResponse(user);
+
+            return ApiResponse<GetUserByIdResponse>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(),
-                user
+                result
             );
+        }
+        /// <summary>
+        /// Map user entity to response model
+        /// </summary>
+        private GetUserByIdResponse MapToResponse(User user)
+        {
+            return new GetUserByIdResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                DisplayName = user.DisplayName,
+                FullName = user.FullName,
+                AvatarUrl = user.AvatarUrl,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Role = user.Role.ToString(),             
+                IsActive = user.IsActive,
+            };
         }
     }
 }
