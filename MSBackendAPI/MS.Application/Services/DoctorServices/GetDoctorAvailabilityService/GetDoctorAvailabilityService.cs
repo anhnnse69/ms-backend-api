@@ -1,4 +1,5 @@
-﻿using MS.Application.Common.Response;
+﻿using Microsoft.EntityFrameworkCore;
+using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
@@ -7,7 +8,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
 {
     /// <summary>
-    /// Service responsible for retrieving doctor availability schedule
+    /// Get doctor availability service implementation
     /// </summary>
     public class GetDoctorAvailabilityService : IGetDoctorAvailabilityService
     {
@@ -17,9 +18,11 @@ namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
         /// <summary>
         /// Get doctor availability service constructor
         /// </summary>
-        /// <param name="getDoctorAvailabilities">Repository to retrieve doctor availability</param>
-        /// <param name="getDoctorByUserId">Repository to retrieve doctor by user id</param>
-        public GetDoctorAvailabilityService(IGetDoctorAvailabilities getDoctorAvailabilities,IGetDoctorByUserId getDoctorByUserId)
+        /// <param name="getDoctorAvailabilities"></param>
+        /// <param name="getDoctorByUserId"></param>
+        public GetDoctorAvailabilityService(
+            IGetDoctorAvailabilities getDoctorAvailabilities,
+            IGetDoctorByUserId getDoctorByUserId)
         {
             _getDoctorAvailabilities = getDoctorAvailabilities;
             _getDoctorByUserId = getDoctorByUserId;
@@ -28,64 +31,104 @@ namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
         /// <summary>
         /// Process get doctor availability request
         /// </summary>
-        /// <param name="userId">User identifier extracted from JWT token</param>
-        /// <returns>Doctor availability schedule</returns>
-        public async Task<ApiResponse<IEnumerable<GetDoctorAvailabilityResponse>>> Process(Guid userId)
+        /// <param name="userId"></param>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public async Task<ApiResponse<IEnumerable<GetDoctorAvailabilityResponse>>> Process(Guid userId, int page, int size)
         {
             // 1. Initialize validation flags
             bool isRetrievedDataValid = true;
-            // 2. Retrieve doctor entity using user identifier
+            // 2. Retrieve doctor entity
             var retrievedDoctor = await RetrieveDoctor(userId);
-            // 3. Retrieve availability data
-            var retrievedData = await RetrieveData(retrievedDoctor);
-            // 4. Validate retrieved data
-            ValidateData(retrievedData, ref isRetrievedDataValid);
-            // 5. Create response
-            return CreateResponse(retrievedData, isRetrievedDataValid);
+            // 3. Retrieve availability query
+            var retrievedQuery = RetrieveQuery(retrievedDoctor);
+            // 4. Retrieve paginated data
+            var retrievedData = await RetrieveData(retrievedQuery, page, size);
+            // 5. Retrieve total records
+            var total = await RetrieveTotal(retrievedQuery);
+            // 6. Validate retrieved data
+            ValidateData(retrievedDoctor, ref isRetrievedDataValid);
+            // 7. Create response
+            return CreateResponse(retrievedData, total, page, size, isRetrievedDataValid);
         }
 
         /// <summary>
-        /// Retrieve doctor entity by user identifier
+        /// Retrieve doctor entity by user id
         /// </summary>
-        /// <param name="userId">User identifier</param>
-        /// <returns>Doctor entity</returns>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         private async Task<Doctor> RetrieveDoctor(Guid userId)
         {
             return await _getDoctorByUserId.Execute(userId);
         }
 
         /// <summary>
-        /// Retrieve doctor availability list
+        /// Retrieve doctor availability query
         /// </summary>
-        /// <param name="doctor">Doctor entity</param>
-        /// <returns>Collection of doctor availability entities</returns>
-        private async Task<IEnumerable<DoctorAvailability>> RetrieveData(Doctor doctor)
+        /// <param name="doctor"></param>
+        /// <returns></returns>
+        private IQueryable<DoctorAvailability> RetrieveQuery(Doctor doctor)
         {
             if (doctor == null)
             {
                 return null;
             }
-            return await _getDoctorAvailabilities.Execute(doctor.Id);
+
+            return _getDoctorAvailabilities.Execute(doctor.Id);
         }
 
         /// <summary>
-        /// Validate retrieved availability data
+        /// Retrieve paginated availability data
         /// </summary>
-        /// <param name="data">Availability entities</param>
-        /// <param name="isRetrievedDataValid">Validation flag</param>
-        private void ValidateData(IEnumerable<DoctorAvailability> data, ref bool isRetrievedDataValid)
+        /// <param name="query"></param>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        private async Task<List<DoctorAvailability>> RetrieveData(IQueryable<DoctorAvailability> query, int page, int size)
         {
-            if (data == null || !data.Any())
+            if (query == null)
+            {
+                return null;
+            }
+            return await query
+                .Skip((page - 1) * size)
+                .Take(size)
+                .ToListAsync();
+        }
+
+        /// <summary>
+        /// Retrieve total number of availability records
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        private async Task<int> RetrieveTotal(IQueryable<DoctorAvailability> query)
+        {
+            if (query == null)
+            {
+                return 0;
+            }
+            return await query.CountAsync();
+        }
+
+        /// <summary>
+        /// Validate retrieved doctor data
+        /// </summary>
+        /// <param name="doctor"></param>
+        /// <param name="isRetrievedDataValid"></param>
+        private void ValidateData(Doctor doctor, ref bool isRetrievedDataValid)
+        {
+            if (doctor == null)
             {
                 isRetrievedDataValid = false;
             }
         }
 
         /// <summary>
-        /// Map availability entities to response models
+        /// Map availability entity to response
         /// </summary>
-        /// <param name="data">Availability entities</param>
-        /// <returns>Mapped availability response models</returns>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private IEnumerable<GetDoctorAvailabilityResponse> MapToResponse(IEnumerable<DoctorAvailability> data)
         {
             return data.Select(x => new GetDoctorAvailabilityResponse
@@ -96,13 +139,13 @@ namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
                 FacilityId = x.FacilityId,
                 // Facility name
                 FacilityName = x.Facility?.NameVi,
-                // Working day of doctor
+                // Working day
                 DayOfWeek = x.DayOfWeek,
                 // Start time
                 StartTime = x.StartTime,
                 // End time
                 EndTime = x.EndTime,
-                // Slot duration in minutes
+                // Slot duration
                 SlotDurationMinutes = x.SlotDurationMinutes,
                 // Availability status
                 IsActive = x.IsActive
@@ -110,22 +153,34 @@ namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
         }
 
         /// <summary>
-        /// Create API response for doctor availability
+        /// Create response of the get doctor availability request
         /// </summary>
-        /// <param name="data">Availability entities</param>
-        /// <param name="isRetrievedDataValid">Validation flag</param>
-        /// <returns>API response containing availability list</returns>
-        private ApiResponse<IEnumerable<GetDoctorAvailabilityResponse>> CreateResponse(IEnumerable<DoctorAvailability> data,bool isRetrievedDataValid)
+        /// <param name="data"></param>
+        /// <param name="total"></param>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="isRetrievedDataValid"></param>
+        /// <returns></returns>
+        private ApiResponse<IEnumerable<GetDoctorAvailabilityResponse>> CreateResponse(
+            IEnumerable<DoctorAvailability> data,
+            int total,
+            int page,
+            int size,
+            bool isRetrievedDataValid)
         {
             if (!isRetrievedDataValid)
             {
                 return ApiResponse<IEnumerable<GetDoctorAvailabilityResponse>>
                     .Fail(MessageCode.APP_MESSAGE_4011.ToString());
             }
-            // Map entity data to response model
             var result = MapToResponse(data);
+            var meta = new MetaResponse(page, size, total);
             return ApiResponse<IEnumerable<GetDoctorAvailabilityResponse>>
-                .Success(MessageCode.APP_MESSAGE_2000.ToString(), result);
+                .Success(
+                    MessageCode.APP_MESSAGE_2000.ToString(),
+                    result,
+                    meta
+                );
         }
     }
 }

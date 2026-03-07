@@ -4,6 +4,6 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointment
 {
     public interface IGetDoctorAppointments
     {
-        Task<IEnumerable<Appointment>> Execute(Guid doctorId);
+        IQueryable<Appointment> Execute(Guid doctorId);
     }
 }

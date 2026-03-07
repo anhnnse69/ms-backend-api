@@ -23,7 +23,7 @@ namespace MS.Domain.Entities
         public Doctor Doctor { get; set; }
 
         public DateTimeOffset AppointmentTime { get; set; }
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
         public AppointmentStatus Status { get; set; }
 
         public DateTimeOffset? CancelledAt { get; set; }
