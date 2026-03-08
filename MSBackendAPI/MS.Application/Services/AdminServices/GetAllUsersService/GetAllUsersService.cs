@@ -33,19 +33,14 @@ namespace MS.Application.Services.AdminServices.GetAllUsersService
         {
             // 1. Initialize validation flag
             bool isRetrievedDataValid = true;
-
             // 2. Retrieve user query
             var query = RetrieveQuery();
-
             // 3. Retrieve paginated data
             var data = await RetrieveData(query, page, size);
-
             // 4. Retrieve total records
             var total = await RetrieveTotal(query);
-
             // 5. Validate retrieved query
             ValidateData(query, ref isRetrievedDataValid);
-
             // 6. Create API response
             return CreateResponse(data, total, page, size, isRetrievedDataValid);
         }
