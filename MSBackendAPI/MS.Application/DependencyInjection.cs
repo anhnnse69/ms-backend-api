@@ -6,6 +6,8 @@ using MS.Application.Services.AdminServices.GetUserByIdService;
 using MS.Application.Services.CommonServices.LoginService;
 using MS.Application.Services.Doctors.GetDoctorAppointmentService;
 using MS.Application.Services.Doctors.GetDoctorAvailabilityService;
+using MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService;
+using MS.Application.Services.DoctorServices.RejectDoctorAppointmentService;
 
 namespace MS.Application
 {
@@ -29,6 +31,8 @@ namespace MS.Application
             services.AddScoped<IGetDoctorAppointmentService, GetDoctorAppointmentService>();
             services.AddScoped<IGetAllUsersService, GetAllUsersService>();
             services.AddScoped<IGetUserByIdService, GetUserByIdService>();
+            services.AddScoped<IConfirmDoctorAppointmentService, ConfirmDoctorAppointmentService>();
+            services.AddScoped<IRejectDoctorAppointmentService, RejectDoctorAppointmentService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
