@@ -8,12 +8,13 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilit
     /// <summary>
     /// Repository implementation used to retrieve doctor availability schedule
     /// </summary>
-    public class GetDoctorAvailabilitiesImpl : RepositoryQueryBase<DoctorAvailability, Guid, AppDbContext>, IGetDoctorAvailabilities
+    public class GetDoctorAvailabilitiesImpl
+        : RepositoryQueryBase<DoctorAvailability, Guid, AppDbContext>,
+          IGetDoctorAvailabilities
     {
         /// <summary>
-        /// Constructor for GetDoctorAvailabilities repository
+        /// Constructor
         /// </summary>
-        /// <param name="context">Application database context</param>
         public GetDoctorAvailabilitiesImpl(AppDbContext context) : base(context)
         {
         }
@@ -22,13 +23,11 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilit
         /// Execute query to retrieve availability list of a doctor
         /// </summary>
         /// <param name="doctorId">Doctor identifier</param>
-        /// <returns>Collection of doctor availability entities</returns>
-        public async Task<IEnumerable<DoctorAvailability>> Execute(Guid doctorId)
+        /// <returns>IQueryable availability query</returns>
+        public IQueryable<DoctorAvailability> Execute(Guid doctorId)
         {
-            return await FindByCondition(x => x.DoctorId == doctorId, false)
-                // Include facility information related to availability
-                .Include(x => x.Facility)
-                .ToListAsync();
+            return FindByCondition(x => x.DoctorId == doctorId, false)
+                .Include(x => x.Facility);
         }
     }
 }

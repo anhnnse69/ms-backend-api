@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
+﻿namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
 {
     /// <summary>
     /// Response model for doctor availability
