@@ -9,6 +9,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 
 namespace MS.Infrastructure
 {
@@ -41,6 +42,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetDoctorByUserId, GetDoctorByUserIdImpl>();
             services.AddScoped<IGetAllUsers, GetAllUsersImpl>();
             services.AddScoped<IGetUserById, GetUserByIdImpl>();
+            services.AddScoped<ICreateUser, CreateUserImpl>();
             return services;
         }
     }
