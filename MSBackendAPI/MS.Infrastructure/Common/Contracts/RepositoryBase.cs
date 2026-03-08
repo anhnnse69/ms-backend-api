@@ -45,16 +45,15 @@ public class RepositoryBase<T, K, TContext>
         return entities.Select(x => x.Id).ToList();
     }
 
-    public async Task UpdateAsync(T entity)
+    public Task UpdateAsync(T entity)
     {
         if (_dbContext.Entry(entity).State == EntityState.Unchanged)
-            return;
+            return Task.CompletedTask;
 
-        var existing = await _dbContext.Set<T>().FindAsync(entity.Id)
-            ?? throw new KeyNotFoundException(
-                $"Entity of type {typeof(T).Name} with id '{entity.Id}' was not found.");
+        T exist = _dbContext.Set<T>().Find(entity.Id);
+        _dbContext.Entry(exist).CurrentValues.SetValues(entity);
 
-        _dbContext.Entry(existing).CurrentValues.SetValues(entity);
+        return Task.CompletedTask;
     }
 
     public Task UpdateListAsync(IEnumerable<T> entities)
