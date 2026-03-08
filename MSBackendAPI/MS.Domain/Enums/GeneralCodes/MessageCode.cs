@@ -13,6 +13,7 @@
         APP_MESSAGE_2004, // Appointment cancelled successfully
         APP_MESSAGE_2005, // Patient record created successfully
         APP_MESSAGE_2006, // Patient information updated successfully
+        APP_MESSAGE_2007, // Appointment status updated successfully
 
         // Client error codes (4xxx series)
         APP_MESSAGE_4001, // Invalid phone number format or length

@@ -54,7 +54,12 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
             ValidateAppointment(retrievedAppointment, ref isAppointmentValid);
             ValidateOwnership(retrievedDoctor, retrievedAppointment, ref isOwnershipValid);
             // 5. Update appointment status
-            await UpdateAppointment(retrievedAppointment, request.Reason);
+            await UpdateAppointment(
+                retrievedAppointment,
+                request.Reason,
+                isDoctorValid,
+                isAppointmentValid,
+                isOwnershipValid);
             // 6. Create response
             return CreateResponse(
                 retrievedAppointment,
@@ -134,9 +139,17 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         /// </summary>
         /// <param name="appointment">Appointment entity</param>
         /// <param name="reason">Cancellation reason</param>
-        private async Task UpdateAppointment(Appointment appointment, string reason)
+        /// <param name="isDoctorValid">Doctor validation flag</param>
+        /// <param name="isAppointmentValid">Appointment validation flag</param>
+        /// <param name="isOwnershipValid">Ownership validation flag</param>
+        private async Task UpdateAppointment(
+            Appointment appointment,
+            string reason,
+            bool isDoctorValid,
+            bool isAppointmentValid,
+            bool isOwnershipValid)
         {
-            if (appointment != null)
+            if (isDoctorValid && isAppointmentValid && isOwnershipValid && appointment != null)
             {
                 appointment.Status = AppointmentStatus.Cancelled;
                 appointment.CancellationReason = reason;
