@@ -1,5 +1,4 @@
 ﻿using MS.Application.Common.Response;
-using MS.Domain.Entities;
 
 namespace MS.Application.Services.AdminServices.GetUserByIdService
 {
@@ -13,6 +12,6 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<ApiResponse<User>> Process(Guid id);
+        Task<ApiResponse<GetUserByIdResponse>> Process(Guid id);
     }
 }
