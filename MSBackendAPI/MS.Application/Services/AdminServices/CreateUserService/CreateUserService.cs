@@ -132,6 +132,9 @@ namespace MS.Application.Services.AdminServices.CreateUser
                 Role = request.Role,
                 IsActive = true,
                 CreateBy = "system",
+                LastModifiedBy = "system",
+                CreateDate = DateTime.UtcNow,
+                LastModifiedDate = DateTimeOffset.UtcNow,
             };
         }
     }
