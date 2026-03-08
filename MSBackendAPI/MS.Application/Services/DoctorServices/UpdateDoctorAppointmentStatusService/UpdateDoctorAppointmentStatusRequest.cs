@@ -9,7 +9,6 @@ namespace MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusSe
     {
         // Appointment identifier
         public Guid AppointmentId { get; set; }
-
         // New appointment status
         public AppointmentStatus Status { get; set; }
     }
