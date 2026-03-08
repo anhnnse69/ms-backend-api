@@ -5,6 +5,7 @@ using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
@@ -13,7 +14,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
-using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
+using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 
 namespace MS.Infrastructure
 {
@@ -51,6 +52,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentById, GetAppointmentByIdImpl>();
             services.AddScoped<IUpdateAppointment, UpdateAppointmentImpl>();
             services.AddScoped<ICreateUser, CreateUserImpl>();
+            services.AddScoped<IUpdateUser, UpdateUserImpl>();
             return services;
         }
     }
