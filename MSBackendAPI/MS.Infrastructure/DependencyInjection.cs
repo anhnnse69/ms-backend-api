@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MS.Infrastructure.Common.Contracts;
+using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
+using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
+using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
-using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
-using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 
 namespace MS.Infrastructure
@@ -32,6 +36,8 @@ namespace MS.Infrastructure
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+            // UnitOfWork
+            services.AddScoped<IUnitOfWork<AppDbContext>, UnitOfWork<AppDbContext>>();
             // Register Infrastructure Services (e.g., JWT, Guid services)
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
@@ -42,6 +48,8 @@ namespace MS.Infrastructure
             services.AddScoped<IGetDoctorByUserId, GetDoctorByUserIdImpl>();
             services.AddScoped<IGetAllUsers, GetAllUsersImpl>();
             services.AddScoped<IGetUserById, GetUserByIdImpl>();
+            services.AddScoped<IGetAppointmentById, GetAppointmentByIdImpl>();
+            services.AddScoped<IUpdateAppointment, UpdateAppointmentImpl>();
             services.AddScoped<ICreateUser, CreateUserImpl>();
             return services;
         }
