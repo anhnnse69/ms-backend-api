@@ -4,6 +4,6 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilit
 {
     public interface IGetDoctorAvailabilities
     {
-        Task<IEnumerable<DoctorAvailability>> Execute(Guid doctorId);
+        IQueryable<DoctorAvailability> Execute(Guid doctorId);
     }
 }

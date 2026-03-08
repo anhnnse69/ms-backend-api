@@ -13,6 +13,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 
 namespace MS.Infrastructure
 {
@@ -49,6 +50,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetUserById, GetUserByIdImpl>();
             services.AddScoped<IGetAppointmentById, GetAppointmentByIdImpl>();
             services.AddScoped<IUpdateAppointment, UpdateAppointmentImpl>();
+            services.AddScoped<ICreateUser, CreateUserImpl>();
             return services;
         }
     }

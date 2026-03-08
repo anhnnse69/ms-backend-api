@@ -8,12 +8,13 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointment
     /// <summary>
     /// Repository implementation used to retrieve doctor appointment list
     /// </summary>
-    public class GetDoctorAppointmentsImpl : RepositoryQueryBase<Appointment, Guid, AppDbContext>, IGetDoctorAppointments
+    public class GetDoctorAppointmentsImpl
+        : RepositoryQueryBase<Appointment, Guid, AppDbContext>,
+          IGetDoctorAppointments
     {
         /// <summary>
-        /// Constructor for GetDoctorAppointments repository
+        /// Constructor
         /// </summary>
-        /// <param name="context">Application database context</param>
         public GetDoctorAppointmentsImpl(AppDbContext context) : base(context)
         {
         }
@@ -22,15 +23,12 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointment
         /// Execute query to retrieve appointment list of a doctor
         /// </summary>
         /// <param name="doctorId">Doctor identifier</param>
-        /// <returns>Collection of appointment entities</returns>
-        public async Task<IEnumerable<Appointment>> Execute(Guid doctorId)
+        /// <returns>IQueryable appointment query</returns>
+        public IQueryable<Appointment> Execute(Guid doctorId)
         {
-            return await FindByCondition(x => x.DoctorId == doctorId, false)
-                // Include patient information related to appointment
+            return FindByCondition(x => x.DoctorId == doctorId, false)
                 .Include(x => x.Patient)
-                // Include facility where the appointment takes place
-                .Include(x => x.Facility)
-                .ToListAsync();
+                .Include(x => x.Facility);
         }
     }
 }
