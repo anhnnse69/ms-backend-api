@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Enums.Roles;
-using MS.Infrastructure.Persistence;
+using MS.Application;
+using MS.Infrastructure;
 using System.Text;
 using System.Text.Json;
 
@@ -29,23 +30,12 @@ public static class ServiceExtension
             options.SuppressModelStateInvalidFilter = true;
         });
 
-        services.ConfigureDatabase(configuration);
+        services.AddApplication();
+        services.AddInfrastructure(configuration);
         services.ConfigureJwt(configuration);
         services.ConfigureAuthorization();
         services.ConfigureCors();
 
-        return services;
-    }
-
-    private static IServiceCollection ConfigureDatabase(
-        this IServiceCollection services,
-        IConfiguration configuration)
-    {
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection") + ";TrustServerCertificate=True"
-            )
-        );
         return services;
     }
 
