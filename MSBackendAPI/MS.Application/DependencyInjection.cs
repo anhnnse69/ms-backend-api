@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Common.AnnotationValidationBehavior;
 using MS.Application.Services.AdminServices.CreateUser;
+using MS.Application.Services.AdminServices.GetAllFacilitiesService;
+using MS.Application.Services.AdminServices.DeleteUserService;
 using MS.Application.Services.AdminServices.GetAllUsersService;
 using MS.Application.Services.AdminServices.GetUserByIdService;
 using MS.Application.Services.AdminServices.UpdateUserService;
@@ -11,6 +13,7 @@ using MS.Application.Services.Doctors.GetDoctorAvailabilityService;
 using MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService;
 using MS.Application.Services.DoctorServices.GetDoctorPatientInfoService;
 using MS.Application.Services.DoctorServices.RejectDoctorAppointmentService;
+using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
 
 namespace MS.Application
@@ -39,8 +42,11 @@ namespace MS.Application
             services.AddScoped<IRejectDoctorAppointmentService, RejectDoctorAppointmentService>();
             services.AddScoped<ICreateUserService, CreateUserService>();
             services.AddScoped<IUpdateUserService, UpdateUserService>();
+            services.AddScoped<IDeleteUserService, DeleteUserService>();
             services.AddScoped<IChangePasswordService, ChangePasswordService>();
             services.AddScoped<IGetDoctorPatientInfoService, GetDoctorPatientInfoService>();
+            services.AddScoped<IGetAllFacilitiesService, GetAllFacilitiesService>();
+            services.AddScoped<IUpdateDoctorAppointmentStatusService, UpdateDoctorAppointmentStatusService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
