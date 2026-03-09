@@ -74,7 +74,21 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
                     MessageCode.APP_MESSAGE_4004.ToString()
                 );
             }
-            var response = new DoctorDetailResponse
+            // Map doctor entity to response model
+            var mappedDoctor = MapDoctor(doctor);
+            return ApiResponse<DoctorDetailResponse>.Success(
+                MessageCode.APP_MESSAGE_2000.ToString(),
+                mappedDoctor
+            );
+        }
+        /// <summary>
+        /// Map doctor entity to response model
+        /// </summary>
+        /// <param name="doctor">Doctor entity</param>
+        /// <returns>Doctor detail response model</returns>
+        private DoctorDetailResponse MapDoctor(Doctor doctor)
+        {
+            return new DoctorDetailResponse
             {
                 Id = doctor.Id,
                 DisplayName = doctor.DisplayName,
@@ -90,10 +104,6 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
                     .Select(l => l.Language.ToString())
                     .ToList()
             };
-            return ApiResponse<DoctorDetailResponse>.Success(
-                MessageCode.APP_MESSAGE_2000.ToString(),
-                response
-            );
         }
     }
 }

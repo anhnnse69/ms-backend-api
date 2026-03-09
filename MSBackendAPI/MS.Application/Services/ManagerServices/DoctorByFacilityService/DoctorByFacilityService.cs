@@ -12,7 +12,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
     {
         private readonly IGetDoctorByFacility _getDoctorsByFacility;
         /// <summary>
-        /// Constructor for DoctorByFacilityService
+        /// Initializes a new instance of the service
         /// </summary>
         /// <param name="getDoctorsByFacility">
         /// Repository used to retrieve doctors by facility identifier
@@ -37,7 +37,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
             // 3. Validate retrieved data
             ValidateRetrievedData(doctors, ref isDataValid);
             // 4. Create API response
-            return await CreateResponse(doctors, page, size, total, isDataValid);
+            return CreateResponse(doctors, page, size, total, isDataValid);
         }
         /// <summary>
         /// Validate retrieved doctors data
@@ -60,7 +60,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
         /// <param name="total">Total number of records</param>
         /// <param name="isDataValid">Validation flag</param>
         /// <returns>API response containing doctor list and pagination metadata</returns>
-        private async Task<ApiResponse<List<DoctorListResponse>>> CreateResponse(
+        private ApiResponse<List<DoctorListResponse>> CreateResponse(
             List<Doctor> doctors,
             int page,
             int size,
@@ -73,7 +73,23 @@ namespace MS.Application.Services.DoctorsByFacilityService
                     MessageCode.APP_MESSAGE_4004.ToString()
                 );
             }
-            var response = doctors.Select(d => new DoctorListResponse
+            // Map doctor entities to response model
+            var mappedDoctors = MapDoctors(doctors);
+            var meta = new MetaResponse(page, size, total);
+            return ApiResponse<List<DoctorListResponse>>.Success(
+                MessageCode.APP_MESSAGE_2000.ToString(),
+                mappedDoctors,
+                meta
+            );
+        }
+        /// <summary>
+        /// Map doctor entities to response model
+        /// </summary>
+        /// <param name="doctors">List of doctor entities</param>
+        /// <returns>List of doctor response models</returns>
+        private List<DoctorListResponse> MapDoctors(List<Doctor> doctors)
+        {
+            return doctors.Select(d => new DoctorListResponse
             {
                 Id = d.Id,
                 DisplayName = d.DisplayName,
@@ -84,12 +100,6 @@ namespace MS.Application.Services.DoctorsByFacilityService
                 AverageRating = d.AverageRating,
                 SpecialtyName = d.Specialty.NameVi
             }).ToList();
-            var meta = new MetaResponse(page, size, total);
-            return ApiResponse<List<DoctorListResponse>>.Success(
-                MessageCode.APP_MESSAGE_2000.ToString(),
-                response,
-                meta
-            );
         }
     }
 }
