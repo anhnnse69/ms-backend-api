@@ -11,6 +11,7 @@ using MS.Application.Services.CommonServices.LoginService;
 using MS.Application.Services.Doctors.GetDoctorAppointmentService;
 using MS.Application.Services.Doctors.GetDoctorAvailabilityService;
 using MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService;
+using MS.Application.Services.DoctorServices.GetDoctorPatientInfoService;
 using MS.Application.Services.DoctorServices.RejectDoctorAppointmentService;
 using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
@@ -43,6 +44,7 @@ namespace MS.Application
             services.AddScoped<IUpdateUserService, UpdateUserService>();
             services.AddScoped<IDeleteUserService, DeleteUserService>();
             services.AddScoped<IChangePasswordService, ChangePasswordService>();
+            services.AddScoped<IGetDoctorPatientInfoService, GetDoctorPatientInfoService>();
             services.AddScoped<IGetAllFacilitiesService, GetAllFacilitiesService>();
             services.AddScoped<IUpdateDoctorAppointmentStatusService, UpdateDoctorAppointmentStatusService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
