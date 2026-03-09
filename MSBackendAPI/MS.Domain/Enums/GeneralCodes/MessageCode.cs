@@ -38,6 +38,7 @@
         APP_MESSAGE_4020, // Specified user not found in the system
         APP_MESSAGE_4021, // Cannot delete active admin user
         APP_MESSAGE_4022, // Invalid role change
+        APP_MESSAGE_4023, // NameVi address already exists in the system
         // Server error codes (5xxx series)
         APP_MESSAGE_5000, // General internal server error (unexpected exception)
         APP_MESSAGE_5001, // Database operation failed (e.g., connection issue or query error)
