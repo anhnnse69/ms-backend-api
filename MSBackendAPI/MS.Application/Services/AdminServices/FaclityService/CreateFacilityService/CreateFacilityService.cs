@@ -101,10 +101,8 @@ namespace MS.Application.Services.AdminServices.FaclityService.CreateFacilitySer
         {
             if (emailFacility != null)
                 isEmailExists = true;
-
             if (phoneFacility != null)
                 isPhoneExists = true;
-
             if (nameFacility != null)
                 isNameExists = true;
         }
