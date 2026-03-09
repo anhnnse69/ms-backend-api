@@ -17,6 +17,7 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 
 namespace MS.Infrastructure
 {
@@ -56,6 +57,7 @@ namespace MS.Infrastructure
             services.AddScoped<ICreateUser, CreateUserImpl>();
             services.AddScoped<IUpdateUser, UpdateUserImpl>();
             services.AddScoped<IUpdatePassword, UpdatePasswordImpl>();
+            services.AddScoped<IGetAllFacilities, GetAllFacilitiesImpl>();
             return services;
         }
     }
