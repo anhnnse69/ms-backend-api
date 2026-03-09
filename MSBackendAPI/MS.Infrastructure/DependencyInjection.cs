@@ -6,16 +6,18 @@ using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
-using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
-using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
 
 namespace MS.Infrastructure
@@ -56,6 +58,8 @@ namespace MS.Infrastructure
             services.AddScoped<ICreateUser, CreateUserImpl>();
             services.AddScoped<IUpdateUser, UpdateUserImpl>();
             services.AddScoped<IUpdatePassword, UpdatePasswordImpl>();
+            services.AddScoped<IGetDoctorByFacility, GetDoctorByFacilityImpl>();
+            services.AddScoped<IGetDoctorDetailByFacility, GetDoctorDetailByFacilityImpl>();
             return services;
         }
     }
