@@ -18,6 +18,10 @@ using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
 
 namespace MS.Infrastructure
 {
@@ -58,6 +62,10 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdateUser, UpdateUserImpl>();
             services.AddScoped<IUpdatePassword, UpdatePasswordImpl>();
             services.AddScoped<IGetAllFacilities, GetAllFacilitiesImpl>();
+            services.AddScoped<IGetFacilityByEmail, GetFacilityByEmailImpl>();
+            services.AddScoped<IGetFacilityByPhone, GetFacilityByPhoneImpl>();
+            services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
+            services.AddScoped<ICreateFacility, CreateFacilityImpl>();
             return services;
         }
     }
