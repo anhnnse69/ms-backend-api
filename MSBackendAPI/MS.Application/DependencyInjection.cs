@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Common.AnnotationValidationBehavior;
 using MS.Application.Services.AdminServices.CreateUser;
+using MS.Application.Services.AdminServices.GetAllFacilitiesService;
 using MS.Application.Services.AdminServices.GetAllUsersService;
 using MS.Application.Services.AdminServices.GetUserByIdService;
 using MS.Application.Services.AdminServices.UpdateUserService;
@@ -39,6 +40,7 @@ namespace MS.Application
             services.AddScoped<ICreateUserService, CreateUserService>();
             services.AddScoped<IUpdateUserService, UpdateUserService>();
             services.AddScoped<IChangePasswordService, ChangePasswordService>();
+            services.AddScoped<IGetAllFacilitiesService, GetAllFacilitiesService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
