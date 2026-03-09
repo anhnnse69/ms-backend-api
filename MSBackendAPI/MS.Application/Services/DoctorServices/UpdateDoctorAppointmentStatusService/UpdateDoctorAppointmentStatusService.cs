@@ -6,24 +6,24 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
 
-namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
+namespace MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusService
 {
     /// <summary>
-    /// Service responsible for rejecting doctor appointment
+    /// Service responsible for updating doctor appointment status
     /// </summary>
-    public class RejectDoctorAppointmentService : IRejectDoctorAppointmentService
+    public class UpdateDoctorAppointmentStatusService : IUpdateDoctorAppointmentStatusService
     {
         private readonly IGetDoctorByUserId _getDoctorByUserId;
         private readonly IGetAppointmentById _getAppointmentById;
         private readonly IUpdateAppointment _updateAppointment;
 
         /// <summary>
-        /// Constructor for RejectDoctorAppointmentService
+        /// Constructor for UpdateDoctorAppointmentStatusService
         /// </summary>
         /// <param name="getDoctorByUserId">Repository to retrieve doctor by user id</param>
         /// <param name="getAppointmentById">Repository to retrieve appointment by id</param>
         /// <param name="updateAppointment">Repository to update appointment</param>
-        public RejectDoctorAppointmentService(
+        public UpdateDoctorAppointmentStatusService(
             IGetDoctorByUserId getDoctorByUserId,
             IGetAppointmentById getAppointmentById,
             IUpdateAppointment updateAppointment)
@@ -34,17 +34,18 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         }
 
         /// <summary>
-        /// Process reject appointment request
+        /// Process update appointment status request
         /// </summary>
         /// <param name="userId">User identifier extracted from JWT token</param>
-        /// <param name="request">Reject appointment request</param>
-        /// <returns>Reject appointment response</returns>
-        public async Task<ApiResponse<RejectDoctorAppointmentResponse>> Process(Guid userId, RejectDoctorAppointmentRequest request)
+        /// <param name="request">Update appointment status request</param>
+        /// <returns>Update appointment status response</returns>
+        public async Task<ApiResponse<UpdateDoctorAppointmentStatusResponse>> Process(Guid userId, UpdateDoctorAppointmentStatusRequest request)
         {
             // 1. Initialize validation flags
             bool isDoctorValid = true;
             bool isAppointmentValid = true;
             bool isOwnershipValid = true;
+            bool isStatusTransitionValid = true;
             // 2. Retrieve doctor entity
             var retrievedDoctor = await RetrieveDoctor(userId);
             // 3. Retrieve appointment entity
@@ -53,19 +54,16 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
             ValidateDoctor(retrievedDoctor, ref isDoctorValid);
             ValidateAppointment(retrievedAppointment, ref isAppointmentValid);
             ValidateOwnership(retrievedDoctor, retrievedAppointment, ref isOwnershipValid);
+            ValidateStatusTransition(retrievedAppointment, request.Status, ref isStatusTransitionValid);
             // 5. Update appointment status
-            await UpdateAppointment(
-                retrievedAppointment,
-                request.Reason,
-                isDoctorValid,
-                isAppointmentValid,
-                isOwnershipValid);
+            await UpdateAppointmentStatus(retrievedAppointment, request.Status, isStatusTransitionValid);
             // 6. Create response
             return CreateResponse(
                 retrievedAppointment,
                 isDoctorValid,
                 isAppointmentValid,
-                isOwnershipValid);
+                isOwnershipValid,
+                isStatusTransitionValid);
         }
 
         /// <summary>
@@ -135,25 +133,52 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         }
 
         /// <summary>
-        /// Update appointment status to cancelled
+        /// Validate status transition according to business flow
         /// </summary>
         /// <param name="appointment">Appointment entity</param>
-        /// <param name="reason">Cancellation reason</param>
-        /// <param name="isDoctorValid">Doctor validation flag</param>
-        /// <param name="isAppointmentValid">Appointment validation flag</param>
-        /// <param name="isOwnershipValid">Ownership validation flag</param>
-        private async Task UpdateAppointment(
+        /// <param name="newStatus">New appointment status</param>
+        /// <param name="isStatusTransitionValid">Validation flag</param>
+        private void ValidateStatusTransition(
             Appointment appointment,
-            string reason,
-            bool isDoctorValid,
-            bool isAppointmentValid,
-            bool isOwnershipValid)
+            AppointmentStatus newStatus,
+            ref bool isStatusTransitionValid)
         {
-            if (isDoctorValid && isAppointmentValid && isOwnershipValid && appointment != null)
+            if (appointment == null)
             {
-                appointment.Status = AppointmentStatus.Cancelled;
-                appointment.CancellationReason = reason;
-                appointment.CancelledAt = DateTimeOffset.UtcNow;
+                return;
+            }
+            var currentStatus = appointment.Status;
+            isStatusTransitionValid = currentStatus switch
+            {
+                AppointmentStatus.PendingConfirmation =>
+                    newStatus == AppointmentStatus.Confirmed ||
+                    newStatus == AppointmentStatus.Cancelled,
+                AppointmentStatus.Confirmed =>
+                    newStatus == AppointmentStatus.CheckedIn ||
+                    newStatus == AppointmentStatus.Cancelled ||
+                    newStatus == AppointmentStatus.NoShow,
+                AppointmentStatus.CheckedIn =>
+                    newStatus == AppointmentStatus.InProgress,
+                AppointmentStatus.InProgress =>
+                    newStatus == AppointmentStatus.Completed,
+                _ => false
+            };
+        }
+
+        /// <summary>
+        /// Update appointment status
+        /// </summary>
+        /// <param name="appointment">Appointment entity</param>
+        /// <param name="status">New appointment status</param>
+        /// <param name="isStatusTransitionValid">Status transition validation flag</param>
+        private async Task UpdateAppointmentStatus(
+            Appointment appointment,
+            AppointmentStatus status,
+            bool isStatusTransitionValid)
+        {
+            if (appointment != null && isStatusTransitionValid)
+            {
+                appointment.Status = status;
                 await _updateAppointment.Execute(appointment);
             }
         }
@@ -162,10 +187,10 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         /// Map appointment entity to response model
         /// </summary>
         /// <param name="appointment">Appointment entity</param>
-        /// <returns>Reject appointment response</returns>
-        private RejectDoctorAppointmentResponse MapToResponse(Appointment appointment)
+        /// <returns>Update appointment status response</returns>
+        private UpdateDoctorAppointmentStatusResponse MapToResponse(Appointment appointment)
         {
-            return new RejectDoctorAppointmentResponse
+            return new UpdateDoctorAppointmentStatusResponse
             {
                 // Appointment identifier
                 AppointmentId = appointment.Id,
@@ -181,31 +206,38 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         /// <param name="isDoctorValid">Doctor validation flag</param>
         /// <param name="isAppointmentValid">Appointment validation flag</param>
         /// <param name="isOwnershipValid">Ownership validation flag</param>
+        /// <param name="isStatusTransitionValid">Status transition validation flag</param>
         /// <returns>API response</returns>
-        private ApiResponse<RejectDoctorAppointmentResponse> CreateResponse(
+        private ApiResponse<UpdateDoctorAppointmentStatusResponse> CreateResponse(
             Appointment appointment,
             bool isDoctorValid,
             bool isAppointmentValid,
-            bool isOwnershipValid)
+            bool isOwnershipValid,
+            bool isStatusTransitionValid)
         {
             if (!isDoctorValid)
             {
-                return ApiResponse<RejectDoctorAppointmentResponse>
+                return ApiResponse<UpdateDoctorAppointmentStatusResponse>
                     .Fail(MessageCode.APP_MESSAGE_4011.ToString());
             }
             if (!isAppointmentValid)
             {
-                return ApiResponse<RejectDoctorAppointmentResponse>
+                return ApiResponse<UpdateDoctorAppointmentStatusResponse>
                     .Fail(MessageCode.APP_MESSAGE_4012.ToString());
             }
             if (!isOwnershipValid)
             {
-                return ApiResponse<RejectDoctorAppointmentResponse>
+                return ApiResponse<UpdateDoctorAppointmentStatusResponse>
                     .Fail(MessageCode.APP_MESSAGE_4014.ToString());
             }
+            if (!isStatusTransitionValid)
+            {
+                return ApiResponse<UpdateDoctorAppointmentStatusResponse>
+                    .Fail(MessageCode.APP_MESSAGE_4013.ToString());
+            }
             var result = MapToResponse(appointment);
-            return ApiResponse<RejectDoctorAppointmentResponse>
-                .Success(MessageCode.APP_MESSAGE_2004.ToString(), result);
+            return ApiResponse<UpdateDoctorAppointmentStatusResponse>
+                .Success(MessageCode.APP_MESSAGE_2007.ToString(), result);
         }
     }
 }

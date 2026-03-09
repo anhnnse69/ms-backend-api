@@ -1,45 +1,39 @@
 ﻿using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
-using MS.Domain.Enums.Types;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
-using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
 
-namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
+namespace MS.Application.Services.DoctorServices.GetDoctorPatientInfoService
 {
     /// <summary>
-    /// Service responsible for rejecting doctor appointment
+    /// Service responsible for retrieving patient information for doctor
     /// </summary>
-    public class RejectDoctorAppointmentService : IRejectDoctorAppointmentService
+    public class GetDoctorPatientInfoService : IGetDoctorPatientInfoService
     {
         private readonly IGetDoctorByUserId _getDoctorByUserId;
         private readonly IGetAppointmentById _getAppointmentById;
-        private readonly IUpdateAppointment _updateAppointment;
 
         /// <summary>
-        /// Constructor for RejectDoctorAppointmentService
+        /// Constructor for GetDoctorPatientInfoService
         /// </summary>
         /// <param name="getDoctorByUserId">Repository to retrieve doctor by user id</param>
         /// <param name="getAppointmentById">Repository to retrieve appointment by id</param>
-        /// <param name="updateAppointment">Repository to update appointment</param>
-        public RejectDoctorAppointmentService(
+        public GetDoctorPatientInfoService(
             IGetDoctorByUserId getDoctorByUserId,
-            IGetAppointmentById getAppointmentById,
-            IUpdateAppointment updateAppointment)
+            IGetAppointmentById getAppointmentById)
         {
             _getDoctorByUserId = getDoctorByUserId;
             _getAppointmentById = getAppointmentById;
-            _updateAppointment = updateAppointment;
         }
 
         /// <summary>
-        /// Process reject appointment request
+        /// Process request to retrieve patient information
         /// </summary>
         /// <param name="userId">User identifier extracted from JWT token</param>
-        /// <param name="request">Reject appointment request</param>
-        /// <returns>Reject appointment response</returns>
-        public async Task<ApiResponse<RejectDoctorAppointmentResponse>> Process(Guid userId, RejectDoctorAppointmentRequest request)
+        /// <param name="appointmentId">Appointment identifier</param>
+        /// <returns>Patient information response</returns>
+        public async Task<ApiResponse<GetDoctorPatientInfoResponse>> Process(Guid userId, Guid appointmentId)
         {
             // 1. Initialize validation flags
             bool isDoctorValid = true;
@@ -48,19 +42,12 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
             // 2. Retrieve doctor entity
             var retrievedDoctor = await RetrieveDoctor(userId);
             // 3. Retrieve appointment entity
-            var retrievedAppointment = await RetrieveAppointment(request.AppointmentId);
+            var retrievedAppointment = await RetrieveAppointment(appointmentId);
             // 4. Validate retrieved data
             ValidateDoctor(retrievedDoctor, ref isDoctorValid);
             ValidateAppointment(retrievedAppointment, ref isAppointmentValid);
             ValidateOwnership(retrievedDoctor, retrievedAppointment, ref isOwnershipValid);
-            // 5. Update appointment status
-            await UpdateAppointment(
-                retrievedAppointment,
-                request.Reason,
-                isDoctorValid,
-                isAppointmentValid,
-                isOwnershipValid);
-            // 6. Create response
+            // 5. Create response
             return CreateResponse(
                 retrievedAppointment,
                 isDoctorValid,
@@ -69,7 +56,7 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         }
 
         /// <summary>
-        /// Retrieve doctor by user identifier
+        /// Retrieve doctor entity by user identifier
         /// </summary>
         /// <param name="userId">User identifier</param>
         /// <returns>Doctor entity</returns>
@@ -79,7 +66,7 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         }
 
         /// <summary>
-        /// Retrieve appointment entity
+        /// Retrieve appointment entity by identifier
         /// </summary>
         /// <param name="appointmentId">Appointment identifier</param>
         /// <returns>Appointment entity</returns>
@@ -135,42 +122,36 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         }
 
         /// <summary>
-        /// Update appointment status to cancelled
+        /// Map patient entity to response model
         /// </summary>
-        /// <param name="appointment">Appointment entity</param>
-        /// <param name="reason">Cancellation reason</param>
-        /// <param name="isDoctorValid">Doctor validation flag</param>
-        /// <param name="isAppointmentValid">Appointment validation flag</param>
-        /// <param name="isOwnershipValid">Ownership validation flag</param>
-        private async Task UpdateAppointment(
-            Appointment appointment,
-            string reason,
-            bool isDoctorValid,
-            bool isAppointmentValid,
-            bool isOwnershipValid)
+        /// <param name="patient">Patient entity</param>
+        /// <returns>Patient information response</returns>
+        private GetDoctorPatientInfoResponse MapToResponse(Patient patient)
         {
-            if (isDoctorValid && isAppointmentValid && isOwnershipValid && appointment != null)
+            return new GetDoctorPatientInfoResponse
             {
-                appointment.Status = AppointmentStatus.Cancelled;
-                appointment.CancellationReason = reason;
-                appointment.CancelledAt = DateTimeOffset.UtcNow;
-                await _updateAppointment.Execute(appointment);
-            }
-        }
-
-        /// <summary>
-        /// Map appointment entity to response model
-        /// </summary>
-        /// <param name="appointment">Appointment entity</param>
-        /// <returns>Reject appointment response</returns>
-        private RejectDoctorAppointmentResponse MapToResponse(Appointment appointment)
-        {
-            return new RejectDoctorAppointmentResponse
-            {
-                // Appointment identifier
-                AppointmentId = appointment.Id,
-                // Updated appointment status
-                Status = appointment.Status
+                // Patient identifier
+                PatientId = patient.Id,
+                // Display name for UI
+                DisplayName = patient.DisplayName,
+                // Full name of the patient
+                FullName = patient.FullName,
+                // Date of birth of the patient
+                DateOfBirth = patient.DateOfBirth,
+                // Gender of the patient
+                Gender = patient.Gender,
+                // Contact phone number
+                PhoneNumber = patient.PhoneNumber,
+                // Email address
+                Email = patient.Email,
+                // Residential address
+                Address = patient.Address,
+                // Identity card number
+                IdentityCard = patient.IdentityCard,
+                // Health insurance number
+                InsuranceNumber = patient.InsuranceNumber,
+                // Avatar URL for UI display
+                AvatarUrl = patient.AvatarUrl
             };
         }
 
@@ -182,7 +163,7 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         /// <param name="isAppointmentValid">Appointment validation flag</param>
         /// <param name="isOwnershipValid">Ownership validation flag</param>
         /// <returns>API response</returns>
-        private ApiResponse<RejectDoctorAppointmentResponse> CreateResponse(
+        private ApiResponse<GetDoctorPatientInfoResponse> CreateResponse(
             Appointment appointment,
             bool isDoctorValid,
             bool isAppointmentValid,
@@ -190,22 +171,22 @@ namespace MS.Application.Services.DoctorServices.RejectDoctorAppointmentService
         {
             if (!isDoctorValid)
             {
-                return ApiResponse<RejectDoctorAppointmentResponse>
+                return ApiResponse<GetDoctorPatientInfoResponse>
                     .Fail(MessageCode.APP_MESSAGE_4011.ToString());
             }
             if (!isAppointmentValid)
             {
-                return ApiResponse<RejectDoctorAppointmentResponse>
+                return ApiResponse<GetDoctorPatientInfoResponse>
                     .Fail(MessageCode.APP_MESSAGE_4012.ToString());
             }
             if (!isOwnershipValid)
             {
-                return ApiResponse<RejectDoctorAppointmentResponse>
+                return ApiResponse<GetDoctorPatientInfoResponse>
                     .Fail(MessageCode.APP_MESSAGE_4014.ToString());
             }
-            var result = MapToResponse(appointment);
-            return ApiResponse<RejectDoctorAppointmentResponse>
-                .Success(MessageCode.APP_MESSAGE_2004.ToString(), result);
+            var result = MapToResponse(appointment.Patient);
+            return ApiResponse<GetDoctorPatientInfoResponse>
+                .Success(MessageCode.APP_MESSAGE_2000.ToString(), result);
         }
     }
 }

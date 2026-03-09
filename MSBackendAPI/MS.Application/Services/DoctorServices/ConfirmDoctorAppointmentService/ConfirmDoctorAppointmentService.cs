@@ -54,7 +54,11 @@ namespace MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService
             ValidateAppointment(retrievedAppointment, ref isAppointmentValid);
             ValidateOwnership(retrievedDoctor, retrievedAppointment, ref isOwnershipValid);
             // 5. Update appointment status
-            await UpdateAppointmentStatus(retrievedAppointment);
+            await UpdateAppointment(
+                retrievedAppointment,
+                isDoctorValid,
+                isAppointmentValid,
+                isOwnershipValid);
             // 6. Create response
             return CreateResponse(
                 retrievedAppointment,
@@ -64,7 +68,7 @@ namespace MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService
         }
 
         /// <summary>
-        /// Retrieve doctor entity by user identifier
+        /// Retrieve doctor by user identifier
         /// </summary>
         /// <param name="userId">User identifier</param>
         /// <returns>Doctor entity</returns>
@@ -74,7 +78,7 @@ namespace MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService
         }
 
         /// <summary>
-        /// Retrieve appointment entity by identifier
+        /// Retrieve appointment entity
         /// </summary>
         /// <param name="appointmentId">Appointment identifier</param>
         /// <returns>Appointment entity</returns>
@@ -133,9 +137,16 @@ namespace MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService
         /// Update appointment status to confirmed
         /// </summary>
         /// <param name="appointment">Appointment entity</param>
-        private async Task UpdateAppointmentStatus(Appointment appointment)
+        /// <param name="isDoctorValid">Doctor validation flag</param>
+        /// <param name="isAppointmentValid">Appointment validation flag</param>
+        /// <param name="isOwnershipValid">Ownership validation flag</param>
+        private async Task UpdateAppointment(
+            Appointment appointment,
+            bool isDoctorValid,
+            bool isAppointmentValid,
+            bool isOwnershipValid)
         {
-            if (appointment != null)
+            if (isDoctorValid && isAppointmentValid && isOwnershipValid && appointment != null)
             {
                 appointment.Status = AppointmentStatus.Confirmed;
                 await _updateAppointment.Execute(appointment);
@@ -189,7 +200,7 @@ namespace MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService
             }
             var result = MapToResponse(appointment);
             return ApiResponse<ConfirmDoctorAppointmentResponse>
-                .Success(MessageCode.APP_MESSAGE_2003.ToString(), result);
+                .Success(MessageCode.APP_MESSAGE_2005.ToString(), result);
         }
     }
 }

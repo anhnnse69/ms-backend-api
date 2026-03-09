@@ -6,7 +6,6 @@ using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
-using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
@@ -19,6 +18,7 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 
 namespace MS.Infrastructure
 {
@@ -60,6 +60,7 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdatePassword, UpdatePasswordImpl>();
             services.AddScoped<IGetDoctorByFacility, GetDoctorByFacilityImpl>();
             services.AddScoped<IGetDoctorDetailByFacility, GetDoctorDetailByFacilityImpl>();
+            services.AddScoped<IGetAllFacilities, GetAllFacilitiesImpl>();
             return services;
         }
     }
