@@ -1,4 +1,6 @@
-﻿namespace MS.Application.Services.DoctorScheduleService
+﻿using MS.Application.Services.ManagerServices.DoctorScheduleByFacilityService;
+
+namespace MS.Application.Services.DoctorScheduleService
 {
     /// <summary>
     /// Response model representing doctor schedule information
@@ -7,13 +9,7 @@
     {
         public Guid DoctorId { get; set; }
         public string DoctorName { get; set; }
-        public List<ScheduleSlot> Schedules { get; set; }
-    }
-    public class ScheduleSlot
-    {
-        public DayOfWeek DayOfWeek { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
-        public int SlotDurationMinutes { get; set; }
+        public List<ScheduleSlotResponse> Schedules { get; set; }
+
     }
 }

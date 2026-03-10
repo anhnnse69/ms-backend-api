@@ -1,4 +1,5 @@
 ﻿using MS.Application.Common.Response;
+using MS.Application.Services.ManagerServices.DoctorScheduleByFacilityService;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
@@ -89,7 +90,7 @@ namespace MS.Application.Services.DoctorScheduleService
             {
                 DoctorId = d.Id,
                 DoctorName = d.DisplayName,
-                Schedules = d.Availabilities.Select(a => new ScheduleSlot
+                Schedules = d.Availabilities.Select(a => new ScheduleSlotResponse
                 {
                     DayOfWeek = a.DayOfWeek,
                     StartTime = a.StartTime,
