@@ -22,6 +22,7 @@ namespace MS.Application.Services.DoctorScheduleService
         {
             _repository = repository;
         }
+
         /// <summary>
         /// Process request to retrieve doctor schedules
         /// </summary>
@@ -40,6 +41,7 @@ namespace MS.Application.Services.DoctorScheduleService
             // 4. Create API response
             return CreateResponse(doctors, page, size, total, isDataValid);
         }
+
         /// <summary>
         /// Validate retrieved doctors data
         /// </summary>
@@ -50,6 +52,7 @@ namespace MS.Application.Services.DoctorScheduleService
             if (doctors == null || !doctors.Any())
                 isDataValid = false;
         }
+
         /// <summary>
         /// Create API response from doctor entities
         /// </summary>
@@ -79,6 +82,7 @@ namespace MS.Application.Services.DoctorScheduleService
                 mappedDoctors,
                 meta);
         }
+
         /// <summary>
         /// Map doctor entities to doctor schedule response models
         /// </summary>

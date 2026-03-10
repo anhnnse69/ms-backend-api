@@ -21,6 +21,7 @@ namespace MS.API.Controllers.DoctorSchedule
         {
             _service = service;
         }
+
         /// <summary>
         /// Retrieve doctor schedules by facility identifier
         /// </summary>

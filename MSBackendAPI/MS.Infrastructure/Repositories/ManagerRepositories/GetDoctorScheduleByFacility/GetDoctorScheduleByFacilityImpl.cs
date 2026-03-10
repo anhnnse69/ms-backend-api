@@ -17,6 +17,7 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleBy
         public GetDoctorScheduleByFacilityImpl(AppDbContext context) : base(context)
         {
         }
+
         /// <summary>
         /// Retrieve doctors and their schedules for a specific facility
         /// </summary>
