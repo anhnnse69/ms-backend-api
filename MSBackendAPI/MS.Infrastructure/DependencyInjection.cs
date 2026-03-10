@@ -20,6 +20,11 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacili
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
 
 namespace MS.Infrastructure
 {
@@ -63,6 +68,10 @@ namespace MS.Infrastructure
             services.AddScoped<IGetDoctorDetailByFacility, GetDoctorDetailByFacilityImpl>();
             services.AddScoped<IGetAllFacilities, GetAllFacilitiesImpl>();
             services.AddScoped<IGetDoctorScheduleByFacility, GetDoctorScheduleByFacilityImpl>();
+            services.AddScoped<IGetFacilityByEmail, GetFacilityByEmailImpl>();
+            services.AddScoped<IGetFacilityByPhone, GetFacilityByPhoneImpl>();
+            services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
+            services.AddScoped<ICreateFacility, CreateFacilityImpl>();
             return services;
         }
     }
