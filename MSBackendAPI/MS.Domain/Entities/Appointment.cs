@@ -25,7 +25,7 @@ namespace MS.Domain.Entities
         public DateTimeOffset AppointmentTime { get; set; }
         public string? Notes { get; set; }
         public AppointmentStatus Status { get; set; }
-
+        public MedicalRecord MedicalRecord { get; set; }
         public DateTimeOffset? CancelledAt { get; set; }
         public string? CancellationReason { get; set; }
 

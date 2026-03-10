@@ -4,6 +4,7 @@ using MS.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260310010527_MedicalRecord")]
+    partial class MedicalRecord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,7 +187,7 @@ namespace MS.Infrastructure.Migrations
                             BioEn = "Internal medicine specialist",
                             BioVi = "Bác sĩ chuyên khoa nội",
                             CreateBy = "system",
-                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 16, 48, 305, DateTimeKind.Unspecified).AddTicks(7374), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 5, 26, 125, DateTimeKind.Unspecified).AddTicks(8423), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Dr. John Doe",
                             Email = "john.doe@example.com",
                             FullName = "John Doe",
@@ -357,7 +360,7 @@ namespace MS.Infrastructure.Migrations
                             Address = "123 Đường Lớn, Hà Nội",
                             City = "Hà Nội",
                             CreateBy = "system",
-                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 16, 48, 305, DateTimeKind.Unspecified).AddTicks(7340), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 5, 26, 125, DateTimeKind.Unspecified).AddTicks(8386), new TimeSpan(0, 0, 0, 0, 0)),
                             DescriptionEn = "The largest general hospital in the region",
                             DescriptionVi = "Bệnh viện đa khoa lớn nhất khu vực",
                             Email = "contact@centralhospital.vn",
@@ -395,6 +398,7 @@ namespace MS.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LastModifiedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset?>("LastModifiedDate")
@@ -535,7 +539,7 @@ namespace MS.Infrastructure.Migrations
                             Address = "456 Đường Nhỏ, Hà Nội",
                             AvatarUrl = "/assets/images/patients/nguyenvana.png",
                             CreateBy = "system",
-                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 16, 48, 305, DateTimeKind.Unspecified).AddTicks(7427), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 5, 26, 125, DateTimeKind.Unspecified).AddTicks(8472), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfBirth = new DateTimeOffset(new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Nguyễn Văn A",
                             Email = "nguyenvana@example.com",
@@ -604,7 +608,7 @@ namespace MS.Infrastructure.Migrations
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             CreateBy = "system",
-                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 16, 48, 305, DateTimeKind.Unspecified).AddTicks(7176), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 5, 26, 125, DateTimeKind.Unspecified).AddTicks(8224), new TimeSpan(0, 0, 0, 0, 0)),
                             DescriptionEn = "General internal medicine specialty",
                             DescriptionVi = "Chuyên khoa nội tổng quát",
                             DisplayOrder = 1,
@@ -695,13 +699,13 @@ namespace MS.Infrastructure.Migrations
                             Id = new Guid("55555555-5555-5555-5555-555555555555"),
                             AvatarUrl = "/assets/images/users/admin.png",
                             CreateBy = "system",
-                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 16, 48, 554, DateTimeKind.Unspecified).AddTicks(3625), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreateDate = new DateTimeOffset(new DateTime(2026, 3, 10, 1, 5, 26, 352, DateTimeKind.Unspecified).AddTicks(4466), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Admin User",
                             Email = "admin@example.com",
                             FullName = "Administrator",
                             IsActive = true,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$j6ds7AtBLhb7cj4gcRaLCel7S4J1EbY81bvJ77DccnoLGPEu.zORu",
+                            PasswordHash = "$2a$12$YeOf.oU5ud/So.bodldokOYl7uHcVPIW.viniJsbrO/ho4eWY22A2",
                             PhoneNumber = "0999999999",
                             Role = 1,
                             Username = "admin"
