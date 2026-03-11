@@ -148,7 +148,7 @@ namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
                 // Slot duration
                 SlotDurationMinutes = x.SlotDurationMinutes,
                 // Availability status
-                IsActive = x.IsActive
+                IsDeleted = x.IsDeleted
             });
         }
 

@@ -26,22 +26,17 @@ namespace MS.Application.Common.Attributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var message = ErrorMessage;
-
             if (value is not string password)
                 return ValidationResult.Success;
-
             // At least one uppercase letter
             if (!Regex.IsMatch(password, UppercasePattern))
-                return new ValidationResult(message, new[] { validationContext.MemberName });
-
+                return new ValidationResult(message, validationContext?.MemberName != null ? [validationContext.MemberName] : null);
             // At least one number
             if (!Regex.IsMatch(password, NumberPattern))
-                return new ValidationResult(message, new[] { validationContext.MemberName });
-
+                return new ValidationResult(message, validationContext?.MemberName != null ? [validationContext.MemberName] : null);
             // At least one special character
-            if(!Regex.IsMatch(password, SpecialCharPattern))
-                return new ValidationResult(message, new[] { validationContext.MemberName });
-
+            if (!Regex.IsMatch(password, SpecialCharPattern))
+                return new ValidationResult(message, validationContext?.MemberName != null ? [validationContext.MemberName] : null);
             return ValidationResult.Success;
         }
     }

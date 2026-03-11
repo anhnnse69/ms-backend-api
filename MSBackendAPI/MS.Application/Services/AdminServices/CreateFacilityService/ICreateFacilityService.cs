@@ -1,6 +1,6 @@
 ﻿using MS.Application.Common.Response;
 
-namespace MS.Application.Services.AdminServices.FaclityService.CreateFacilityService
+namespace MS.Application.Services.AdminServices.CreateFacilityService
 {
     /// <summary>
     /// Defines the contract for the create facility service.

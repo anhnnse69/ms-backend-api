@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.DoctorDetailByFacilityService;
 
-namespace MS.API.Controllers.DoctorDetail
+namespace MS.API.Controllers.ManagerController
 {
     /// <summary>
     /// API controller for retrieving doctor detail information.

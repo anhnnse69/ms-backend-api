@@ -105,7 +105,7 @@ namespace MS.Application.Services.AdminServices.GetAllFacilitiesService
                 Email = x.Email,
                 City = x.City,
                 Type = x.Type.ToString(),
-                IsActive = x.IsActive,
+                IsDeleted = x.IsDeleted,
                 LogoUrl = x.LogoUrl
             });
         }

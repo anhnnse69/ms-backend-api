@@ -25,10 +25,10 @@ namespace MS.Application.Common.Attributes
             {
                 // Check blank
                 if (string.IsNullOrWhiteSpace(str))
-                    return new ValidationResult(message, new[] { validationContext.MemberName });
+                    return new ValidationResult(message, validationContext?.MemberName != null ? [validationContext.MemberName] : null);
                 // Check regex
                 if (!Regex.IsMatch(str, GeneralPattern))
-                    return new ValidationResult(message, new[] { validationContext.MemberName });
+                    return new ValidationResult(message, validationContext?.MemberName != null ? [validationContext.MemberName] : null);
             }
             return ValidationResult.Success;
         }

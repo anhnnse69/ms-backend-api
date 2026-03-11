@@ -29,8 +29,8 @@
         // System role
         public string Role { get; set; }
 
-        // Account active status
-        public bool IsActive { get; set; }
+        // Indicates whether the account has been soft-deleted (true = deleted, false = active)
+        public bool IsDeleted { get; set; }
 
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MS.Application.Services.AdminServices.FaclityService.CreateFacilityService;
+using MS.Application.Services.AdminServices.CreateFacilityService;
 
-namespace MS.API.Controllers.Admin.ManagementFacility
+namespace MS.API.Controllers.AdminController
 {
     /// <summary>
     /// Defines API endpoints for administrative operations

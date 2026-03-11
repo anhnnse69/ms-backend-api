@@ -1,6 +1,5 @@
 ﻿using MS.Domain.Entities.General;
 using MS.Domain.Entities.General.Interfaces;
-using System.ComponentModel.DataAnnotations;
 
 namespace MS.Domain.Entities
 {
@@ -8,11 +7,8 @@ namespace MS.Domain.Entities
     /// Represents doctor's working schedule
     /// </summary>
     public class DoctorAvailability
-    : EntityAuditBase<Guid>, IEntityBase<Guid>, IUserTracking
+    : EntityAuditBase<Guid>, IEntityBase<Guid>, IUserTracking, ISoftDeletable
     {
-        [Key]
-        public Guid Id { get; set; }
-
         public Guid DoctorId { get; set; }
         public Doctor Doctor { get; set; }
 
@@ -23,7 +19,11 @@ namespace MS.Domain.Entities
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public int SlotDurationMinutes { get; set; }
-        public bool IsActive { get; set; }
+
+        // Soft delete fields
+        public bool IsDeleted { get; set; } = false;
+        public DateTimeOffset? DeletedAt { get; set; }
+        public string? DeletedBy { get; set; }
 
         // Tracking fields for auditing
         public string CreateBy { get; set; }

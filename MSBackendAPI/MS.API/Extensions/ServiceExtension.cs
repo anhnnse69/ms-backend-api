@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MS.API.Filters;
+using MS.Application;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Enums.Roles;
-using MS.Application;
 using MS.Infrastructure;
 using System.Text;
 using System.Text.Json;
@@ -17,7 +18,10 @@ public static class ServiceExtension
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddControllers();
+        services.AddControllers(options =>
+        {
+            options.Filters.Add<ModelStateValidationFilter>();
+        });
         services.AddRouting(options =>
         {
             options.LowercaseUrls = true;

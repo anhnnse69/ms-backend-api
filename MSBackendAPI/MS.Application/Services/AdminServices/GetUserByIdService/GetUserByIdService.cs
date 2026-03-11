@@ -54,6 +54,7 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
                 result
             );
         }
+
         /// <summary>
         /// Map user entity to response model
         /// </summary>
@@ -69,7 +70,7 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Role = user.Role.ToString(),             
-                IsActive = user.IsActive,
+                IsDeleted = user.IsDeleted,
             };
         }
     }

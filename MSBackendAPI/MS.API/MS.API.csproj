@@ -23,8 +23,4 @@
     <ProjectReference Include="..\MS.Application\MS.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\CommonController\" />
-  </ItemGroup>
-
 </Project>

@@ -108,7 +108,7 @@ namespace MS.Application.Services.AdminServices.GetAllUsersService
                 PhoneNumber = x.PhoneNumber,
                 AvatarUrl = x.AvatarUrl,
                 Role = x.Role.ToString(),
-                IsActive = x.IsActive
+                IsDeleted = x.IsDeleted,
             });
         }
 

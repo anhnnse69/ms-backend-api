@@ -1,4 +1,5 @@
 ﻿using MS.Application.Common.Attributes;
+using MS.Domain.Enums.GeneralCodes;
 using System.ComponentModel.DataAnnotations;
 
 namespace MS.Application.Services.CommonServices.LoginService
@@ -8,15 +9,21 @@ namespace MS.Application.Services.CommonServices.LoginService
     /// </summary>
     public class LoginRequest
     {
-        // email_address
-        [Required(ErrorMessage = "APP_MESSAGE_0400")]
-        [NotBlank(ErrorMessage = "APP_MESSAGE_0401")]
-        [EmailAddress(ErrorMessage = "APP_MESSAGE_0405")]
+        /// <summary>Email address used to identify the user account.</summary>
+        [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
+        [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
+        [EmailAddress(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
+        [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
+        [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
+        [StringLength(150, ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         public string EmailAddress { get; set; } = string.Empty;
 
-        // password
-        [Required(ErrorMessage = "APP_MESSAGE_0400")]
-        [NotBlank(ErrorMessage = "APP_MESSAGE_0401")]
+        /// <summary>Password for the user account.</summary>
+        [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
+        [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
+        [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
+        [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
+        [StringLength(100, MinimumLength = 8, ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         public string Password { get; set; } = string.Empty;
     }
 }

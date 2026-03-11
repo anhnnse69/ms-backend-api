@@ -28,12 +28,11 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility
         /// </returns>
         public async Task<(List<Doctor> Doctors, int Total)> Execute(Guid facilityId, int page, int size)
         {
-            // 1. Build query to filter doctors by facility and active status
+            // 1. Build query to filter doctors by facility (global soft-delete filter excludes deleted records automatically)
             var query = FindByCondition(
                     d => d.Facilities.Any(f => f.FacilityId == facilityId),
                     trackChanges: false)
-                .Include(d => d.Specialty)
-                .Where(d => d.IsActive);
+                .Include(d => d.Specialty);
             // 2. Retrieve total number of matching records
             var total = await query.CountAsync();
             // 3. Apply pagination and retrieve doctor list

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.DoctorScheduleService;
 
-namespace MS.API.Controllers.DoctorSchedule
+namespace MS.API.Controllers.ManagerController
 {
     /// <summary>
     /// API controller for retrieving doctor schedules by facility

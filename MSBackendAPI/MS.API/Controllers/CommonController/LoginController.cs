@@ -12,20 +12,20 @@ namespace MS.API.Controllers.CommonController
     /// Defines API endpoints for user authentication operations such as login.
     /// </summary>
     /// <remarks>This controller provides endpoints related to authentication and is intended to be used as
-    /// part of the application's API layer. All routes are prefixed with 'api/auth'.</remarks>
-    [Route("api/v1/[controller]")]
+    /// part of the application's API layer. All routes are prefixed with 'api/v1/auth'.</remarks>
+    [Route("api/v1/auth")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class LoginController : ControllerBase
     {
-        private readonly ILogger<AuthController> _logger;
+        private readonly ILogger<LoginController> _logger;
         private readonly ILoginService _loginService;
 
         /// <summary>
-        /// Initializes a new instance of the AuthController class with the specified logger and login service.
+        /// Initializes a new instance of the LoginController class with the specified logger and login service.
         /// </summary>
         /// <param name="logger">The logger used to record authentication-related events and errors.</param>
         /// <param name="loginService">The service responsible for handling user login operations.</param>
-        public AuthController(ILogger<AuthController> logger, ILoginService loginService)
+        public LoginController(ILogger<LoginController> logger, ILoginService loginService)
         {
             _logger = logger;
             _loginService = loginService;

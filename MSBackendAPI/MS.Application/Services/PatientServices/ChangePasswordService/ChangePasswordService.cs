@@ -90,10 +90,10 @@ namespace MS.Application.Services.PatientServices.ChangePasswordService
         /// <param name="isCurrentPasswordCorrect"></param>
         /// <returns></returns>
         private async Task UpdatePassword(
-    User user,
-    string newPassword,
-    bool isUserExist,
-    bool isCurrentPasswordCorrect)
+        User user,
+        string newPassword,
+        bool isUserExist,
+        bool isCurrentPasswordCorrect)
         {
             if (isUserExist && isCurrentPasswordCorrect)
             {
