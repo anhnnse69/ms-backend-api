@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.DoctorsByFacilityService;
 
-namespace MS.API.Controllers.DoctorsByFacility
+namespace MS.API.Controllers.ManagerController
 {
     /// <summary>
     /// API controller for retrieving doctors by facility.

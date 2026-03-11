@@ -24,6 +24,6 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
         /// The system role assigned to the user.
         public SystemRole Role { get; set; }
         /// Indicates whether the user account is active.
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

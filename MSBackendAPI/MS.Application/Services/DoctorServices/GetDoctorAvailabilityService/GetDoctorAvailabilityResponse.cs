@@ -27,6 +27,6 @@
         public int SlotDurationMinutes { get; set; }
 
         // Indicates whether the availability is active
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

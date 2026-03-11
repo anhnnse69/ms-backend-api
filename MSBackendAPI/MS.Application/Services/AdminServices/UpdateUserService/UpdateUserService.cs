@@ -114,7 +114,7 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
             user.Email = request.Email.ToLower();
             user.PhoneNumber = request.PhoneNumber;
             user.Role = request.Role;
-            user.IsActive = request.IsActive;
+            user.IsDeleted = request.IsDeleted;
             user.LastModifiedBy = "system";
             user.LastModifiedDate = DateTimeOffset.UtcNow;
             if (!string.IsNullOrEmpty(request.PasswordHash))

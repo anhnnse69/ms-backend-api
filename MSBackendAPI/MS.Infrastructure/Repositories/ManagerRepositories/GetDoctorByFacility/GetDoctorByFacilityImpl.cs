@@ -33,7 +33,7 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility
                     d => d.Facilities.Any(f => f.FacilityId == facilityId),
                     trackChanges: false)
                 .Include(d => d.Specialty)
-                .Where(d => d.IsActive);
+                .Where(d => d.IsDeleted);
             // 2. Retrieve total number of matching records
             var total = await query.CountAsync();
             // 3. Apply pagination and retrieve doctor list

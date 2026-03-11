@@ -17,8 +17,64 @@ namespace MS.Infrastructure.Persistence.SeedData
                     DescriptionEn = "General internal medicine specialty",
                     IconUrl = "/assets/images/specialties/internal_medicine.png",
                     DisplayOrder = 1,
-                    IsActive = true,
-                    CreateDate = DateTimeOffset.UtcNow,
+                    IsDeleted = false,
+                    CreateDate = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
+                    CreateBy = "system",
+                    LastModifiedBy = "system"
+                },
+                new Specialty
+                {
+                    Id = Guid.Parse("22222222-2222-2222-2222-222222222223"),
+                    NameVi = "Nhi khoa",
+                    NameEn = "Pediatrics",
+                    DescriptionVi = "Chuyên khoa nhi",
+                    DescriptionEn = "Pediatrics specialty",
+                    IconUrl = "/assets/images/specialties/pediatrics.png",
+                    DisplayOrder = 2,
+                    IsDeleted = false,
+                    CreateDate = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
+                    CreateBy = "system",
+                    LastModifiedBy = "system"
+                },
+                new Specialty
+                {
+                    Id = Guid.Parse("22222222-2222-2222-2222-222222222224"),
+                    NameVi = "Tim mạch",
+                    NameEn = "Cardiology",
+                    DescriptionVi = "Chuyên khoa tim mạch",
+                    DescriptionEn = "Cardiology specialty",
+                    IconUrl = "/assets/images/specialties/cardiology.png",
+                    DisplayOrder = 3,
+                    IsDeleted = false,
+                    CreateDate = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
+                    CreateBy = "system",
+                    LastModifiedBy = "system"
+                },
+                new Specialty
+                {
+                    Id = Guid.Parse("22222222-2222-2222-2222-222222222225"),
+                    NameVi = "Thần kinh",
+                    NameEn = "Neurology",
+                    DescriptionVi = "Chuyên khoa thần kinh",
+                    DescriptionEn = "Neurology specialty",
+                    IconUrl = "/assets/images/specialties/neurology.png",
+                    DisplayOrder = 4,
+                    IsDeleted = false,
+                    CreateDate = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
+                    CreateBy = "system",
+                    LastModifiedBy = "system"
+                },
+                new Specialty
+                {
+                    Id = Guid.Parse("22222222-2222-2222-2222-222222222226"),
+                    NameVi = "Nha khoa",
+                    NameEn = "Dentistry",
+                    DescriptionVi = "Chuyên khoa nha khoa",
+                    DescriptionEn = "Dentistry specialty",
+                    IconUrl = "/assets/images/specialties/dentistry.png",
+                    DisplayOrder = 5,
+                    IsDeleted = false,
+                    CreateDate = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
                     CreateBy = "system",
                     LastModifiedBy = "system"
                 }

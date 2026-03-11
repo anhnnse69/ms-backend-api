@@ -14,7 +14,7 @@ namespace MS.Application.Services.AdminServices.DeleteUserService
         private readonly IGetUserById _getUserById;
         private readonly IUpdateUser _updateUser;
 
-        public DeleteUserService( IGetUserById getUserById, IUpdateUser updateUser)
+        public DeleteUserService(IGetUserById getUserById, IUpdateUser updateUser)
         {
             _getUserById = getUserById;
             _updateUser = updateUser;
@@ -67,8 +67,10 @@ namespace MS.Application.Services.AdminServices.DeleteUserService
                     MessageCode.APP_MESSAGE_4020.ToString()
                 );
             }
-            // Soft delete user
-            user.IsActive = false;
+            // Soft delete user using ISoftDeletable
+            user.IsDeleted = true;
+            user.DeletedAt = DateTimeOffset.UtcNow;
+            user.DeletedBy = "system";
             user.LastModifiedBy = "system";
             user.LastModifiedDate = DateTimeOffset.UtcNow;
             // Update user in database

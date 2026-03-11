@@ -30,7 +30,7 @@
         public string Role { get; set; }
 
         // Account active status
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

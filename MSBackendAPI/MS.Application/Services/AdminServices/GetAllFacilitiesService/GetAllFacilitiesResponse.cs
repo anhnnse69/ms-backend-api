@@ -20,7 +20,7 @@
         /// Type of facility.
         public string Type { get; set; }
         /// Indicates whether the facility is active.
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
         /// URL of the facility logo.
         public string LogoUrl { get; set; }
     }

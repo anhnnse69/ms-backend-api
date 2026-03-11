@@ -30,6 +30,6 @@
         public string Role { get; set; }
 
         // Active status
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

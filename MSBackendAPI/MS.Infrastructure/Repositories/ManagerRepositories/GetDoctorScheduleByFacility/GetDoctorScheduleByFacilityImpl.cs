@@ -33,8 +33,8 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleBy
                     d => d.Facilities.Any(f => f.FacilityId == facilityId),
                     false)
                 .Include(d => d.Availabilities
-                    .Where(a => a.FacilityId == facilityId && a.IsActive))
-                .Where(d => d.IsActive);
+                    .Where(a => a.FacilityId == facilityId && a.IsDeleted))
+                .Where(d => d.IsDeleted);
             var total = await query.CountAsync();
             var doctors = await query
                 .Skip((page - 1) * size)

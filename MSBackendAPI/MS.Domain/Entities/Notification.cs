@@ -5,27 +5,43 @@ using MS.Domain.Enums.Types;
 namespace MS.Domain.Entities
 {
     /// <summary>
-    /// Represents a notification sent to a patient, such as appointment reminders or status updates.
+    /// Represents a notification sent to a user (patient, doctor, manager, or admin) for various system events
     /// </summary>
-    public class Notification : EntityAuditBase<Guid>, IUserTracking, IEntityBase<Guid>
+    public class Notification : EntityAuditBase<Guid>, IUserTracking, ISoftDeletable, IEntityBase<Guid>
     {
-        public Guid PatientId { get; set; }
-        public Patient Patient { get; set; }
+        // User receiving the notification (works for any user type)
+        public Guid UserId { get; set; }
+        public User? User { get; set; }
 
+        // Related appointment (if applicable)
         public Guid? AppointmentId { get; set; }
-        public Appointment Appointment { get; set; }
+        public Appointment? Appointment { get; set; }
 
-        public NotificationType Type { get; set; }     // Email, SMS, Push
-        public NotificationChannel Channel { get; set; } // AppointmentReminder, StatusChanged, etc.
-        public string Title { get; set; }
-        public string Message { get; set; }
+        // Notification details - multi-language support
+        public string? TitleVi { get; set; }
+        public string? TitleEn { get; set; }
+        public string? ContentVi { get; set; }
+        public string? ContentEn { get; set; }
 
-        public bool IsRead { get; set; }
+        // Notification type and channel
+        public NotificationType Type { get; set; }
+        public NotificationChannel Channel { get; set; }
+
+        // Read status
+        public bool IsRead { get; set; } = false;
         public DateTimeOffset? ReadAt { get; set; }
-        public DateTimeOffset? SentAt { get; set; }
-        public bool IsSent { get; set; }
 
+        // Sent status
+        public bool IsSent { get; set; } = false;
+        public DateTimeOffset? SentAt { get; set; }
+
+        // Soft delete fields
+        public bool IsDeleted { get; set; } = false;
+        public DateTimeOffset? DeletedAt { get; set; }
+        public string? DeletedBy { get; set; }
+
+        // Tracking fields for auditing
         public string CreateBy { get; set; }
-        public string LastModifiedBy { get; set; }
+        public string? LastModifiedBy { get; set; }
     }
 }
