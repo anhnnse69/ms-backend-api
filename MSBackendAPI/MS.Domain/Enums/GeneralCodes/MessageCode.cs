@@ -16,6 +16,7 @@
         APP_MESSAGE_2007, // Appointment status updated successfully
 
         // Client error codes (4xxx series)
+        APP_MESSAGE_4000, // General client error (considered ambiguous, use APP_MESSAGE_4019 for validation errors)
         APP_MESSAGE_4001, // Invalid phone number format or length
         APP_MESSAGE_4002, // Invalid date of birth (e.g., future date or incorrect format)
         APP_MESSAGE_4003, // Required field is missing in the request

@@ -53,6 +53,15 @@
         /// <returns></returns>
         public static ApiResponse<T> Fail(string codeMessage)
             => new ApiResponse<T>(codeMessage, default, null);
+
+        /// <summary>
+        /// API response fail, with data
+        /// </summary>
+        /// <param name="codeMessage"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static ApiResponse<T> Fail(string codeMessage, T data)
+            => new ApiResponse<T>(codeMessage, data, null);
     }
 }
 
