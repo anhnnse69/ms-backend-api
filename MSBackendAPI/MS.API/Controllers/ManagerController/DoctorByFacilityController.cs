@@ -13,7 +13,7 @@ namespace MS.API.Controllers.ManagerController
     /// Routes are prefixed with 'api/doctors' and require the Manager role.
     /// </remarks>
     [ApiController]
-    [Route("api/manager")]
+    [Route("api/v1/manager/doctors")]
     [Authorize(Roles = "Manager")]
     public class DoctorByFacilityController : ControllerBase
     {
