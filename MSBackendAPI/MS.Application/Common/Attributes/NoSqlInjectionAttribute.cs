@@ -35,7 +35,7 @@ namespace MS.Application.Common.Attributes
         // URL-encoded dangerous characters: %27=', %3B=;, %2D%2D=--
         private const string UrlEncodedPattern = @"(%27|%3B|%2D%2D|%23|%2F\*|%2A%2F)";
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var message = ErrorMessage;
             if (value is not string input)

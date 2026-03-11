@@ -23,7 +23,7 @@ namespace MS.Application.Common.Attributes
         /// <param name="validationContext">The context information about the validation operation, including the object and member being validated.</param>
         /// <returns>A ValidationResult that indicates whether the value is valid. Returns ValidationResult.Success if the value
         /// meets all password requirements; otherwise, returns a ValidationResult with the appropriate error message.</returns>
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var message = ErrorMessage;
             if (value is not string password)

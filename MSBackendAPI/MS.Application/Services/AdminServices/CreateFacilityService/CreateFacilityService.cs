@@ -6,7 +6,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetF
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 
-namespace MS.Application.Services.AdminServices.FaclityService.CreateFacilityService
+namespace MS.Application.Services.AdminServices.CreateFacilityService
 {
     /// <summary>
     /// Create facility service implementation

@@ -1,4 +1,5 @@
-﻿using MS.Domain.Enums.GeneralCodes;
+﻿using MS.Application.Common.Response;
+using MS.Domain.Enums.GeneralCodes;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
@@ -32,16 +33,15 @@ namespace MS.API
             {
                 _logger.LogWarning("Validation failed: {Errors}", ex.Message);
 
-                var response = new
-                {
-                    CodeMessage = MessageCode.APP_MESSAGE_4019.ToString(),
-                    Data = (object)null,
-                    Meta = (object)null,
-                    Errors = ex.Message
-                                   .Split(';', StringSplitOptions.RemoveEmptyEntries)
-                                   .Select(e => e.Trim())
-                                   .ToList()
-                };
+                var errors = ex.Message
+                    .Split(';', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(e => e.Trim())
+                    .ToList();
+
+                var response = ApiResponse<List<string>>.Success(
+                    MessageCode.APP_MESSAGE_4000.ToString(),
+                    errors
+                );
 
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
                 context.Response.ContentType = "application/json";

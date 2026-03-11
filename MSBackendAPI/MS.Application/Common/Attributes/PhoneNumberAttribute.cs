@@ -11,7 +11,7 @@ namespace MS.Application.Common.Attributes
     {
         private const string PhonePattern = @"^(0|\+84)(3[2-9]|5[6-9]|7[0|6-9]|8[0-9]|9[0-9])\d{7}$";
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var message = ErrorMessage;
             if (value is not string phone)

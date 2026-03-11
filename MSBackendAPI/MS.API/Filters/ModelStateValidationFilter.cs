@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MS.API.Helpers;
+using MS.Application.Common.Response;
 using MS.Domain.Enums.GeneralCodes;
 
 namespace MS.API.Filters
@@ -23,21 +24,19 @@ namespace MS.API.Filters
         {
             if (context.ModelState.IsValid) return;
 
-            var errors = ModelStateHelper.GetFieldErrors(context.ModelState);
-            var logText = ModelStateHelper.FormatErrors(
-                MessageCode.APP_MESSAGE_4019.ToString(),
-                context.ModelState
+            _logger.LogWarning(
+                ModelStateHelper.FormatErrors(
+                    MessageCode.APP_MESSAGE_4000.ToString(),
+                    context.ModelState
+                )
             );
 
-            _logger.LogWarning(logText);
+            var errors = ModelStateHelper.GetFieldErrors(context.ModelState);
 
-            var response = new
-            {
-                CodeMessage = MessageCode.APP_MESSAGE_4019.ToString(),
-                Data = (object)null,
-                Meta = (object)null,
-                Errors = errors
-            };
+            var response = ApiResponse<Dictionary<string, List<string>>>.Success(
+                MessageCode.APP_MESSAGE_4000.ToString(),
+                errors
+            );
 
             context.Result = new BadRequestObjectResult(response);
         }

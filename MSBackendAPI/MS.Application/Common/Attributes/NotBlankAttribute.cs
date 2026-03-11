@@ -18,7 +18,7 @@ namespace MS.Application.Common.Attributes
         /// <param name="validationContext">The context information about the validation operation, including the object and member being validated.</param>
         /// <returns>A ValidationResult that indicates whether the value is valid. Returns ValidationResult.Success if the value
         /// is valid; otherwise, a ValidationResult with the error message.</returns>
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var message = ErrorMessage;
             if (value is string str)

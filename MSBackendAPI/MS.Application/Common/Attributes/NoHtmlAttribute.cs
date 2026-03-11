@@ -29,7 +29,7 @@ namespace MS.Application.Common.Attributes
         // Matches HTML-encoded angle brackets used to bypass tag filters
         private const string EncodedTagPattern = @"(&lt;|&gt;|&#60;|&#62;|&#x3C;|&#x3E;)";
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var message = ErrorMessage;
             if (value is not string input)
