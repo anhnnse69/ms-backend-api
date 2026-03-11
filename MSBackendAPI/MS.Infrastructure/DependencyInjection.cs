@@ -5,11 +5,8 @@ using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
-using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
-using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
-using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
@@ -20,11 +17,13 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacili
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
-using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
+using MS.Infrastructure.Repositories.PatientRepositories.CreateUser;
+using MS.Infrastructure.Repositories.PatientRepositories.UpdateUser;
+using MS.Infrastructure.Repositories.PatientRepositories.GetUserById;
 
 namespace MS.Infrastructure
 {
