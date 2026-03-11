@@ -38,8 +38,8 @@ namespace MS.API
                     .Select(e => e.Trim())
                     .ToList();
 
-                var response = ApiResponse<List<string>>.Success(
-                    MessageCode.APP_MESSAGE_4000.ToString(),
+                var response = ApiResponse<List<string>>.Fail(
+                    MessageCode.APP_MESSAGE_4019.ToString(),
                     errors
                 );
 

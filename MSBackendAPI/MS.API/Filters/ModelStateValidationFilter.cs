@@ -33,8 +33,8 @@ namespace MS.API.Filters
 
             var errors = ModelStateHelper.GetFieldErrors(context.ModelState);
 
-            var response = ApiResponse<Dictionary<string, List<string>>>.Success(
-                MessageCode.APP_MESSAGE_4000.ToString(),
+            var response = ApiResponse<Dictionary<string, List<string>>>.Fail(
+                MessageCode.APP_MESSAGE_4019.ToString(),
                 errors
             );
 
