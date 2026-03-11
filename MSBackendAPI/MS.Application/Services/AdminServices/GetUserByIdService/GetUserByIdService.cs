@@ -54,6 +54,7 @@ namespace MS.Application.Services.AdminServices.GetUserByIdService
                 result
             );
         }
+
         /// <summary>
         /// Map user entity to response model
         /// </summary>

@@ -42,7 +42,6 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unhandled exception occurred");
-
                 var response = new
                 {
                     CodeMessage = "APP_MESSAGE_5000",
@@ -56,5 +55,4 @@
             }
         }
     }
-
 }

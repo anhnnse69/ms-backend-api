@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MS.Application.Services.AdminServices.FaclityService.CreateFacilityService;
+using MS.Application.Services.AdminServices.CreateFacilityService;
 
 namespace MS.API.Controllers.AdminController
 {

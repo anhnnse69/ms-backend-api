@@ -107,6 +107,26 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
                     MessageCode.APP_MESSAGE_4020.ToString()
                 );
             }
+            // Map DTO data to entity and get updated user
+            MapUserDataFromRequest(user, request);
+            // Persist changes
+            await _updateUser.Execute(user);
+            return ApiResponse<bool>.Success(
+                MessageCode.APP_MESSAGE_2000.ToString(), true
+            );
+        }
+
+        /// <summary>
+        /// Maps the DTO fields from the update request to the user entity.
+        /// </summary>
+        /// <param name="user">
+        /// The user entity to be updated.
+        /// </param>
+        /// <param name="request">
+        /// The request containing updated user information.
+        /// </param>
+        private void MapUserDataFromRequest(User user, UpdateUserRequest request)
+        {
             user.Username = request.Username;
             user.FullName = request.FullName;
             user.DisplayName = request.DisplayName;
@@ -114,17 +134,40 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
             user.Email = request.Email.ToLower();
             user.PhoneNumber = request.PhoneNumber;
             user.Role = request.Role;
-            user.IsDeleted = request.IsDeleted;
+            user.PasswordHash = !string.IsNullOrEmpty(request.PasswordHash)
+                ? PasswordHelper.HashPassword(request.PasswordHash)
+                : user.PasswordHash;
             user.LastModifiedBy = "system";
             user.LastModifiedDate = DateTimeOffset.UtcNow;
-            if (!string.IsNullOrEmpty(request.PasswordHash))
+            UpdateDeletionMetadata(user, request.IsDeleted);
+        }
+
+        /// <summary>
+        /// Updates soft-delete metadata (DeletedAt, DeletedBy) based on the deletion state change.
+        /// </summary>
+        /// <param name="user">
+        /// The user entity to update.
+        /// </param>
+        /// <param name="willBeDeleted">
+        /// The target deletion state.
+        /// </param>
+        private void UpdateDeletionMetadata(User user, bool willBeDeleted)
+        {
+            var wasDeleted = user.IsDeleted;
+            if (wasDeleted != willBeDeleted)
             {
-                user.PasswordHash = PasswordHelper.HashPassword(request.PasswordHash);
+                if (willBeDeleted)
+                {
+                    user.DeletedAt = DateTimeOffset.UtcNow;
+                    user.DeletedBy = "system";
+                }
+                else
+                {
+                    user.DeletedAt = null;
+                    user.DeletedBy = null;
+                }
             }
-            await _updateUser.Execute(user);
-            return ApiResponse<bool>.Success(
-                MessageCode.APP_MESSAGE_2000.ToString(), true
-            );
+            user.IsDeleted = willBeDeleted;
         }
     }
 }

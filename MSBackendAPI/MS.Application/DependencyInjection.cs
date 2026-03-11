@@ -18,7 +18,7 @@ using MS.Application.Services.DoctorServices.RejectDoctorAppointmentService;
 using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
 using MS.Application.Services.DoctorScheduleService;
-using MS.Application.Services.AdminServices.FaclityService.CreateFacilityService;
+using MS.Application.Services.AdminServices.CreateFacilityService;
 
 namespace MS.Application
 {

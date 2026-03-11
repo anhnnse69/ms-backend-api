@@ -13,6 +13,7 @@ public static class ApplicationExtension
         app.UseHttpsRedirection();
         app.UseCors("AllowFrontend");
         app.UseMiddleware<GlobalExceptionMiddleware>();
+        app.UseMiddleware<ValidationExceptionMiddleware>();
         app.UseMiddleware<ForbiddenMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();

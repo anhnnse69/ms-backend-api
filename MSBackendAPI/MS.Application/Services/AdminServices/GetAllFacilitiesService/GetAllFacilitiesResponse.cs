@@ -19,7 +19,7 @@
         public string City { get; set; }
         /// Type of facility.
         public string Type { get; set; }
-        /// Indicates whether the facility is active.
+        /// Indicates whether the facility has been soft-deleted (true = deleted, false = active).
         public bool IsDeleted { get; set; }
         /// URL of the facility logo.
         public string LogoUrl { get; set; }

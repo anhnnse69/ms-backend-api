@@ -1,10 +1,13 @@
 namespace MS.Domain.Enums.Types
 {
+    /// <summary>
+    /// Represents the delivery channel through which a notification is sent.
+    /// </summary>
     public enum NotificationChannel
     {
-        AppointmentReminder,
-        AppointmentConfirmed,
-        AppointmentCancelled,
-        AppointmentStatusChanged,
+        Email,
+        SMS,
+        InApp,
+        Push,
     }
 }

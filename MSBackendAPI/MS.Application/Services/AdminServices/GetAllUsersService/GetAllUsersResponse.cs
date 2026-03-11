@@ -29,7 +29,7 @@
         // User role
         public string Role { get; set; }
 
-        // Active status
+        // Deletion status (true = soft-deleted and no longer active, false = active)
         public bool IsDeleted { get; set; }
     }
 }

@@ -26,7 +26,7 @@
         // Duration of each appointment slot in minutes
         public int SlotDurationMinutes { get; set; }
 
-        // Indicates whether the availability is active
+        // Indicates whether the availability entry has been soft-deleted (true = deleted, false = active)
         public bool IsDeleted { get; set; }
     }
 }
