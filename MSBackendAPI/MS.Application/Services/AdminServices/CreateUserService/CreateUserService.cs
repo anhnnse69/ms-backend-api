@@ -2,10 +2,10 @@
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Shared.Utility;
-using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
+using MS.Infrastructure.Repositories.PatientRepositories.CreateUser;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 
-namespace MS.Application.Services.AdminServices.CreateUser
+namespace MS.Application.Services.AdminServices.CreateUserService
 {
     /// <summary>
     /// Provides an implementation of the ICreateUserService interface

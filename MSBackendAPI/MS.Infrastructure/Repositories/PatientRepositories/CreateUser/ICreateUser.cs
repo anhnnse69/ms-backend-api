@@ -1,7 +1,7 @@
 ﻿using MS.Domain.Entities;
 
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.CreateUser
+namespace MS.Infrastructure.Repositories.PatientRepositories.CreateUser
 {
     public interface ICreateUser
     {

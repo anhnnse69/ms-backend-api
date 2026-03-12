@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MS.Application.Services.AdminServices.CreateUser;
+using MS.Application.Services.AdminServices.CreateUserService;
 
 namespace MS.API.Controllers.Admin.ManagementUser
 {

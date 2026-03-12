@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260311020715_Initial_Reset")]
+    [Migration("20260311164101_Initial_Reset")]
     partial class Initial_Reset
     {
         /// <inheritdoc />
@@ -818,11 +818,9 @@ namespace MS.Infrastructure.Migrations
                         .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AvatarUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreateBy")
@@ -857,11 +855,9 @@ namespace MS.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("IdentityCard")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InsuranceNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -1170,7 +1166,6 @@ namespace MS.Infrastructure.Migrations
                         .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("AvatarUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreateBy")
@@ -1253,7 +1248,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Administrator",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$nrfhwnNvuGoSs5GS5bALzOC3ChQfoGgeTeyPNZP0T1Q/ad.2HoIzm",
+                            PasswordHash = "$2a$12$ImZ30l6CDnzFvnJyM7qbLe.8atsA925OxSiVchotwhB28pSDwUw.K",
                             PhoneNumber = "0999999999",
                             Role = 1,
                             Username = "admin"
@@ -1270,7 +1265,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Quản Lý Một",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$/rN9uuANapg3yvh7pHckG.AAhQL1VpVlahL5qoqs7xySLTRlcXQqK",
+                            PasswordHash = "$2a$12$hQyTCtbw21Jr/4llbgjb2u4sQk5RMKMqPSdNNR8frCOEt7sLWqf8.",
                             PhoneNumber = "0987654311",
                             Role = 2,
                             Username = "manager1"
@@ -1287,7 +1282,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "John Doe",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$hsmmyJr.GCbcsRYZVyt.V.zCHucYcn7fZjh0GUJxkQrOYZxzxbzNy",
+                            PasswordHash = "$2a$12$zukYCEIMhCO3OgGIl5L1puX/LOy0Snj6cPmfHVOnJkeC6E2YPnP.2",
                             PhoneNumber = "0123456789",
                             Role = 4,
                             Username = "doctor1"
@@ -1303,7 +1298,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Nguyễn Văn A",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$0fYskd9rI7WrJQ4etUDFJOmdSwpl7Dv/zsnl30Se33Ju6XPOC3YaG",
+                            PasswordHash = "$2a$12$cVF0Xsi11UkJ0k6/5Igxy.VnqyTWl2NO6gEVfHp1cmWIFqgAG27o.",
                             PhoneNumber = "0901234567",
                             Role = 3,
                             Username = "patient1"
@@ -1319,7 +1314,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Trần Thị B",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$X1rMpgfx1a828IK/zx15SO7zxqA1mKKyRz/3Bs61mSEHWy2RTZEzi",
+                            PasswordHash = "$2a$12$K0UbVa72VJHWS/NNSWiwSuGXrbHFGB7dOnYPJSKK/0HyHMQViiV72",
                             PhoneNumber = "0912345678",
                             Role = 3,
                             Username = "patient2"
