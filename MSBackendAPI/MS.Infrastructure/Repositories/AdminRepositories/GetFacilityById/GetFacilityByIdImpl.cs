@@ -15,10 +15,7 @@ namespace MS.Infrastructure.Repositories.AdminRepositories.GetFacilityById
         /// <summary>
         /// Initializes a new instance of the GetFacilityByIdImpl class.
         /// </summary>
-        public GetFacilityByIdImpl(
-            AppDbContext context,
-            IUnitOfWork<AppDbContext> unitOfWork)
-            : base(context, unitOfWork)
+        public GetFacilityByIdImpl( AppDbContext context, IUnitOfWork<AppDbContext> unitOfWork) : base(context, unitOfWork)
         {
         }
 

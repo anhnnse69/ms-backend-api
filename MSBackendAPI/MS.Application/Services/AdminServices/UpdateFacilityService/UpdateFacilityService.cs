@@ -112,10 +112,8 @@ namespace MS.Application.Services.AdminServices.UpdateFacilityService
         {
             if (emailFacility != null && emailFacility.Id != currentId)
                 isEmailExists = true;
-
             if (phoneFacility != null && phoneFacility.Id != currentId)
                 isPhoneExists = true;
-
             if (nameFacility != null && nameFacility.Id != currentId)
                 isNameExists = true;
         }

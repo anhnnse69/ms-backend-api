@@ -17,8 +17,7 @@ namespace MS.API.Controllers.Admin.FacilityControllers
         /// <summary>
         /// Initializes a new instance of the UpdateFacilityController class.
         /// </summary>
-        public AdminUpdateFacilityController(
-            IUpdateFacilityService updateFacilityService)
+        public AdminUpdateFacilityController(IUpdateFacilityService updateFacilityService)
         {
             _updateFacilityService = updateFacilityService;
         }
