@@ -6,6 +6,10 @@ using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
+using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
@@ -15,16 +19,13 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
+using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
-using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 
 namespace MS.Infrastructure
 {
@@ -73,6 +74,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
             services.AddScoped<ICreateFacility, CreateFacilityImpl>();
             services.AddScoped<ICreateAccount, CreateAccountImpl>();
+            services.AddScoped<IGetAppointmentByFacility, GetAppointmentByFacilityImpl>();
             return services;
         }
     }
