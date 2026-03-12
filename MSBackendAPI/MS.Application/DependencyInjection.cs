@@ -8,6 +8,7 @@ using MS.Application.Services.AdminServices.GetAllUsersService;
 using MS.Application.Services.AdminServices.GetUserByIdService;
 using MS.Application.Services.AdminServices.UpdateUserService;
 using MS.Application.Services.CommonServices.LoginService;
+using MS.Application.Services.CommonServices.RegisterService;
 using MS.Application.Services.DoctorDetailByFacilityService;
 using MS.Application.Services.Doctors.GetDoctorAppointmentService;
 using MS.Application.Services.Doctors.GetDoctorAvailabilityService;
@@ -38,6 +39,7 @@ namespace MS.Application
             // Register your Application Services here (e.g., Use Case handlers, domain services)
             // services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IRegisterService, RegisterService>();
             services.AddScoped<IGetDoctorAvailabilityService, GetDoctorAvailabilityService>();
             services.AddScoped<IGetDoctorAppointmentService, GetDoctorAppointmentService>();
             services.AddScoped<IGetAllUsersService, GetAllUsersService>();

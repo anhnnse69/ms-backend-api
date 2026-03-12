@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MS.Domain.Entities;
+﻿using MS.Domain.Entities;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Persistence;
 
