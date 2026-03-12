@@ -20,6 +20,7 @@ using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusServic
 using MS.Application.Services.PatientServices.ChangePasswordService;
 using MS.Application.Services.DoctorScheduleService;
 using MS.Application.Services.AdminServices.CreateFacilityService;
+using MS.Application.Services.AdminServices.UpdateFacilityService;
 
 namespace MS.Application
 {
@@ -58,6 +59,7 @@ namespace MS.Application
             services.AddScoped<ICreateFacilityService, CreateFacilityService>();
             services.AddScoped<IUpdateDoctorAppointmentStatusService, UpdateDoctorAppointmentStatusService>();
             services.AddScoped<IDoctorScheduleService, DoctorScheduleService>();
+            services.AddScoped<IUpdateFacilityService, UpdateFacilityService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
