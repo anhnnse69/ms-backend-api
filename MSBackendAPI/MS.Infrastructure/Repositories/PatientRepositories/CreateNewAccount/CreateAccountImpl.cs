@@ -8,7 +8,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount
     public class CreateAccountImpl : RepositoryBase<User, Guid, AppDbContext>, ICreateAccount
     {
         /// <summary>
-        /// Initializes a new instance of the CreateUserImpl class.
+        /// Initializes a new instance of the CreateAccountImpl class.
         /// </summary>
         /// <param name="context">The database context used to access user data.</param>
         /// <param name="unitOfWork">The unit of work responsible for managing database transactions.</param>

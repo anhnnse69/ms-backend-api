@@ -95,7 +95,7 @@ namespace MS.Infrastructure.Migrations
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
@@ -225,10 +225,10 @@ namespace MS.Infrastructure.Migrations
                     Gender = table.Column<int>(type: "int", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdentityCard = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InsuranceNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdentityCard = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InsuranceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -590,9 +590,9 @@ namespace MS.Infrastructure.Migrations
                 columns: new[] { "Id", "AvatarUrl", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FacilityId", "FullName", "IsDeleted", "LastLoginAt", "LastModifiedBy", "LastModifiedDate", "PasswordHash", "PhoneNumber", "Role", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("55555555-5555-5555-5555-555555555555"), "/assets/images/users/admin.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Admin User", "admin@example.com", null, "Administrator", false, null, "system", null, "$2a$12$nrfhwnNvuGoSs5GS5bALzOC3ChQfoGgeTeyPNZP0T1Q/ad.2HoIzm", "0999999999", 1, "admin" },
-                    { new Guid("55555555-5555-5555-5555-555555555558"), "/assets/images/users/patient1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Nguyễn Văn A", "nguyenvana@example.com", null, "Nguyễn Văn A", false, null, "system", null, "$2a$12$0fYskd9rI7WrJQ4etUDFJOmdSwpl7Dv/zsnl30Se33Ju6XPOC3YaG", "0901234567", 3, "patient1" },
-                    { new Guid("55555555-5555-5555-5555-555555555559"), "/assets/images/users/patient2.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Trần Thị B", "tranthib@example.com", null, "Trần Thị B", false, null, "system", null, "$2a$12$X1rMpgfx1a828IK/zx15SO7zxqA1mKKyRz/3Bs61mSEHWy2RTZEzi", "0912345678", 3, "patient2" }
+                    { new Guid("55555555-5555-5555-5555-555555555555"), "/assets/images/users/admin.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Admin User", "admin@example.com", null, "Administrator", false, null, "system", null, "$2a$12$hPHQDm2zqM20YuL2T6102uF401WQA2yQqNvjrbZ5mjQ/iiMErbkU2", "0999999999", 1, "admin" },
+                    { new Guid("55555555-5555-5555-5555-555555555558"), "/assets/images/users/patient1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Nguyễn Văn A", "nguyenvana@example.com", null, "Nguyễn Văn A", false, null, "system", null, "$2a$12$tfznODrP8SZ4QDk.duH5DekqHENNxQR/.EbdgNly9pQWb0vPGzvCa", "0901234567", 3, "patient1" },
+                    { new Guid("55555555-5555-5555-5555-555555555559"), "/assets/images/users/patient2.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Trần Thị B", "tranthib@example.com", null, "Trần Thị B", false, null, "system", null, "$2a$12$gNDwCG/PxYSCWZ9p6UrWLuAy/57H/WzKfSo05UhaidjRN72hS7XzS", "0912345678", 3, "patient2" }
                 });
 
             migrationBuilder.InsertData(
@@ -619,8 +619,8 @@ namespace MS.Infrastructure.Migrations
                 columns: new[] { "Id", "AvatarUrl", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FacilityId", "FullName", "IsDeleted", "LastLoginAt", "LastModifiedBy", "LastModifiedDate", "PasswordHash", "PhoneNumber", "Role", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("55555555-5555-5555-5555-555555555556"), "/assets/images/users/manager1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Manager One", "manager1@hospital.vn", new Guid("33333333-3333-3333-3333-333333333333"), "Quản Lý Một", false, null, "system", null, "$2a$12$/rN9uuANapg3yvh7pHckG.AAhQL1VpVlahL5qoqs7xySLTRlcXQqK", "0987654311", 2, "manager1" },
-                    { new Guid("55555555-5555-5555-5555-555555555557"), "/assets/images/users/doctor1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. John Doe", "john.doe@example.com", new Guid("33333333-3333-3333-3333-333333333333"), "John Doe", false, null, "system", null, "$2a$12$hsmmyJr.GCbcsRYZVyt.V.zCHucYcn7fZjh0GUJxkQrOYZxzxbzNy", "0123456789", 4, "doctor1" }
+                    { new Guid("55555555-5555-5555-5555-555555555556"), "/assets/images/users/manager1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Manager One", "manager1@hospital.vn", new Guid("33333333-3333-3333-3333-333333333333"), "Quản Lý Một", false, null, "system", null, "$2a$12$eWFpC9udI9eKvNZcH98QRecitNj9ZZDlrCzIw6AxmbfNChloCwJPO", "0987654311", 2, "manager1" },
+                    { new Guid("55555555-5555-5555-5555-555555555557"), "/assets/images/users/doctor1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. John Doe", "john.doe@example.com", new Guid("33333333-3333-3333-3333-333333333333"), "John Doe", false, null, "system", null, "$2a$12$7HF8XZ62WQJG3dBpS5O9xOeBKcUOB5cFvZ4.CJlxiXRO5mP6CRfBK", "0123456789", 4, "doctor1" }
                 });
 
             migrationBuilder.InsertData(
