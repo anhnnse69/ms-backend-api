@@ -2,8 +2,8 @@
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Shared.Utility;
-using MS.Infrastructure.Repositories.PatientRepositories.GetUserById;
-using MS.Infrastructure.Repositories.PatientRepositories.UpdateUser;
+using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 
 namespace MS.Application.Services.AdminServices.UpdateUserService
 {

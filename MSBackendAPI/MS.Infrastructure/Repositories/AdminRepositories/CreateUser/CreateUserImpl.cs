@@ -3,7 +3,7 @@ using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.PatientRepositories.CreateUser
+namespace MS.Infrastructure.Repositories.AdminRepositories.CreateUser
 {
     /// <summary>
     /// Provides an implementation of the ICreateUser interface

@@ -4,7 +4,7 @@ using MS.Application.Common.Response;
 using MS.Application.Services.PatientServices.ChangePasswordService;
 using System.Security.Claims;
 
-namespace MS.API.Controllers.PatientController
+namespace MS.API.Controllers.CommonController
 {
     /// <summary>
     /// Controller for user password operations

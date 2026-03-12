@@ -16,10 +16,10 @@ namespace MS.Domain.Entities
         public Gender Gender { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public string? Address { get; set; }
-        public string? IdentityCard { get; set; }
-        public string? InsuranceNumber { get; set; }
-        public string? AvatarUrl { get; set; } // UI avatar
+        public string Address { get; set; }
+        public string IdentityCard { get; set; }
+        public string InsuranceNumber { get; set; }
+        public string AvatarUrl { get; set; } // UI avatar
 
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
