@@ -21,9 +21,9 @@ using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetF
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
-using MS.Infrastructure.Repositories.PatientRepositories.CreateUser;
-using MS.Infrastructure.Repositories.PatientRepositories.UpdateUser;
-using MS.Infrastructure.Repositories.PatientRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
+using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
+using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 
 namespace MS.Infrastructure
 {

@@ -1,6 +1,6 @@
 ﻿using MS.Domain.Entities;
 
-namespace MS.Infrastructure.Repositories.PatientRepositories.GetUserById
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetUserById
 {
     public interface IGetUserById
     {

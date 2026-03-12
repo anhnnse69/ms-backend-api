@@ -3,7 +3,7 @@ using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.PatientRepositories.UpdateUser
+namespace MS.Infrastructure.Repositories.AdminRepositories.UpdateUser
 {
     /// <summary>
     /// Provides an implementation of the IUpdateUser interface

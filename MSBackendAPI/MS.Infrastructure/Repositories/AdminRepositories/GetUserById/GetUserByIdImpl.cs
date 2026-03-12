@@ -3,7 +3,7 @@ using MS.Domain.Entities;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.PatientRepositories.GetUserById
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetUserById
 {
     /// <summary>
     /// Provides an implementation of the IGetUserById interface for retrieving

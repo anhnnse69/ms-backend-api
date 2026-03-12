@@ -23,7 +23,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail
         /// </summary>
         /// <param name="emailAddress"></param>
         /// <returns></returns>
-        public async Task<User> Execute(string emailAddress)
+        public async Task<User?> Execute(string emailAddress)
         {
             return await FindByCondition(user => user.Email == emailAddress, trackChanges: false)
             .FirstOrDefaultAsync();
