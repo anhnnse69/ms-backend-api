@@ -3,7 +3,7 @@ using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Enums.Roles;
 using MS.Domain.Shared.Utility;
-using MS.Infrastructure.Repositories.PatientRepositories.CreateUser;
+using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 
 namespace MS.Application.Services.CommonServices.RegisterService
@@ -14,7 +14,7 @@ namespace MS.Application.Services.CommonServices.RegisterService
     public class RegisterService : IRegisterService
     {
         private readonly IGetUserByEmail _getUserByEmail;
-        private readonly ICreateUser _createUser;
+        private readonly ICreateAccount _createAccount;
 
         /// <summary>
         /// Register service constructor
@@ -23,10 +23,10 @@ namespace MS.Application.Services.CommonServices.RegisterService
         /// <param name="createUser"></param>
         public RegisterService(
             IGetUserByEmail getUserByEmail,
-            ICreateUser createUser)
+            ICreateAccount createAccount)
         {
             _getUserByEmail = getUserByEmail;
-            _createUser = createUser;
+            _createAccount = createAccount;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace MS.Application.Services.CommonServices.RegisterService
         /// </summary>
         /// <param name="emailAddress"></param>
         /// <returns></returns>
-        private async Task<User> RetrieveUserData(string emailAddress)
+        private async Task<User?> RetrieveUserData(string emailAddress)
         {
             return await _getUserByEmail.Execute(emailAddress);
         }
@@ -61,7 +61,7 @@ namespace MS.Application.Services.CommonServices.RegisterService
         /// </summary>
         /// <param name="retrievedUser"></param>
         /// <param name="isEmailAvailable"></param>
-        private void ValidateRetrievedData(User retrievedUser, ref bool isEmailAvailable)
+        private void ValidateRetrievedData(User? retrievedUser, ref bool isEmailAvailable)
         {
             if (retrievedUser != null)
             {
@@ -78,7 +78,7 @@ namespace MS.Application.Services.CommonServices.RegisterService
         private async Task<User> PersistUser(RegisterRequest registerRequest)
         {
             var newUser = BuildUserEntity(registerRequest);
-            return await _createUser.Execute(newUser);
+            return await _createAccount.Execute(newUser);
         }
 
         /// <summary>

@@ -1245,7 +1245,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Administrator",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$ImZ30l6CDnzFvnJyM7qbLe.8atsA925OxSiVchotwhB28pSDwUw.K",
+                            PasswordHash = "$2a$12$hPHQDm2zqM20YuL2T6102uF401WQA2yQqNvjrbZ5mjQ/iiMErbkU2",
                             PhoneNumber = "0999999999",
                             Role = 1,
                             Username = "admin"
@@ -1262,7 +1262,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Quản Lý Một",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$hQyTCtbw21Jr/4llbgjb2u4sQk5RMKMqPSdNNR8frCOEt7sLWqf8.",
+                            PasswordHash = "$2a$12$eWFpC9udI9eKvNZcH98QRecitNj9ZZDlrCzIw6AxmbfNChloCwJPO",
                             PhoneNumber = "0987654311",
                             Role = 2,
                             Username = "manager1"
@@ -1279,7 +1279,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "John Doe",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$zukYCEIMhCO3OgGIl5L1puX/LOy0Snj6cPmfHVOnJkeC6E2YPnP.2",
+                            PasswordHash = "$2a$12$7HF8XZ62WQJG3dBpS5O9xOeBKcUOB5cFvZ4.CJlxiXRO5mP6CRfBK",
                             PhoneNumber = "0123456789",
                             Role = 4,
                             Username = "doctor1"
@@ -1295,7 +1295,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Nguyễn Văn A",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$cVF0Xsi11UkJ0k6/5Igxy.VnqyTWl2NO6gEVfHp1cmWIFqgAG27o.",
+                            PasswordHash = "$2a$12$tfznODrP8SZ4QDk.duH5DekqHENNxQR/.EbdgNly9pQWb0vPGzvCa",
                             PhoneNumber = "0901234567",
                             Role = 3,
                             Username = "patient1"
@@ -1311,7 +1311,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Trần Thị B",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$K0UbVa72VJHWS/NNSWiwSuGXrbHFGB7dOnYPJSKK/0HyHMQViiV72",
+                            PasswordHash = "$2a$12$gNDwCG/PxYSCWZ9p6UrWLuAy/57H/WzKfSo05UhaidjRN72hS7XzS",
                             PhoneNumber = "0912345678",
                             Role = 3,
                             Username = "patient2"

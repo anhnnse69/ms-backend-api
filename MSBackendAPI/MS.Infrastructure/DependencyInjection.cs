@@ -5,8 +5,11 @@ using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateUser;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
+using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
@@ -21,9 +24,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetF
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
-using MS.Infrastructure.Repositories.PatientRepositories.CreateUser;
-using MS.Infrastructure.Repositories.PatientRepositories.UpdateUser;
-using MS.Infrastructure.Repositories.PatientRepositories.GetUserById;
+using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 
 namespace MS.Infrastructure
 {
@@ -71,6 +72,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityByPhone, GetFacilityByPhoneImpl>();
             services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
             services.AddScoped<ICreateFacility, CreateFacilityImpl>();
+            services.AddScoped<ICreateAccount, CreateAccountImpl>();
             return services;
         }
     }

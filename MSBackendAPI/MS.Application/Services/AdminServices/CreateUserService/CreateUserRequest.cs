@@ -3,7 +3,7 @@ using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Enums.Roles;
 using System.ComponentModel.DataAnnotations;
 
-namespace MS.Application.Services.AdminServices.CreateUserService
+namespace MS.Application.Services.AdminServices.CreateUser
 {
     /// <summary>
     /// Request object for create user.

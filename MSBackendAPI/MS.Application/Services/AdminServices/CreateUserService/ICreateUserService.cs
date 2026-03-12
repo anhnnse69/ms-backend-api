@@ -1,6 +1,6 @@
 ﻿using MS.Application.Common.Response;
 
-namespace MS.Application.Services.AdminServices.CreateUserService
+namespace MS.Application.Services.AdminServices.CreateUser
 {
     /// <summary>
     /// Defines the contract for the create user service.

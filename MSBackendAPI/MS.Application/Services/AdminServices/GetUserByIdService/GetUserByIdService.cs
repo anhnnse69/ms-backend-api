@@ -1,7 +1,7 @@
 ﻿using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
-using MS.Infrastructure.Repositories.PatientRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 
 namespace MS.Application.Services.AdminServices.GetUserByIdService
 {

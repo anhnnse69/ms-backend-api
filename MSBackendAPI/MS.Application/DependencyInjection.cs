@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Common.AnnotationValidationBehavior;
-using MS.Application.Services.AdminServices.CreateUserService;
+using MS.Application.Services.AdminServices.CreateUser;
 using MS.Application.Services.AdminServices.GetAllFacilitiesService;
 using MS.Application.Services.AdminServices.DeleteUserService;
 using MS.Application.Services.AdminServices.GetAllUsersService;
