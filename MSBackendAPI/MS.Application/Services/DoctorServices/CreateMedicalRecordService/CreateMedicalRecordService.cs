@@ -359,7 +359,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
             if (isMedicalRecordExists)
             {
                 return ApiResponse<CreateMedicalRecordResponse>
-                    .Fail(MessageCode.APP_MESSAGE_4026.ToString());
+                    .Fail(MessageCode.APP_MESSAGE_4027.ToString());
             }
             return ApiResponse<CreateMedicalRecordResponse>
                 .Success(MessageCode.APP_MESSAGE_2000.ToString(), response);
