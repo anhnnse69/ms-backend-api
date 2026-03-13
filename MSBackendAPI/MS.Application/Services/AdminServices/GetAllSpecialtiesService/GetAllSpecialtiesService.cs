@@ -72,7 +72,6 @@ namespace MS.Application.Services.AdminServices.GetAllSpecialtiesService
             {
                 return 0;
             }
-
             return await query.CountAsync();
         }
 
@@ -106,12 +105,7 @@ namespace MS.Application.Services.AdminServices.GetAllSpecialtiesService
         /// <summary>
         /// Create API response with metadata
         /// </summary>
-        private ApiResponse<IEnumerable<GetAllSpecialtiesResponse>> CreateResponse(
-            IEnumerable<Specialty> data,
-            int total,
-            int page,
-            int size,
-            bool isValid)
+        private ApiResponse<IEnumerable<GetAllSpecialtiesResponse>> CreateResponse(IEnumerable<Specialty> data, int total, int page, int size, bool isValid)
         {
             if (!isValid)
             {
