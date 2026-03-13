@@ -24,9 +24,10 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId
         /// </summary>
         /// <param name="userId">User identifier</param>
         /// <returns>Doctor entity associated with the user</returns>
-        public async Task<Doctor> Execute(Guid userId)
+        public async Task<Doctor?> Execute(Guid userId)
         {
             return await FindByCondition(x => x.UserId == userId, false)
+                .Include(x => x.Specialty)
                 .FirstOrDefaultAsync();
         }
     }
