@@ -37,6 +37,8 @@ namespace MS.Application.Services.AdminServices.UpdateFacilityService
         public string DescriptionEn { get; set; } = string.Empty;
 
         /// <summary>The logo URL of the facility.</summary>
+        [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
+        [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
         [Url(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         [StringLength(500, ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         public string? LogoUrl { get; set; }
