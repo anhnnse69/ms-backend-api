@@ -37,7 +37,7 @@ namespace MS.Application.Services.ManagerServices.AppointmentByFacilityService
             // 1. Initialize validation flag
             bool isDataValid = true;
             // 2. Build filtered query based on request parameters
-            var query = BuildQuery(request);
+            var query = BuildQuery(request).AsNoTracking();
             // 3. Get total number of records matching the filter
             var total = await query.CountAsync();
             // 4. Retrieve paginated appointments ordered by appointment time (descending)
@@ -61,9 +61,9 @@ namespace MS.Application.Services.ManagerServices.AppointmentByFacilityService
         {
             var query = _repository.Execute(request.FacilityId);
             if (request.DoctorId.HasValue)
-                query = query.Where(x => x.DoctorId == request.DoctorId);
+                query = query.Where(x => x.DoctorId == request.DoctorId.Value);
             if (request.Status.HasValue)
-                query = query.Where(x => (int)x.Status == request.Status);
+                query = query.Where(x => x.Status == request.Status.Value);
             if (request.Date.HasValue)
                 query = query.Where(x => x.AppointmentTime.Date == request.Date.Value.Date);
             return query;
@@ -76,7 +76,7 @@ namespace MS.Application.Services.ManagerServices.AppointmentByFacilityService
         /// <param name="isDataValid">Validation flag</param>
         private void ValidateRetrievedData(List<Appointment> appointments, ref bool isDataValid)
         {
-            if (appointments == null || !appointments.Any())
+            if (appointments == null)
                 isDataValid = false;
         }
 
@@ -99,7 +99,7 @@ namespace MS.Application.Services.ManagerServices.AppointmentByFacilityService
             if (!isDataValid)
             {
                 return ApiResponse<List<AppointmentResponse>>.Fail(
-                    MessageCode.APP_MESSAGE_4004.ToString());
+                    MessageCode.APP_MESSAGE_4012.ToString());
             }
             // Map appointment entities to response model
             var mappedAppointments = MapAppointments(appointments);
@@ -120,8 +120,8 @@ namespace MS.Application.Services.ManagerServices.AppointmentByFacilityService
             return appointments.Select(a => new AppointmentResponse
             {
                 Id = a.Id,
-                PatientName = a.Patient.DisplayName,
-                DoctorName = a.Doctor.DisplayName,
+                PatientName = a.Patient?.DisplayName,
+                DoctorName = a.Doctor?.DisplayName,
                 AppointmentTime = a.AppointmentTime,
                 Status = (int)a.Status,
                 Notes = a.Notes
