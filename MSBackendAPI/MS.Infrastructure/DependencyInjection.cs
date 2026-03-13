@@ -21,6 +21,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAppointments;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
@@ -75,6 +76,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
             services.AddScoped<ICreateFacility, CreateFacilityImpl>();
             services.AddScoped<ICreateAccount, CreateAccountImpl>();
+            services.AddScoped<IGetAppointmentByFacility, GetAppointmentByFacilityImpl>();
             services.AddScoped<IGetFacilityById, GetFacilityByIdImpl>();
             services.AddScoped<IUpdateFacility, UpdateFacilityImpl>();
             return services;
