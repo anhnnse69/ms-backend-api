@@ -160,7 +160,7 @@ namespace MS.Application.Services.AdminServices.UpdateFacilityService
             if (isPhoneExists)
                 return ApiResponse<bool>.Fail(MessageCode.APP_MESSAGE_4018.ToString());
             if (isNameExists)
-                return ApiResponse<bool>.Fail(MessageCode.APP_MESSAGE_4019.ToString());
+                return ApiResponse<bool>.Fail(MessageCode.APP_MESSAGE_4023.ToString());
             return ApiResponse<bool>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(),
                 true
