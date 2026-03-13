@@ -62,6 +62,8 @@ namespace MS.Application.Services.AdminServices.UpdateFacilityService
         /// <summary>The email address of the facility.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
         [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
+        [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
+        [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
         [EmailAddress(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         public string Email { get; set; } = string.Empty;
 
