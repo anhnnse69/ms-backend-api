@@ -27,6 +27,7 @@ namespace MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId
         public async Task<Doctor> Execute(Guid userId)
         {
             return await FindByCondition(x => x.UserId == userId, false)
+                .Include(x => x.Specialty)
                 .FirstOrDefaultAsync();
         }
     }
