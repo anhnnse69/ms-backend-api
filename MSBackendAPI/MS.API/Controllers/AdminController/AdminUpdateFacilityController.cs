@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.AdminServices.UpdateFacilityService;
 
-namespace MS.API.Controllers.Admin.FacilityControllers
+namespace MS.API.Controllers.AdminController
 {
     /// <summary>
     /// Handles updating facility information.
