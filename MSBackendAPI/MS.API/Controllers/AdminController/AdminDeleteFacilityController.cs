@@ -14,7 +14,7 @@ namespace MS.API.Controllers.AdminControllers
     [ApiController]
     [Route("api/v1/admin/facilities")]
     [Authorize(Roles = "ITAdmin")]
-    public class FacilityController : ControllerBase
+    public class AdminDeleteFacilityController : ControllerBase
     {
         private readonly IDeleteFacilityService _deleteFacilityService;
 
@@ -24,7 +24,7 @@ namespace MS.API.Controllers.AdminControllers
         /// <param name="deleteFacilityService">
         /// Service responsible for facility deletion operations.
         /// </param>
-        public FacilityController(IDeleteFacilityService deleteFacilityService)
+        public AdminDeleteFacilityController(IDeleteFacilityService deleteFacilityService)
         {
             _deleteFacilityService = deleteFacilityService;
         }
