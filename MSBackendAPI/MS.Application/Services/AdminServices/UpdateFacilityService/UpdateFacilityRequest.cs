@@ -54,6 +54,8 @@ namespace MS.Application.Services.AdminServices.UpdateFacilityService
         /// <summary>The phone number of the facility.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
         [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
+        [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
+        [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
         [PhoneNumber(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4001))]
         public string Phone { get; set; } = string.Empty;
 
