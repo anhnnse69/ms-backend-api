@@ -71,7 +71,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
             ValidateAppointmentStatus(retrievedAppointment, ref isStatusValid);
             ValidateMedicalRecord(retrievedRecord, ref isMedicalRecordExists);
             // 6. Create medical record
-            var createdMedicalRecord = await CreateMedicalRecord(
+            MedicalRecord? createdMedicalRecord = await CreateMedicalRecord(
                 retrievedDoctor,
                 retrievedAppointment,
                 request,
@@ -89,7 +89,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
                 isStatusValid,
                 isMedicalRecordExists);
             // 8. Map response
-            var mappedResponse = MapToResponse(
+            CreateMedicalRecordResponse? mappedResponse = MapToResponse(
                 retrievedDoctor,
                 retrievedAppointment,
                 createdMedicalRecord);
@@ -108,7 +108,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// </summary>
         /// <param name="userId">User identifier</param>
         /// <returns>Doctor entity</returns>
-        private async Task<Doctor> RetrieveDoctor(Guid userId)
+        private async Task<Doctor?> RetrieveDoctor(Guid userId)
         {
             return await _getDoctorByUserId.Execute(userId);
         }
@@ -138,7 +138,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// </summary>
         /// <param name="doctor">Doctor entity</param>
         /// <param name="isDoctorValid">Validation flag</param>
-        private void ValidateDoctor(Doctor doctor, ref bool isDoctorValid)
+        private void ValidateDoctor(Doctor? doctor, ref bool isDoctorValid)
         {
             if (doctor == null)
             {
@@ -151,7 +151,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// </summary>
         /// <param name="appointment">Appointment entity</param>
         /// <param name="isAppointmentValid">Validation flag</param>
-        private void ValidateAppointment(Appointment appointment, ref bool isAppointmentValid)
+        private void ValidateAppointment(Appointment? appointment, ref bool isAppointmentValid)
         {
             if (appointment == null)
             {
@@ -165,7 +165,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// <param name="doctor">Doctor entity</param>
         /// <param name="appointment">Appointment entity</param>
         /// <param name="isOwnershipValid">Validation flag</param>
-        private void ValidateOwnership(Doctor doctor, Appointment appointment, ref bool isOwnershipValid)
+        private void ValidateOwnership(Doctor? doctor, Appointment? appointment, ref bool isOwnershipValid)
         {
             if (doctor != null && appointment != null)
             {
@@ -181,7 +181,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// </summary>
         /// <param name="appointment">Appointment entity</param>
         /// <param name="isStatusValid">Validation flag</param>
-        private void ValidateAppointmentStatus(Appointment appointment, ref bool isStatusValid)
+        private void ValidateAppointmentStatus(Appointment? appointment, ref bool isStatusValid)
         {
             if (appointment != null)
             {
@@ -197,7 +197,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// </summary>
         /// <param name="record">Medical record entity</param>
         /// <param name="isMedicalRecordExists">Validation flag</param>
-        private void ValidateMedicalRecord(MedicalRecord record, ref bool isMedicalRecordExists)
+        private void ValidateMedicalRecord(MedicalRecord? record, ref bool isMedicalRecordExists)
         {
             if (record != null)
             {
@@ -217,7 +217,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// <param name="isStatusValid">Appointment status validation flag</param>
         /// <param name="isMedicalRecordExists">Medical record existence flag</param>
         /// <returns>Created medical record entity</returns>
-        private async Task<MedicalRecord> CreateMedicalRecord(
+        private async Task<MedicalRecord?> CreateMedicalRecord(
             Doctor doctor,
             Appointment appointment,
             CreateMedicalRecordRequest request,
@@ -289,7 +289,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
         /// <param name="appointment">Appointment entity</param>
         /// <param name="medicalRecord">Medical record entity</param>
         /// <returns>Create medical record response</returns>
-        private CreateMedicalRecordResponse MapToResponse(
+        private CreateMedicalRecordResponse? MapToResponse(
             Doctor doctor,
             Appointment appointment,
             MedicalRecord medicalRecord)
@@ -359,7 +359,7 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
             if (isMedicalRecordExists)
             {
                 return ApiResponse<CreateMedicalRecordResponse>
-                    .Fail(MessageCode.APP_MESSAGE_4016.ToString());
+                    .Fail(MessageCode.APP_MESSAGE_4026.ToString());
             }
             return ApiResponse<CreateMedicalRecordResponse>
                 .Success(MessageCode.APP_MESSAGE_2000.ToString(), response);
