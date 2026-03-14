@@ -5,6 +5,7 @@ using MS.Application.Services.AdminServices.CreateFacilityService;
 using MS.Application.Services.AdminServices.CreateUser;
 using MS.Application.Services.AdminServices.DeleteUserService;
 using MS.Application.Services.AdminServices.GetAllFacilitiesService;
+using MS.Application.Services.AdminServices.GetAllSpecialtiesService;
 using MS.Application.Services.AdminServices.GetAllUsersService;
 using MS.Application.Services.AdminServices.GetUserByIdService;
 using MS.Application.Services.AdminServices.UpdateFacilityService;
@@ -66,6 +67,7 @@ namespace MS.Application
             services.AddScoped<ICreateMedicalRecordService, CreateMedicalRecordService>();
             services.AddScoped<IGetAppointmentByFacilityService, GetAppointmentByFacilityService>();
             services.AddScoped<IUpdateFacilityService, UpdateFacilityService>();
+            services.AddScoped<IGetAllSpecialtiesService, GetAllSpecialtiesService>();
             services.AddScoped<IUpdateDoctorMedicalRecordService, UpdateDoctorMedicalRecordService>();
             services.AddScoped<IDeleteFacilityService, DeleteFacilityService>();
             // Register MediatR pipeline behaviors for Data Annotation validation

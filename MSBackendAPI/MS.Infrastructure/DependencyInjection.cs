@@ -11,6 +11,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetF
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllSpecialties;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityById;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
@@ -84,6 +85,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentByFacility, GetAppointmentByFacilityImpl>();
             services.AddScoped<IGetFacilityById, GetFacilityByIdImpl>();
             services.AddScoped<IUpdateFacility, UpdateFacilityImpl>();
+            services.AddScoped<IGetAllSpecialties,GetAllSpecialtiesImpl>();
             services.AddScoped<IUpdateMedicalRecord, UpdateMedicalRecordImpl>();
             return services;
         }
