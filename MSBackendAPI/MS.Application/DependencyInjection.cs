@@ -19,6 +19,8 @@ using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusServic
 using MS.Application.Services.PatientServices.ChangePasswordService;
 using MS.Application.Services.DoctorScheduleService;
 using MS.Application.Services.AdminServices.CreateFacilityService;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
+using MS.Application.Services.ManagerServices.FacilitySpecialtyService;
 
 namespace MS.Application
 {
@@ -56,6 +58,8 @@ namespace MS.Application
             services.AddScoped<ICreateFacilityService, CreateFacilityService>();
             services.AddScoped<IUpdateDoctorAppointmentStatusService, UpdateDoctorAppointmentStatusService>();
             services.AddScoped<IDoctorScheduleService, DoctorScheduleService>();
+            services.AddScoped<IGetFacilitySpecialtiesService, GetFacilitySpecialtiesService>();
+           
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;

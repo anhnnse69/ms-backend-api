@@ -25,6 +25,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetF
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 
 namespace MS.Infrastructure
 {
@@ -72,6 +73,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityByPhone, GetFacilityByPhoneImpl>();
             services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
             services.AddScoped<ICreateFacility, CreateFacilityImpl>();
+            services.AddScoped<IGetSpecialtiesByFacilityId, GetSpecialtiesByFacilityIdImpl>();
             return services;
         }
     }
