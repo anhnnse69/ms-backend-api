@@ -29,6 +29,7 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByFacilit
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetPendingAppointmentPatient;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
@@ -85,6 +86,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentByFacility, GetAppointmentByFacilityImpl>();
             services.AddScoped<IGetFacilityById, GetFacilityByIdImpl>();
             services.AddScoped<IUpdateFacility, UpdateFacilityImpl>();
+            services.AddScoped<IGetPendingAppointmentPatient, GetPendingAppointmentPatientImpl>();
             services.AddScoped<IGetAllSpecialties,GetAllSpecialtiesImpl>();
             services.AddScoped<IUpdateMedicalRecord, UpdateMedicalRecordImpl>();
             return services;
