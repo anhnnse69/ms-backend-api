@@ -35,6 +35,7 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetPendingAppointmentPa
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 
 namespace MS.Infrastructure
 {
@@ -82,6 +83,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityByPhone, GetFacilityByPhoneImpl>();
             services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
             services.AddScoped<ICreateFacility, CreateFacilityImpl>();
+            services.AddScoped<IGetSpecialtiesByFacilityId, GetSpecialtiesByFacilityIdImpl>();
             services.AddScoped<ICreateAccount, CreateAccountImpl>();
             services.AddScoped<IGetMedicalRecordByAppointmentId, GetMedicalRecordByAppointmentIdImpl>();
             services.AddScoped<ICreateMedicalRecord, CreateMedicalRecordImpl>();

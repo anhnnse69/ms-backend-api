@@ -25,6 +25,7 @@ using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusServic
 using MS.Application.Services.DoctorServices.UpdateDoctorMedicalRecordService;
 using MS.Application.Services.ManagerServices.AppointmentByFacilityService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
+using MS.Application.Services.ManagerServices.FacilitySpecialtyService;
 using MS.Application.Services.ManagerServices.PendingAppointmentPatientService;
 using MS.Application.Services.AdminServices.DeleteFacilityService;
 using MS.Application.Services.AdminServices.CreateSpecialtyService;
@@ -66,6 +67,7 @@ namespace MS.Application
             services.AddScoped<ICreateFacilityService, CreateFacilityService>();
             services.AddScoped<IUpdateDoctorAppointmentStatusService, UpdateDoctorAppointmentStatusService>();
             services.AddScoped<IDoctorScheduleService, DoctorScheduleService>();
+            services.AddScoped<IGetFacilitySpecialtiesService, GetFacilitySpecialtiesService>();
             services.AddScoped<ICreateMedicalRecordService, CreateMedicalRecordService>();
             services.AddScoped<IGetAppointmentByFacilityService, GetAppointmentByFacilityService>();
             services.AddScoped<IUpdateFacilityService, UpdateFacilityService>();
