@@ -15,6 +15,8 @@ using MS.Infrastructure.Repositories.AdminRepositories.GetAllSpecialties;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityById;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.AdminRepositories.SpecialtyRepositories.CreateSpecialty;
+using MS.Infrastructure.Repositories.AdminRepositories.SpecialtyRepositories.GetSpecialtyByName;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateFacility;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.DoctorRepositories.CreateMedicalRecord;
@@ -87,6 +89,8 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdateFacility, UpdateFacilityImpl>();
             services.AddScoped<IGetAllSpecialties,GetAllSpecialtiesImpl>();
             services.AddScoped<IUpdateMedicalRecord, UpdateMedicalRecordImpl>();
+            services.AddScoped<ICreateSpecialty, CreateSpecialtyImpl>();
+            services.AddScoped<IGetSpecialtyByName, GetSpecialtyByNameImpl>();
             return services;
         }
     }
