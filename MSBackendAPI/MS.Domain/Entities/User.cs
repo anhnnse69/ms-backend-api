@@ -10,7 +10,7 @@ namespace MS.Domain.Entities
         public string PasswordHash { get; set; }
         public string DisplayName { get; set; } // For UI display
         public string FullName { get; set; }
-        public string AvatarUrl { get; set; } // UI avatar
+        public string? AvatarUrl { get; set; } // UI avatar
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 

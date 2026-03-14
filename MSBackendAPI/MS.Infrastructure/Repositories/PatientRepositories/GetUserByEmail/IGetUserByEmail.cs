@@ -4,6 +4,6 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail
 {
     public interface IGetUserByEmail
     {
-        Task<User> Execute(string emailAddress);
+        Task<User?> Execute(string emailAddress);
     }
 }
