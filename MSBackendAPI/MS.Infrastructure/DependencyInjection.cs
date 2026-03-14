@@ -11,6 +11,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetF
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllSpecialties;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityById;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
@@ -23,6 +24,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorAvailabilities;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetDoctorByUserId;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetMedicalRecordByAppointmentId;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
+using MS.Infrastructure.Repositories.DoctorRepositories.UpdateMedicalRecord;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
@@ -85,6 +87,8 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityById, GetFacilityByIdImpl>();
             services.AddScoped<IUpdateFacility, UpdateFacilityImpl>();
             services.AddScoped<IGetPendingAppointmentPatient, GetPendingAppointmentPatientImpl>();
+            services.AddScoped<IGetAllSpecialties,GetAllSpecialtiesImpl>();
+            services.AddScoped<IUpdateMedicalRecord, UpdateMedicalRecordImpl>();
             return services;
         }
     }
