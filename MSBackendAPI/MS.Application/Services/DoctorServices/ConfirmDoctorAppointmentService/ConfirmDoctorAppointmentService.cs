@@ -54,17 +54,9 @@ namespace MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService
             ValidateAppointment(retrievedAppointment, ref isAppointmentValid);
             ValidateOwnership(retrievedDoctor, retrievedAppointment, ref isOwnershipValid);
             // 5. Update appointment status
-            await UpdateAppointment(
-                retrievedAppointment,
-                isDoctorValid,
-                isAppointmentValid,
-                isOwnershipValid);
+            await UpdateAppointment(retrievedAppointment, isDoctorValid, isAppointmentValid, isOwnershipValid);
             // 6. Create response
-            return CreateResponse(
-                retrievedAppointment,
-                isDoctorValid,
-                isAppointmentValid,
-                isOwnershipValid);
+            return CreateResponse(retrievedAppointment, isDoctorValid, isAppointmentValid, isOwnershipValid);
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using MS.Domain.Entities;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByPhone
 {
     public interface IGetFacilityByPhone
     {

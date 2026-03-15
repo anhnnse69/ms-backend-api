@@ -304,14 +304,11 @@ namespace MS.Application.Services.DoctorServices.CreateMedicalRecordService
                 PatientDateOfBirth = appointment.Patient?.DateOfBirth.ToString("yyyy-MM-dd") ?? "",
                 PatientGender = appointment.Patient?.Gender.ToString() ?? "",
                 PatientPhoneNumber = appointment.Patient?.PhoneNumber,
-
                 DoctorName = doctor.FullName,
                 DoctorSpecialty = doctor.Specialty?.NameVi ?? "",
-
                 AppointmentDate = appointment.AppointmentTime.ToString("yyyy-MM-dd"),
                 FacilityName = appointment.Facility?.NameVi ?? "",
                 AppointmentStatus = appointment.Status.ToString(),
-
                 Symptoms = medicalRecord.Symptoms,
                 Diagnosis = medicalRecord.Diagnosis,
                 Notes = medicalRecord.Notes

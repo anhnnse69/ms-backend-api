@@ -74,7 +74,6 @@ namespace MS.Application.Services.Doctors.GetDoctorAvailabilityService
             {
                 return null;
             }
-
             return _getDoctorAvailabilities.Execute(doctor.Id);
         }
 

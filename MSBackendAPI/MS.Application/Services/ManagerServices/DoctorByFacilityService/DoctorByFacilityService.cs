@@ -21,6 +21,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
         {
             _getDoctorsByFacility = getDoctorsByFacility;
         }
+
         /// <summary>
         /// Process request to retrieve doctors belonging to a specific facility
         /// </summary>
@@ -39,6 +40,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
             // 4. Create API response
             return CreateResponse(doctors, page, size, total, isDataValid);
         }
+
         /// <summary>
         /// Validate retrieved doctors data
         /// </summary>
@@ -51,6 +53,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
                 isDataValid = false;
             }
         }
+
         /// <summary>
         /// Create API response from doctor entities
         /// </summary>
@@ -82,6 +85,7 @@ namespace MS.Application.Services.DoctorsByFacilityService
                 meta
             );
         }
+
         /// <summary>
         /// Map doctor entities to response model
         /// </summary>

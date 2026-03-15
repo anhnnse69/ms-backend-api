@@ -57,9 +57,12 @@ namespace MS.Application.Services.AdminServices.GetAllSpecialtiesService
                 return null;
             }
             return await query
-                .OrderBy(x => x.DisplayOrder) // sort specialties by display order
-                .Skip((page - 1) * size)     // skip records based on page index
-                .Take(size)                  // take limited records for current page
+                // sort specialties by display order
+                .OrderBy(x => x.DisplayOrder)
+                // skip records based on page index
+                .Skip((page - 1) * size)
+                // take limited records for current page
+                .Take(size)
                 .ToListAsync();
         }
 

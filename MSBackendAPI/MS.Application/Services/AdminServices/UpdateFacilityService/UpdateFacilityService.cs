@@ -3,9 +3,9 @@ using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityById;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateFacility;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
+using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByPhone;
+using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByName;
 
 namespace MS.Application.Services.AdminServices.UpdateFacilityService
 {

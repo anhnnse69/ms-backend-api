@@ -11,7 +11,7 @@ namespace MS.API.Controllers.PatientController
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize] // Ensures only authenticated users can access these endpoints
+    [Authorize(Roles = "Patient")]
     public class GetPatientAppointmentController : ControllerBase
     {
         private readonly IGetPatientAppointmentsService _getPatientAppointmentsService;

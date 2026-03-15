@@ -9,9 +9,9 @@ namespace MS.API.Controllers.PatientController
     /// <summary>
     /// Controller for user password operations
     /// </summary>
-    [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
+    [Authorize(Roles = "Patient")]
     public class ChangePasswordController : ControllerBase
     {
         private readonly IChangePasswordService _changePasswordService;
