@@ -14,10 +14,12 @@ using MS.Infrastructure.Repositories.AdminRepositories.GetAllFacilities;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllSpecialties;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityById;
+using MS.Infrastructure.Repositories.AdminRepositories.GetSpecialtyById;
 using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
 using MS.Infrastructure.Repositories.AdminRepositories.SpecialtyRepositories.CreateSpecialty;
 using MS.Infrastructure.Repositories.AdminRepositories.SpecialtyRepositories.GetSpecialtyByName;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateFacility;
+using MS.Infrastructure.Repositories.AdminRepositories.UpdateSpecialty;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateUser;
 using MS.Infrastructure.Repositories.DoctorRepositories.CreateMedicalRecord;
 using MS.Infrastructure.Repositories.DoctorRepositories.GetAppointmentById;
@@ -32,10 +34,10 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetPendingAppointmentPatient;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
-using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentReport;
 
 namespace MS.Infrastructure
@@ -96,6 +98,8 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdateMedicalRecord, UpdateMedicalRecordImpl>();
             services.AddScoped<ICreateSpecialty, CreateSpecialtyImpl>();
             services.AddScoped<IGetSpecialtyByName, GetSpecialtyByNameImpl>();
+            services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
+            services.AddScoped<IGetSpecialtyById, GetSpecialtyByIdImpl>();
             services.AddScoped<IGetAppointmentReport, GetAppointmentReportImpl>();
             return services;
         }

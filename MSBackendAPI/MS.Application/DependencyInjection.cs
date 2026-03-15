@@ -30,6 +30,7 @@ using MS.Application.Services.ManagerServices.AppointmentReportService;
 using MS.Application.Services.ManagerServices.FacilitySpecialtyService;
 using MS.Application.Services.ManagerServices.PendingAppointmentPatientService;
 using MS.Application.Services.ManagerServices.UpdateFacilityService;
+using MS.Application.Services.AdminServices.UpdateSpecialtyService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
 
 namespace MS.Application
@@ -79,6 +80,7 @@ namespace MS.Application
             services.AddScoped<IDeleteFacilityService, DeleteFacilityService>();
             services.AddScoped<ICreateSpecialtyService, CreateSpecialtyService>();
             services.AddScoped<IUpdateManagerFacilityService, UpdateManagerFacilityService>();
+            services.AddScoped<IUpdateSpecialtyService, UpdateSpecialtyService>();
             services.AddScoped<IGetAppointmentReportService, GetAppointmentReportService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
