@@ -7,6 +7,6 @@ namespace MS.Application.Services.PatientServices.GetPatientAppointment
     /// </summary>
     public interface IGetPatientAppointmentsService
     {
-        Task<ApiResponse<GetPatientAppointmentsResponse>> Process(GetPatientAppointmentsRequest request);
+        Task<ApiResponse<List<GetPatientAppointmentsResponse>>> Process(GetPatientAppointmentsRequest request);
     }
 }

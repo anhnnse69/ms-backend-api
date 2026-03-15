@@ -1,9 +1,11 @@
-﻿namespace MS.Application.Services.PatientServices.GetPatientAppointment
+﻿
+namespace MS.Application.Services.PatientServices.GetPatientAppointment
 {
     /// <summary>
-    /// DTO representing appointment data for UI
+    /// Response model representing a single appointment data.
+    /// The API will return a List of this model.
     /// </summary>
-    public class AppointmentDto
+    public class GetPatientAppointmentsResponse
     {
         public Guid Id { get; set; }
         public DateTimeOffset AppointmentTime { get; set; }
@@ -12,13 +14,5 @@
         public string DoctorName { get; set; }
         public string FacilityName { get; set; }
         public string SpecialtyName { get; set; }
-    }
-
-    /// <summary>
-    /// Response model containing a list of appointments
-    /// </summary>
-    public class GetPatientAppointmentsResponse
-    {
-        public List<AppointmentDto> Appointments { get; set; } = new List<AppointmentDto>();
     }
 }
