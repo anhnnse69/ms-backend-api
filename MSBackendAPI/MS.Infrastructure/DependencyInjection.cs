@@ -39,6 +39,7 @@ using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentReport;
+using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
 
 namespace MS.Infrastructure
 {
@@ -101,6 +102,7 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
             services.AddScoped<IGetSpecialtyById, GetSpecialtyByIdImpl>();
             services.AddScoped<IGetAppointmentReport, GetAppointmentReportImpl>();
+            services.AddScoped<IGetAppointmentsByPatientId, GetAppointmentsByPatientIdImpl>();
             return services;
         }
     }
