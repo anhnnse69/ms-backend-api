@@ -37,22 +37,18 @@ namespace MS.API.Controllers.PatientController
             // Extract the Patient ID (or User ID) from the JWT Token Claims
             // Note: Update "ClaimTypes.NameIdentifier" if your token uses a custom claim like "PatientId"
             var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (!Guid.TryParse(userIdString, out Guid patientId))
             {
                 // Return 401 Unauthorized if the ID cannot be extracted or parsed
                 return Unauthorized(ApiResponse<GetPatientAppointmentsResponse>.Fail("APP_MESSAGE_0002"));
             }
-
             // 1. Initialize the request model for the Application layer
             var request = new GetPatientAppointmentsRequest
             {
                 PatientId = patientId
             };
-
             // 2. Execute the Process() method of the Service to handle the entire flow
             var response = await _getPatientAppointmentsService.Process(request);
-
             // 3. Return HTTP 200 OK along with the standardized ApiResponse data
             return Ok(response);
         }
