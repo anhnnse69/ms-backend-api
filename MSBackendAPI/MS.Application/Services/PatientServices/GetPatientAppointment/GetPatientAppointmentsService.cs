@@ -35,10 +35,8 @@ namespace MS.Application.Services.PatientServices.GetPatientAppointment
         {
             // 1. Retrieve appointments data from database
             var appointments = await RetrieveAppointments(request.PatientId);
-
             // 2. Map domain entities to DTOs
             var responseData = MapToResponse(appointments);
-
             // 3. Create response
             return CreateResponse(responseData);
         }
@@ -61,12 +59,10 @@ namespace MS.Application.Services.PatientServices.GetPatientAppointment
         private GetPatientAppointmentsResponse MapToResponse(List<Appointment> appointments)
         {
             var response = new GetPatientAppointmentsResponse();
-
             if (appointments == null || !appointments.Any())
             {
                 return response;
             }
-
             response.Appointments = appointments.Select(a => new AppointmentDto
             {
                 // Map Id
@@ -84,7 +80,6 @@ namespace MS.Application.Services.PatientServices.GetPatientAppointment
                 // Map Specialty Name
                 SpecialtyName = a.Specialty != null ? a.Specialty.NameVi : string.Empty
             }).ToList();
-
             return response;
         }
 

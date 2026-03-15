@@ -25,13 +25,13 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointme
         public async Task<List<Appointment>> Execute(Guid patientId)
         {
             return await FindByCondition(
-                    a => a.PatientId == patientId, // Filter by PatientId
+                    a => a.PatientId == patientId, 
                     trackChanges: false,
-                    a => a.Doctor,                 // Include Doctor for UI mapping
-                    a => a.Facility,               // Include Facility for UI mapping
-                    a => a.Specialty               // Include Specialty for UI mapping
+                    a => a.Doctor,                 
+                    a => a.Facility,              
+                    a => a.Specialty               
                 )
-                .OrderByDescending(a => a.AppointmentTime) // Sort from newest to oldest (past & current)
+                .OrderByDescending(a => a.AppointmentTime) 
                 .ToListAsync();
         }
     }
