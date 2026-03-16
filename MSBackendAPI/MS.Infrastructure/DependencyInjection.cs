@@ -105,6 +105,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentReport, GetAppointmentReportImpl>();
             services.AddScoped<IGetAppointmentsByPatientId, GetAppointmentsByPatientIdImpl>();
             services.AddScoped<ICancelAppointment, CancelAppointmentImpl>();
+            services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
             return services;
         }
     }
