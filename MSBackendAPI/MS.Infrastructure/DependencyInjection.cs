@@ -103,6 +103,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetSpecialtyById, GetSpecialtyByIdImpl>();
             services.AddScoped<IGetAppointmentReport, GetAppointmentReportImpl>();
             services.AddScoped<IGetAppointmentsByPatientId, GetAppointmentsByPatientIdImpl>();
+            services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
             return services;
         }
     }
