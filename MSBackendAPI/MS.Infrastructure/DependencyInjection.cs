@@ -40,6 +40,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByEmail;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByPhone;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByName;
+using MS.Infrastructure.Repositories.AdminRepositories.GetAllDoctors;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 
 namespace MS.Infrastructure
@@ -106,6 +107,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentsByPatientId, GetAppointmentsByPatientIdImpl>();
             services.AddScoped<ICancelAppointment, CancelAppointmentImpl>();
             services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
+            services.AddScoped<IGetAllDoctors, GetAllDoctorsImpl>();
             return services;
         }
     }
