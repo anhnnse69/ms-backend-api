@@ -130,13 +130,10 @@ namespace MS.Application.Services.AdminServices.GetAllDoctorsService
                 return ApiResponse<IEnumerable<GetAllDoctorsResponse>>
                     .Fail("APP_MESSAGE_4020");
             }
-
             // Map entity to response DTO
             var result = MapToResponse(data);
-
             // Create pagination metadata
             var meta = new MetaResponse(page, size, total);
-
             // Return success response
             return ApiResponse<IEnumerable<GetAllDoctorsResponse>>
                 .Success("APP_MESSAGE_2000", result, meta);
