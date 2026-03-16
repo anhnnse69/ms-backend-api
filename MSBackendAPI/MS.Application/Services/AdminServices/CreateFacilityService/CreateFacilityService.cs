@@ -1,10 +1,10 @@
 ﻿using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName;
-using MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
+using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByEmail;
+using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByName;
+using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByPhone;
 
 namespace MS.Application.Services.AdminServices.CreateFacilityService
 {

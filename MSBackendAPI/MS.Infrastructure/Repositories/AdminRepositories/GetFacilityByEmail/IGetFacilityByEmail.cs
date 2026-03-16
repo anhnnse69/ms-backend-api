@@ -1,6 +1,6 @@
 ﻿using MS.Domain.Entities;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByEmail
 {
     /// <summary>
     /// Defines the contract for retrieving facility by email.

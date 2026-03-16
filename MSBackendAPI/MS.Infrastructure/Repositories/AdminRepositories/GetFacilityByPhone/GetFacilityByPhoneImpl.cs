@@ -3,7 +3,7 @@ using MS.Domain.Entities;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByPhone
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByPhone
 {
     /// <summary>
     /// Provides an implementation of the IGetFacilityByPhone interface for retrieving

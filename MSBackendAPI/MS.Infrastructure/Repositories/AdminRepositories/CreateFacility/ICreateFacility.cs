@@ -1,6 +1,6 @@
 ﻿using MS.Domain.Entities;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility
+namespace MS.Infrastructure.Repositories.AdminRepositories.CreateFacility
 {
     /// <summary>
     /// Defines the contract for creating a facility.

@@ -3,7 +3,7 @@ using MS.Domain.Entities;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByName
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByName
 {
     /// <summary>
     /// Provides an implementation of the IGetFacilityByName interface for retrieving

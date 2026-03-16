@@ -3,7 +3,7 @@ using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.CreateFacility
+namespace MS.Infrastructure.Repositories.AdminRepositories.CreateFacility
 {
     /// <summary>
     /// Provides an implementation of the ICreateFacility interface

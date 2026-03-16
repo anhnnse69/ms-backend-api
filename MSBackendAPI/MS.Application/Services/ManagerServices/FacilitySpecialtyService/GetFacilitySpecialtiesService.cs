@@ -30,16 +30,12 @@ namespace MS.Application.Services.ManagerServices.FacilitySpecialtyService
         {
             // 1. Initialize validation flags
             bool isRetrievedDataValid = true;
-
             // 2. Retrieve data
             var retrievedData = await RetrieveData(request.FacilityId);
-
             // 3. Validate retrieved data
             ValidateRetrievedData(retrievedData, ref isRetrievedDataValid);
-
             // 4. Map data to DTO
             var mappedData = MapToResponse(retrievedData);
-
             // 5. Create response
             return CreateResponse(mappedData, isRetrievedDataValid);
         }
@@ -75,7 +71,6 @@ namespace MS.Application.Services.ManagerServices.FacilitySpecialtyService
         private List<FacilitySpecialtyResponse> MapToResponse(List<FacilitySpecialty> retrievedData)
         {
             var result = new List<FacilitySpecialtyResponse>();
-
             if (retrievedData != null && retrievedData.Any())
             {
                 foreach (var item in retrievedData)
@@ -94,7 +89,6 @@ namespace MS.Application.Services.ManagerServices.FacilitySpecialtyService
                     }
                 }
             }
-
             return result;
         }
 
@@ -110,7 +104,6 @@ namespace MS.Application.Services.ManagerServices.FacilitySpecialtyService
             {
                 return ApiResponse<List<FacilitySpecialtyResponse>>.Fail(MessageCode.APP_MESSAGE_4008.ToString());
             }
-
             return ApiResponse<List<FacilitySpecialtyResponse>>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(),
                 mappedData

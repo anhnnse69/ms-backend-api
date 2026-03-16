@@ -3,7 +3,7 @@ using MS.Domain.Entities;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Persistence;
 
-namespace MS.Infrastructure.Repositories.AdminRepositories.FacilityRepositories.GetFacilityByEmail
+namespace MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByEmail
 {
     /// <summary>
     /// Provides an implementation of the IGetFacilityByEmail interface for retrieving

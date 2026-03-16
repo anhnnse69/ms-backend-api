@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MS.Application.Common.Response;
 using MS.Application.Services.ManagerServices.FacilitySpecialtyService;
 
-namespace MS.API.Controllers.ManagerController
+namespace MS.API.Controllers.CommonController
 {
     /// <summary>
     /// Controller handling operations related to Facilities and Specialties
@@ -12,7 +12,6 @@ namespace MS.API.Controllers.ManagerController
     [Route("api/v1/[controller]")]
     //[Authorize(Roles = "Manager")]
     [AllowAnonymous]
-
     public class FacilitySpecialtyController : ControllerBase
     {
         private readonly IGetFacilitySpecialtiesService _getFacilitySpecialtiesService;
@@ -40,10 +39,8 @@ namespace MS.API.Controllers.ManagerController
             {
                 FacilityId = facilityId
             };
-
             // Call the process method from the Application layer
             var response = await _getFacilitySpecialtiesService.Process(request);
-
             // Return the result using the system's standard response format
             return Ok(response);
         }

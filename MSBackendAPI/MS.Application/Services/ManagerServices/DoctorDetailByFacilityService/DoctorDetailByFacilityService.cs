@@ -21,6 +21,7 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
         {
             _repository = repository;
         }
+
         /// <summary>
         /// Process request to retrieve doctor detail
         /// </summary>
@@ -37,6 +38,7 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
             // 4. Create API response
             return CreateResponse(doctor, isDataValid);
         }
+
         /// <summary>
         /// Retrieve doctor entity by identifier
         /// </summary>
@@ -46,6 +48,7 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
         {
             return await _repository.Execute(doctorId);
         }
+
         /// <summary>
         /// Validate retrieved doctor data
         /// </summary>
@@ -58,6 +61,7 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
                 isDataValid = false;
             }
         }
+
         /// <summary>
         /// Create API response from doctor entity
         /// </summary>
@@ -81,6 +85,7 @@ namespace MS.Application.Services.DoctorDetailByFacilityService
                 mappedDoctor
             );
         }
+
         /// <summary>
         /// Map doctor entity to response model
         /// </summary>
