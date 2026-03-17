@@ -6,17 +6,18 @@ using MS.Infrastructure.Repositories.AdminRepositories.CreateDoctor;
 namespace MS.Application.Services.AdminServices.CreateDoctorService
 {
     /// <summary>
-    /// Implements <see cref="ICreateDoctorService"/> to handle doctor creation logic.
+    /// Provides an implementation of the ICreateDoctorService interface
+    /// for handling doctor creation logic.
     /// </summary>
     public class CreateDoctorService : ICreateDoctorService
     {
         private readonly ICreateDoctor _createDoctor;
 
         /// <summary>
-        /// Initializes a new instance of the service.
+        /// Initializes a new instance of the CreateDoctorService class.
         /// </summary>
         /// <param name="createDoctor">
-        /// Repository responsible for saving doctor data.
+        /// Repository responsible for persisting new doctor data.
         /// </param>
         public CreateDoctorService(ICreateDoctor createDoctor)
         {
@@ -24,13 +25,32 @@ namespace MS.Application.Services.AdminServices.CreateDoctorService
         }
 
         /// <summary>
-        /// Processes the doctor creation request and returns the created doctor ID.
+        /// Processes the create doctor request.
         /// </summary>
-        /// <param name="request">Doctor creation request.</param>
-        /// <returns>API response containing the new doctor identifier.</returns>
+        /// <param name="request">
+        /// The request containing the information needed to create a new doctor.
+        /// </param>
+        /// <returns>
+        /// An <see cref="ApiResponse{Guid}"/> containing the result of the operation
+        /// and the ID of the newly created doctor if successful.
+        /// </returns>
         public async Task<ApiResponse<Guid>> Process(CreateDoctorRequest request)
         {
             var doctor = BuildDoctorEntity(request);
+            return await CreateResponse(doctor);
+        }
+
+        /// <summary>
+        /// Creates the final API response after processing.
+        /// </summary>
+        /// <param name="doctor">
+        /// The doctor entity to be persisted.
+        /// </param>
+        /// <returns>
+        /// An <see cref="ApiResponse{Guid}"/> representing the result of the operation.
+        /// </returns>
+        private async Task<ApiResponse<Guid>> CreateResponse(Doctor doctor)
+        {
             await _createDoctor.Execute(doctor);
             return ApiResponse<Guid>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(),
@@ -39,10 +59,14 @@ namespace MS.Application.Services.AdminServices.CreateDoctorService
         }
 
         /// <summary>
-        /// Maps request data to a <see cref="Doctor"/> entity.
+        /// Builds a new <see cref="Doctor"/> entity from the request data.
         /// </summary>
-        /// <param name="request">Doctor creation request.</param>
-        /// <returns>Constructed doctor entity.</returns>
+        /// <param name="request">
+        /// The create doctor request containing doctor information.
+        /// </param>
+        /// <returns>
+        /// A newly constructed <see cref="Doctor"/> entity ready to be persisted.
+        /// </returns>
         private Doctor BuildDoctorEntity(CreateDoctorRequest request)
         {
             return new Doctor
