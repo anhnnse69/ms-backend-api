@@ -42,6 +42,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllDoctors;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
+using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
 
 namespace MS.Infrastructure
 {
@@ -108,6 +109,7 @@ namespace MS.Infrastructure
             services.AddScoped<ICancelAppointment, CancelAppointmentImpl>();
             services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
             services.AddScoped<IGetAllDoctors, GetAllDoctorsImpl>();
+            services.AddScoped<IUpdatePatientAppointment, UpdatePatientAppointmentImpl>();
             return services;
         }
     }
