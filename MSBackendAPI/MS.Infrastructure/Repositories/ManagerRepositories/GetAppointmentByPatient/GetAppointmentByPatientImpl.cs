@@ -9,7 +9,7 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPat
     /// <summary>
     /// Repository implementation for retrieving appointment by patient ID and appointment ID
     /// </summary>
-    public class GetAppointmentByPatientImpl : RepositoryBase<Appointment, Guid, AppDbContext>, IGetAppointmentByPatient
+    public class GetAppointmentByPatientImpl : RepositoryQueryBase<Appointment, Guid, AppDbContext>, IGetAppointmentByPatient
     {
         private readonly AppDbContext _context;
 
@@ -17,9 +17,8 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPat
         /// Initializes a new instance of the GetAppointmentByPatientImpl class.
         /// </summary>
         /// <param name="context">The database context used to access appointment data.</param>
-        /// <param name="unitOfWork">The unit of work responsible for managing database transactions.</param>
-        public GetAppointmentByPatientImpl(AppDbContext context, IUnitOfWork<AppDbContext> unitOfWork)
-            : base(context, unitOfWork)
+        public GetAppointmentByPatientImpl(AppDbContext context)
+            : base(context)
         {
             _context = context;
         }

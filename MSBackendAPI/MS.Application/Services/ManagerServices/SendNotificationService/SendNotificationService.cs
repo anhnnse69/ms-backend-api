@@ -78,6 +78,7 @@ namespace MS.Application.Services.ManagerServices.SendNotificationService
         private Notification BuildNotificationEntity(SendNotificationRequest request, Appointment appointment)
         {
             var userId = appointment.Patient?.UserId ?? Guid.Empty;
+            var auditActor = userId != Guid.Empty ? userId.ToString() : "System";
 
             return new Notification
             {
@@ -97,8 +98,8 @@ namespace MS.Application.Services.ManagerServices.SendNotificationService
                 IsDeleted = false,
                 DeletedAt = null,
                 DeletedBy = null,
-                CreateBy = request.PatientId.ToString(),
-                LastModifiedBy = request.PatientId.ToString(),
+                CreateBy = auditActor,
+                LastModifiedBy = auditActor,
                 CreateDate = DateTimeOffset.UtcNow,
                 LastModifiedDate = DateTimeOffset.UtcNow
             };
