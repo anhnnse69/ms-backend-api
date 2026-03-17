@@ -13,6 +13,6 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPat
         /// <param name="patientId">The patient ID</param>
         /// <param name="appointmentId">The appointment ID</param>
         /// <returns>The appointment entity or null if not found</returns>
-        Task<Appointment> Execute(Guid patientId, Guid appointmentId);
+        Task<Appointment?> Execute(Guid patientId, Guid appointmentId);
     }
 }
