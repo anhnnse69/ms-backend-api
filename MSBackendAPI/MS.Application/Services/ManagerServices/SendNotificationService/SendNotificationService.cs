@@ -79,7 +79,6 @@ namespace MS.Application.Services.ManagerServices.SendNotificationService
         {
             var userId = appointment.Patient?.UserId ?? Guid.Empty;
             var auditActor = userId != Guid.Empty ? userId.ToString() : "System";
-
             return new Notification
             {
                 Id = Guid.NewGuid(),
@@ -136,14 +135,24 @@ namespace MS.Application.Services.ManagerServices.SendNotificationService
             }
             var notification = BuildNotificationEntity(request, appointment!);
             var savedNotification = await SaveNotification(notification);
+            var responseData = MapNotificationResponse(savedNotification);
             return ApiResponse<SendNotificationResponse>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(),
-                new SendNotificationResponse(
-                    savedNotification.Id,
-                    savedNotification.IsSent,
-                    savedNotification.SentAt,
-                    "Notification sent to patient successfully"
-                )
+                responseData
+            );
+        }
+
+        /// <summary>
+        /// Map notification entity to response model
+        /// </summary>
+        /// <param name="notification">The saved notification entity</param>
+        /// <returns>Mapped response object</returns>
+        private SendNotificationResponse MapNotificationResponse(Notification notification)
+        {
+            return new SendNotificationResponse(
+                notification.Id,
+                notification.IsSent,
+                notification.SentAt
             );
         }
     }

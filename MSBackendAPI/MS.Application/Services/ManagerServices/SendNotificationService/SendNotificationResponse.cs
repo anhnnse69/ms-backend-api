@@ -14,19 +14,15 @@ namespace MS.Application.Services.ManagerServices.SendNotificationService
         /// <summary>Timestamp when the notification was sent.</summary>
         public DateTimeOffset? SentAt { get; set; }
 
-        /// <summary>Message describing the result of the operation.</summary>
-        public string Message { get; set; } = string.Empty;
-
         public SendNotificationResponse()
         {
         }
 
-        public SendNotificationResponse(Guid notificationId, bool isSent, DateTimeOffset? sentAt, string message)
+        public SendNotificationResponse(Guid notificationId, bool isSent, DateTimeOffset? sentAt)
         {
             NotificationId = notificationId;
             IsSent = isSent;
             SentAt = sentAt;
-            Message = message;
         }
     }
 }

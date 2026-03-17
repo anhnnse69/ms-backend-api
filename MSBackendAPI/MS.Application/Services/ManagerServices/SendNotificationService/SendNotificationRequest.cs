@@ -3,7 +3,6 @@ using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Enums.Types;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization;
 
 namespace MS.Application.Services.ManagerServices.SendNotificationService
 {
@@ -14,7 +13,6 @@ namespace MS.Application.Services.ManagerServices.SendNotificationService
     {
         [JsonIgnore]
         /// <summary>Patient ID - extracted from JWT token at controller level.</summary>
-        [JsonIgnore]
         public Guid PatientId { get; set; }
 
         /// <summary>The ID of the appointment that the notification is about.</summary>

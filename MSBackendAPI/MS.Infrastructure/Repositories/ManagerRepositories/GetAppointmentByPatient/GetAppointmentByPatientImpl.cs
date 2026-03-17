@@ -11,7 +11,6 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPat
     /// </summary>
     public class GetAppointmentByPatientImpl : RepositoryQueryBase<Appointment, Guid, AppDbContext>, IGetAppointmentByPatient
     {
-        private readonly AppDbContext _context;
 
         /// <summary>
         /// Initializes a new instance of the GetAppointmentByPatientImpl class.
@@ -20,7 +19,6 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPat
         public GetAppointmentByPatientImpl(AppDbContext context)
             : base(context)
         {
-            _context = context;
         }
 
         /// <summary>
