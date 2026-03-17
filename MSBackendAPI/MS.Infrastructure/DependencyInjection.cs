@@ -44,6 +44,8 @@ using MS.Infrastructure.Repositories.AdminRepositories.GetAllDoctors;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 using MS.Application.Services.AdminServices.GetDoctorById;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateDoctor;
+using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
+using MS.Infrastructure.Repositories.AdminRepositories.CreateDoctor;
 
 namespace MS.Infrastructure
 {
@@ -109,9 +111,11 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentsByPatientId, GetAppointmentsByPatientIdImpl>();
             services.AddScoped<ICancelAppointment, CancelAppointmentImpl>();
             services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
+            services.AddScoped<ICreateDoctor, CreateDoctorImpl>();
             services.AddScoped<IGetAllDoctors, GetAllDoctorsImpl>();
             services.AddScoped<IGetDoctorById, GetDoctorByIdImpl>();
             services.AddScoped<IUpdateDoctor, UpdateDoctorImpl>();
+            services.AddScoped<IUpdatePatientAppointment, UpdatePatientAppointmentImpl>();
             return services;
         }
     }
