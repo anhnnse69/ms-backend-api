@@ -71,11 +71,11 @@ namespace MS.API.Controllers.ManagerController
                 MessageCode.APP_MESSAGE_4010.ToString().Equals(response.CodeMessage))
             {
                 var logWarningMessage = LoggerMessageHelper.MessageAPIFormater(LoggerMessageCode.APP_MESSAGE_3001.ToString(), response.CodeMessage);
-                _logger.LogWarning($"{logWarningMessage}");
+                _logger.LogWarning($"ManagerId: {managerId} - {logWarningMessage}");
                 return BadRequest(response);
             }
             var logInfoMessage = LoggerMessageHelper.MessageAPIFormater(MessageCode.APP_MESSAGE_2000.ToString(), response.CodeMessage);
-            _logger.LogInformation($"{logInfoMessage}");
+            _logger.LogInformation($"ManagerId: {managerId} - {logInfoMessage}");
             return Ok(response);
         }
     }
