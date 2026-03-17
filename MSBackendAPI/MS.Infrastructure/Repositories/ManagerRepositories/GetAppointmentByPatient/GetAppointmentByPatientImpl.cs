@@ -32,12 +32,16 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPat
         /// <returns>The appointment entity or null if not found</returns>
         public async Task<Appointment> Execute(Guid patientId, Guid appointmentId)
         {
-            return await _context.Appointments
+            return await FindByCondition(
+                    a => a.PatientId == patientId
+                         && a.Id == appointmentId
+                         && !a.IsDeleted,
+                    trackChanges: false)
                 .Include(a => a.Patient)
                 .Include(a => a.Doctor)
                 .Include(a => a.Facility)
                 .Include(a => a.Specialty)
-                .FirstOrDefaultAsync(a => a.PatientId == patientId && a.Id == appointmentId);
+                .FirstOrDefaultAsync();
         }
     }
 }
