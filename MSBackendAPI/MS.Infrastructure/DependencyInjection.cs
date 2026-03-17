@@ -26,6 +26,7 @@ using MS.Infrastructure.Repositories.DoctorRepositories.GetMedicalRecordByAppoin
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.DoctorRepositories.UpdateMedicalRecord;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByFacility;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentByPatient;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
@@ -42,6 +43,7 @@ using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
 using MS.Infrastructure.Repositories.AdminRepositories.GetFacilityByName;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllDoctors;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
+using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
 using MS.Application.Services.AdminServices.GetDoctorById;
 using MS.Infrastructure.Repositories.AdminRepositories.UpdateDoctor;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
@@ -94,6 +96,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityByName, GetFacilityByNameImpl>();
             services.AddScoped<ICreateFacility, CreateFacilityImpl>();
             services.AddScoped<IGetSpecialtiesByFacilityId, GetSpecialtiesByFacilityIdImpl>();
+            services.AddScoped<IGetAppointmentByPatient, GetAppointmentByPatientImpl>();
             services.AddScoped<ICreateAccount, CreateAccountImpl>();
             services.AddScoped<IGetMedicalRecordByAppointmentId, GetMedicalRecordByAppointmentIdImpl>();
             services.AddScoped<ICreateMedicalRecord, CreateMedicalRecordImpl>();
@@ -113,6 +116,7 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdateSpecialty, UpdateSpecialtyImpl>();
             services.AddScoped<ICreateDoctor, CreateDoctorImpl>();
             services.AddScoped<IGetAllDoctors, GetAllDoctorsImpl>();
+            services.AddScoped<ISendNotificationRepository, SendNotificationImpl>();
             services.AddScoped<IGetDoctorById, GetDoctorByIdImpl>();
             services.AddScoped<IUpdateDoctor, UpdateDoctorImpl>();
             services.AddScoped<IUpdatePatientAppointment, UpdatePatientAppointmentImpl>();
