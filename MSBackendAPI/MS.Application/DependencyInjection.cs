@@ -7,6 +7,7 @@ using MS.Application.Services.AdminServices.CreateUser;
 using MS.Application.Services.AdminServices.DeleteFacilityService;
 using MS.Application.Services.AdminServices.DeleteSpecialtyService;
 using MS.Application.Services.AdminServices.DeleteUserService;
+using MS.Application.Services.AdminServices.GetAllDoctorsService;
 using MS.Application.Services.AdminServices.GetAllFacilitiesService;
 using MS.Application.Services.AdminServices.GetAllSpecialtiesService;
 using MS.Application.Services.AdminServices.GetAllUsersService;
@@ -90,6 +91,7 @@ namespace MS.Application
             services.AddScoped<ICancelAppointmentService, CancelAppointmentService>();
             services.AddScoped<IDeleteSpecialtyService, DeleteSpecialtyService>();
             services.AddScoped<ICreateDoctorService, CreateDoctorService>();
+            services.AddScoped<IGetAllDoctorsService, GetAllDoctorsService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
