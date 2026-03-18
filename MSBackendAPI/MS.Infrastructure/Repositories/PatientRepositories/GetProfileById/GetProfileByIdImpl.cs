@@ -11,7 +11,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetProfileById
     public class GetProfileByIdImpl : RepositoryQueryBase<User, Guid, AppDbContext>, IGetProfileById
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetUserByIdImpl"/> class.
+        /// Initializes a new instance of the <see cref="GetProfileByIdImpl"/> class.
         /// </summary>
         /// <param name="context">Application database context.</param>
         public GetProfileByIdImpl(AppDbContext context) : base(context) { }
