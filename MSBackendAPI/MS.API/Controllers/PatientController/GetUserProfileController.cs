@@ -38,7 +38,6 @@ namespace MS.API.Controllers.PatientController
             {
                 return Unauthorized();
             }
-
             var result = await _service.Process(userId);
             return Ok(result);
         }
