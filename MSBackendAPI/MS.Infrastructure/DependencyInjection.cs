@@ -46,10 +46,14 @@ using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
+using MS.Infrastructure.Repositories.PatientRepositories.CreateReview;
+using MS.Infrastructure.Repositories.PatientRepositories.GetAppointmentForReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking;
+using MS.Infrastructure.Repositories.PatientRepositories.GetExistingReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetFacilityForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserId;
+using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserIdForReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
@@ -136,6 +140,10 @@ namespace MS.Infrastructure
             services.AddScoped<IGetSpecialtyForBooking, GetSpecialtyForBookingImpl>();
             services.AddScoped<IGetDoctorForBooking, GetDoctorForBookingImpl>();
             services.AddScoped<ICreateAppointment, CreateAppointmentImpl>();
+            services.AddScoped<IGetPatientByUserIdForReview, GetPatientByUserIdForReviewImpl>();
+            services.AddScoped<IGetAppointmentForReview, GetAppointmentForReviewImpl>();
+            services.AddScoped<IGetExistingReview, GetExistingReviewImpl>();
+            services.AddScoped<ICreateReview, CreateReviewImpl>();
             return services;
         }
     }
