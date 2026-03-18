@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Common.AnnotationValidationBehavior;
+using MS.Application.Services.AdminServices.CreateDoctorService;
 using MS.Application.Services.AdminServices.CreateFacilityService;
 using MS.Application.Services.AdminServices.CreateSpecialtyService;
 using MS.Application.Services.AdminServices.CreateUser;
@@ -12,6 +13,7 @@ using MS.Application.Services.AdminServices.GetAllFacilitiesService;
 using MS.Application.Services.AdminServices.GetAllSpecialtiesService;
 using MS.Application.Services.AdminServices.GetAllUsersService;
 using MS.Application.Services.AdminServices.GetUserByIdService;
+using MS.Application.Services.AdminServices.UpdateDoctorService;
 using MS.Application.Services.AdminServices.UpdateFacilityService;
 using MS.Application.Services.AdminServices.UpdateSpecialtyService;
 using MS.Application.Services.AdminServices.UpdateUserService;
@@ -31,15 +33,14 @@ using MS.Application.Services.DoctorServices.UpdateDoctorMedicalRecordService;
 using MS.Application.Services.ManagerServices.AppointmentByFacilityService;
 using MS.Application.Services.ManagerServices.AppointmentReportService;
 using MS.Application.Services.ManagerServices.FacilitySpecialtyService;
+using MS.Application.Services.ManagerServices.GetFacilityPerformanceReportService;
 using MS.Application.Services.ManagerServices.PendingAppointmentPatientService;
+using MS.Application.Services.ManagerServices.SendNotificationService;
 using MS.Application.Services.ManagerServices.UpdateFacilityService;
+using MS.Application.Services.PatientServices.CancelAppointmentService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
 using MS.Application.Services.PatientServices.GetPatientAppointment;
-using MS.Application.Services.PatientServices.CancelAppointmentService;
-using MS.Application.Services.ManagerServices.SendNotificationService;
-using MS.Application.Services.AdminServices.UpdateDoctorService;
 using MS.Application.Services.PatientServices.UpdateAppointment;
-using MS.Application.Services.AdminServices.CreateDoctorService;
 using MS.Application.Services.AdminServices.DeleteDoctorService;
 
 namespace MS.Application
@@ -99,6 +100,7 @@ namespace MS.Application
             services.AddScoped<ISendNotificationService, SendNotificationService>();
             services.AddScoped<IUpdateDoctorService, UpdateDoctorService>();
             services.AddScoped<IRescheduleAppointmentService, RescheduleAppointmentService>();
+            services.AddScoped<IGetFacilityPerformanceReportService, GetFacilityPerformanceReportService>();
             services.AddScoped<IDeleteDoctorService, DeleteDoctorService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
