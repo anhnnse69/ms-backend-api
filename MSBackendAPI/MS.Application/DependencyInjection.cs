@@ -41,6 +41,7 @@ using MS.Application.Services.ManagerServices.UpdateFacilityService;
 using MS.Application.Services.PatientServices.BookAppointmentService;
 using MS.Application.Services.PatientServices.CancelAppointmentService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
+using MS.Application.Services.PatientServices.GetDoctorDetailService;
 using MS.Application.Services.PatientServices.GetPatientAppointment;
 using MS.Application.Services.PatientServices.GetUserProfileService;
 using MS.Application.Services.PatientServices.SubmitReviewService;
@@ -110,6 +111,7 @@ namespace MS.Application
             services.AddScoped<IUpdateUserProfileService, UpdateUserProfileService>();
             services.AddScoped<IBookAppointmentService, BookAppointmentService>();
             services.AddScoped<ISubmitReviewService, SubmitReviewService>();
+            services.AddScoped<IGetDoctorDetailService, GetDoctorDetailService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;

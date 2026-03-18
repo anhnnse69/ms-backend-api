@@ -49,6 +49,7 @@ using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetAppointmentForReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking;
+using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorWithDetail;
 using MS.Infrastructure.Repositories.PatientRepositories.GetExistingReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetFacilityForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
@@ -144,6 +145,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetAppointmentForReview, GetAppointmentForReviewImpl>();
             services.AddScoped<IGetExistingReview, GetExistingReviewImpl>();
             services.AddScoped<ICreateReview, CreateReviewImpl>();
+            services.AddScoped<IGetDoctorWithDetail, GetDoctorWithDetailImpl>();
             return services;
         }
     }
