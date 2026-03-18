@@ -16,16 +16,16 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
     {
         /// <summary>The unique identifier of the facility.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        public Guid? FacilityId { get; set; }
+        public Guid FacilityId { get; set; }
         /// <summary>The unique identifier of the specialty.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        public Guid? SpecialtyId { get; set; }
+        public Guid SpecialtyId { get; set; }
         /// <summary>The unique identifier of the doctor.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        public Guid? DoctorId { get; set; }
+        public Guid DoctorId { get; set; }
         /// <summary>The desired appointment date and time.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        public DateTimeOffset? AppointmentTime { get; set; }
+        public DateTimeOffset AppointmentTime { get; set; }
         /// <summary>Optional notes provided by the patient.</summary>
         [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
         [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
