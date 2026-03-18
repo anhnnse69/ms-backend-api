@@ -1,7 +1,7 @@
 ﻿using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
-using MS.Infrastructure.Repositories.AdminRepositories.GetUserById;
+using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateUserProfile;
 
 namespace MS.Application.Services.PatientServices.UpdateUserProfileService
@@ -11,7 +11,7 @@ namespace MS.Application.Services.PatientServices.UpdateUserProfileService
     /// </summary>
     public class UpdateUserProfileService : IUpdateUserProfileService
     {
-        private readonly IGetUserById _userProfile;
+        private readonly IGetProfileById _userProfile;
         private readonly IUpdateUserProfile _userUpdateRepository;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace MS.Application.Services.PatientServices.UpdateUserProfileService
         /// <param name="userLookup">Repository for retrieving user data by identifier.</param>
         /// <param name="userUpdateRepository">Repository for persisting user profile updates.</param>
         public UpdateUserProfileService(
-            IGetUserById userProfile,
+            IGetProfileById userProfile,
             IUpdateUserProfile userUpdateRepository)
         {
             _userProfile = userProfile;
