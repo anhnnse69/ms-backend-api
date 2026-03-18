@@ -5,7 +5,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserId
     /// <summary>
     /// Repository interface for retrieving a patient by their linked user identifier.
     /// </summary>
-    public interface IGetPatientByUserIdRepository
+    public interface IGetPatientByUserId
     {
         /// <summary>
         /// Retrieves the patient entity associated with the specified user identifier.

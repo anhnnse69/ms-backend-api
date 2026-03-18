@@ -8,7 +8,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetFacilityForBooki
     /// <summary>
     /// Repository implementation for retrieving a facility by its identifier during appointment booking.
     /// </summary>
-    public class GetFacilityForBookingImpl : RepositoryQueryBase<Facility, Guid, AppDbContext>, IGetFacilityForBookingRepository
+    public class GetFacilityForBookingImpl : RepositoryQueryBase<Facility, Guid, AppDbContext>, IGetFacilityForBooking
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetFacilityForBookingImpl"/> class.

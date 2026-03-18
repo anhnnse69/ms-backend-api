@@ -5,7 +5,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking
     /// <summary>
     /// Repository interface for retrieving a doctor by its identifier during appointment booking.
     /// </summary>
-    public interface IGetDoctorForBookingRepository
+    public interface IGetDoctorForBooking
     {
         /// <summary>
         /// Retrieves the doctor entity matching the specified identifier.

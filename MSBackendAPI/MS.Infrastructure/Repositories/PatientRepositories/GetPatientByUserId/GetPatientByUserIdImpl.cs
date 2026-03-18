@@ -8,7 +8,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserId
     /// <summary>
     /// Repository implementation for retrieving a patient by their linked user identifier.
     /// </summary>
-    public class GetPatientByUserIdImpl : RepositoryQueryBase<Patient, Guid, AppDbContext>, IGetPatientByUserIdRepository
+    public class GetPatientByUserIdImpl : RepositoryQueryBase<Patient, Guid, AppDbContext>, IGetPatientByUserId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPatientByUserIdImpl"/> class.

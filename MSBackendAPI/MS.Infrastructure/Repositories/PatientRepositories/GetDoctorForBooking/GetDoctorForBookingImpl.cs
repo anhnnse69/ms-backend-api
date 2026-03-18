@@ -8,7 +8,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking
     /// <summary>
     /// Repository implementation for retrieving a doctor by its identifier.
     /// </summary>
-    public class GetDoctorForBookingImpl : RepositoryQueryBase<Doctor, Guid, AppDbContext>, IGetDoctorForBookingRepository
+    public class GetDoctorForBookingImpl : RepositoryQueryBase<Doctor, Guid, AppDbContext>, IGetDoctorForBooking
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetDoctorForBookingImpl"/> class.

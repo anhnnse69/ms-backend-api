@@ -8,7 +8,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.CreateAppointment
     /// <summary>
     /// Repository implementation for persisting a new appointment to the database.
     /// </summary>
-    public class CreateAppointmentImpl : RepositoryBase<Appointment, Guid, AppDbContext>, ICreateAppointmentRepository
+    public class CreateAppointmentImpl : RepositoryBase<Appointment, Guid, AppDbContext>, ICreateAppointment
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateAppointmentImpl"/> class.

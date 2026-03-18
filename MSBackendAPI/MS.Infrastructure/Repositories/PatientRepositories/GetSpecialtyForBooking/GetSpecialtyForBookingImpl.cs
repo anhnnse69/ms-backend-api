@@ -8,7 +8,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBook
     /// <summary>
     /// Repository implementation for retrieving a specialty by its identifier during appointment booking.
     /// </summary>
-    public class GetSpecialtyForBookingImpl : RepositoryQueryBase<Specialty, Guid, AppDbContext>, IGetSpecialtyForBookingRepository
+    public class GetSpecialtyForBookingImpl : RepositoryQueryBase<Specialty, Guid, AppDbContext>, IGetSpecialtyForBooking
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSpecialtyForBookingImpl"/> class.

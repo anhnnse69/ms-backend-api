@@ -5,7 +5,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetFacilityForBooki
     /// <summary>
     /// Repository interface for retrieving a facility by its identifier during appointment booking.
     /// </summary>
-    public interface IGetFacilityForBookingRepository
+    public interface IGetFacilityForBooking
     {
         /// <summary>
         /// Retrieves the facility entity matching the specified identifier.

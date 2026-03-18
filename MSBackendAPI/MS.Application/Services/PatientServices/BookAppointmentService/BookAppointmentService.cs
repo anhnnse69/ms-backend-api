@@ -15,10 +15,10 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
     /// </summary>
     public class BookAppointmentService : IBookAppointmentService
     {
-        private readonly IGetPatientByUserIdRepository _getPatientRepo;
-        private readonly IGetFacilityForBookingRepository _getFacilityRepo;
-        private readonly IGetSpecialtyForBookingRepository _getSpecialtyRepo;
-        private readonly IGetDoctorForBookingRepository _getDoctorRepo;
+        private readonly IGetPatientByUserId _getPatientRepo;
+        private readonly IGetFacilityForBooking _getFacilityRepo;
+        private readonly IGetSpecialtyForBooking _getSpecialtyRepo;
+        private readonly IGetDoctorForBooking _getDoctorRepo;
         private readonly ICreateAppointmentRepository _createAppointmentRepo;
 
         /// <summary>
@@ -30,10 +30,10 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
         /// <param name="getDoctorRepo">Repository responsible for doctor data access.</param>
         /// <param name="createAppointmentRepo">Repository responsible for appointment creation.</param>
         public BookAppointmentService(
-            IGetPatientByUserIdRepository getPatientRepo,
-            IGetFacilityForBookingRepository getFacilityRepo,
-            IGetSpecialtyForBookingRepository getSpecialtyRepo,
-            IGetDoctorForBookingRepository getDoctorRepo,
+            IGetPatientByUserId getPatientRepo,
+            IGetFacilityForBooking getFacilityRepo,
+            IGetSpecialtyForBooking getSpecialtyRepo,
+            IGetDoctorForBooking getDoctorRepo,
             ICreateAppointmentRepository createAppointmentRepo)
         {
             _getPatientRepo = getPatientRepo;

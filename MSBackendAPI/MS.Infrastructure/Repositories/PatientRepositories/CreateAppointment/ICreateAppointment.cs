@@ -5,7 +5,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.CreateAppointment
     /// <summary>
     /// Repository interface for persisting a new appointment to the database.
     /// </summary>
-    public interface ICreateAppointmentRepository
+    public interface ICreateAppointment
     {
         /// <summary>
         /// Persists the specified appointment entity to the database.

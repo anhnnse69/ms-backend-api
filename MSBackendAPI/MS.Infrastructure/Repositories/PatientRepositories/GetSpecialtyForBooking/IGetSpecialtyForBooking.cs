@@ -5,7 +5,7 @@ namespace MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBook
     /// <summary>
     /// Repository interface for retrieving a specialty by its identifier during appointment booking.
     /// </summary>
-    public interface IGetSpecialtyForBookingRepository
+    public interface IGetSpecialtyForBooking
     {
         /// <summary>
         /// Retrieves the specialty entity matching the specified identifier.

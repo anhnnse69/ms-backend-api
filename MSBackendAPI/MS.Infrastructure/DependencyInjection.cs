@@ -131,11 +131,11 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFacilityPerformanceReport, GetFacilityPerformanceReportImpl>();
             services.AddScoped<IGetProfileById, GetProfileByIdImpl>();
             services.AddScoped<IUpdateUserProfile, UpdateUserProfileImpl>();
-            services.AddScoped<IGetPatientByUserIdRepository, GetPatientByUserIdImpl>();
-            services.AddScoped<IGetFacilityForBookingRepository, GetFacilityForBookingImpl>();
-            services.AddScoped<IGetSpecialtyForBookingRepository, GetSpecialtyForBookingImpl>();
-            services.AddScoped<IGetDoctorForBookingRepository, GetDoctorForBookingImpl>();
-            services.AddScoped<ICreateAppointmentRepository, CreateAppointmentImpl>();
+            services.AddScoped<IGetPatientByUserId, GetPatientByUserIdImpl>();
+            services.AddScoped<IGetFacilityForBooking, GetFacilityForBookingImpl>();
+            services.AddScoped<IGetSpecialtyForBooking, GetSpecialtyForBookingImpl>();
+            services.AddScoped<IGetDoctorForBooking, GetDoctorForBookingImpl>();
+            services.AddScoped<ICreateAppointment, CreateAppointmentImpl>();
             return services;
         }
     }
