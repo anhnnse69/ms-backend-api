@@ -40,6 +40,7 @@ using MS.Application.Services.ManagerServices.SendNotificationService;
 using MS.Application.Services.AdminServices.UpdateDoctorService;
 using MS.Application.Services.PatientServices.UpdateAppointment;
 using MS.Application.Services.AdminServices.CreateDoctorService;
+using MS.Application.Services.AdminServices.DeleteDoctorService;
 
 namespace MS.Application
 {
@@ -98,6 +99,7 @@ namespace MS.Application
             services.AddScoped<ISendNotificationService, SendNotificationService>();
             services.AddScoped<IUpdateDoctorService, UpdateDoctorService>();
             services.AddScoped<IRescheduleAppointmentService, RescheduleAppointmentService>();
+            services.AddScoped<IDeleteDoctorService, DeleteDoctorService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
