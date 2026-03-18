@@ -208,12 +208,16 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
         /// Maps the created appointment entity to <see cref="BookAppointmentResponse"/>.
         /// </summary>
         /// <param name="appointment">The created appointment entity to map.</param>
-        /// <returns>Mapped <see cref="BookAppointmentResponse"/>; default instance if appointment is null.</returns>
+        /// <returns>Mapped <see cref="BookAppointmentResponse"/>; default instance with safe values if appointment is null.</returns>
         private BookAppointmentResponse MapToResponse(Appointment? appointment)
         {
             if (appointment == null)
             {
-                return new BookAppointmentResponse();
+                // Return a response with explicitly initialized non-nullable properties
+                return new BookAppointmentResponse
+                {
+                    Status = string.Empty
+                };
             }
             return new BookAppointmentResponse
             {
