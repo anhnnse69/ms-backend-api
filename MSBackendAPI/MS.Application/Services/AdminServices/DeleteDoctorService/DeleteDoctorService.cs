@@ -97,12 +97,8 @@ namespace MS.Application.Services.AdminServices.DeleteDoctorService
                     MessageCode.APP_MESSAGE_4020.ToString()
                 );
             }
-            // Soft delete doctor
-            doctor.IsDeleted = true;
-            doctor.DeletedAt = DateTimeOffset.UtcNow;
-            doctor.DeletedBy = "system";
-            doctor.LastModifiedBy = "system";
-            doctor.LastModifiedDate = DateTimeOffset.UtcNow;
+            // Map Soft delete doctor
+            MapSoftDelete(doctor);
             // Update doctor in database
             await _updateDoctor.Execute(doctor);
             // Create response object
@@ -115,6 +111,19 @@ namespace MS.Application.Services.AdminServices.DeleteDoctorService
                 MessageCode.APP_MESSAGE_2000.ToString(),
                 response
             );
+        }
+
+        /// <summary>
+        /// Marks the doctor as soft deleted and updates audit fields.
+        /// </summary>
+        /// <param name="doctor">The doctor entity.</param>
+        private void MapSoftDelete(Doctor doctor)
+        {
+            doctor.IsDeleted = true;
+            doctor.DeletedAt = DateTimeOffset.UtcNow;
+            doctor.DeletedBy = "system";
+            doctor.LastModifiedBy = "system";
+            doctor.LastModifiedDate = DateTimeOffset.UtcNow;
         }
     }
 }
