@@ -46,9 +46,11 @@ using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
+using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
+using MS.Infrastructure.Repositories.PatientRepositories.UpdateUserProfile;
 
 namespace MS.Infrastructure
 {
@@ -122,6 +124,8 @@ namespace MS.Infrastructure
             services.AddScoped<IUpdateDoctor, UpdateDoctorImpl>();
             services.AddScoped<IUpdatePatientAppointment, UpdatePatientAppointmentImpl>();
             services.AddScoped<IGetFacilityPerformanceReport, GetFacilityPerformanceReportImpl>();
+            services.AddScoped<IGetProfileById, GetProfileByIdImpl>();
+            services.AddScoped<IUpdateUserProfile, UpdateUserProfileImpl>();
             return services;
         }
     }

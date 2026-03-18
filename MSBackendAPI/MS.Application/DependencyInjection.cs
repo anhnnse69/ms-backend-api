@@ -5,6 +5,7 @@ using MS.Application.Services.AdminServices.CreateDoctorService;
 using MS.Application.Services.AdminServices.CreateFacilityService;
 using MS.Application.Services.AdminServices.CreateSpecialtyService;
 using MS.Application.Services.AdminServices.CreateUser;
+using MS.Application.Services.AdminServices.DeleteDoctorService;
 using MS.Application.Services.AdminServices.DeleteFacilityService;
 using MS.Application.Services.AdminServices.DeleteSpecialtyService;
 using MS.Application.Services.AdminServices.DeleteUserService;
@@ -40,8 +41,9 @@ using MS.Application.Services.ManagerServices.UpdateFacilityService;
 using MS.Application.Services.PatientServices.CancelAppointmentService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
 using MS.Application.Services.PatientServices.GetPatientAppointment;
+using MS.Application.Services.PatientServices.GetUserProfileService;
 using MS.Application.Services.PatientServices.UpdateAppointment;
-using MS.Application.Services.AdminServices.DeleteDoctorService;
+using MS.Application.Services.PatientServices.UpdateUserProfileService;
 
 namespace MS.Application
 {
@@ -102,6 +104,8 @@ namespace MS.Application
             services.AddScoped<IRescheduleAppointmentService, RescheduleAppointmentService>();
             services.AddScoped<IGetFacilityPerformanceReportService, GetFacilityPerformanceReportService>();
             services.AddScoped<IDeleteDoctorService, DeleteDoctorService>();
+            services.AddScoped<IGetUserProfileService, GetUserProfileService>();
+            services.AddScoped<IUpdateUserProfileService, UpdateUserProfileService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
