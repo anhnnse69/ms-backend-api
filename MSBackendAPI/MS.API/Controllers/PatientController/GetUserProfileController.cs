@@ -33,8 +33,12 @@ namespace MS.API.Controllers.PatientController
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfile()
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            var userId = Guid.Parse(userIdClaim!.Value);
+            var userIdClaimValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrWhiteSpace(userIdClaimValue) || !Guid.TryParse(userIdClaimValue, out var userId))
+            {
+                return Unauthorized();
+            }
+
             var result = await _service.Process(userId);
             return Ok(result);
         }

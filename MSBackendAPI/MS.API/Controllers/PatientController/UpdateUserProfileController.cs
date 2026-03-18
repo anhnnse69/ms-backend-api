@@ -34,8 +34,12 @@ namespace MS.API.Controllers.PatientController
         [HttpPut("profile")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserProfileRequest request)
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            var userId = Guid.Parse(userIdClaim!.Value);
+            var userIdClaimValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaimValue) || !Guid.TryParse(userIdClaimValue, out var userId))
+            {
+                return Unauthorized();
+            }
+
             var result = await _service.Process(request, userId);
             return Ok(result);
         }
