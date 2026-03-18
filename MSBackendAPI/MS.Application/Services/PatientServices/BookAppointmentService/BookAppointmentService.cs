@@ -19,7 +19,7 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
         private readonly IGetFacilityForBooking _getFacilityRepo;
         private readonly IGetSpecialtyForBooking _getSpecialtyRepo;
         private readonly IGetDoctorForBooking _getDoctorRepo;
-        private readonly ICreateAppointmentRepository _createAppointmentRepo;
+        private readonly ICreateAppointment _createAppointmentRepo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BookAppointmentService"/> class.
@@ -34,7 +34,7 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
             IGetFacilityForBooking getFacilityRepo,
             IGetSpecialtyForBooking getSpecialtyRepo,
             IGetDoctorForBooking getDoctorRepo,
-            ICreateAppointmentRepository createAppointmentRepo)
+            ICreateAppointment createAppointmentRepo)
         {
             _getPatientRepo = getPatientRepo;
             _getFacilityRepo = getFacilityRepo;
