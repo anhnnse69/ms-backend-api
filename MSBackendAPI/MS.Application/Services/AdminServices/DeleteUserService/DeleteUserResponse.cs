@@ -9,5 +9,15 @@
         /// Indicate whether user was deleted successfully.
         /// </summary>
         public bool IsDeleted { get; set; }
+
+
+        /// <summary>
+        /// Initializes response model
+        /// </summary>
+        /// <param name="isDeleted"></param>
+        public DeleteUserResponse(bool isDeleted)
+        {
+            IsDeleted = isDeleted;
+        }
     }
 }
