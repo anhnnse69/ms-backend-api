@@ -58,6 +58,7 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserIdForRe
 using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
+using MS.Infrastructure.Repositories.PatientRepositories.SearchDoctor;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateUserProfile;
@@ -146,6 +147,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetExistingReview, GetExistingReviewImpl>();
             services.AddScoped<ICreateReview, CreateReviewImpl>();
             services.AddScoped<IGetDoctorWithDetail, GetDoctorWithDetailImpl>();
+            services.AddScoped<ISearchDoctor, SearchDoctorImpl>();
             return services;
         }
     }
