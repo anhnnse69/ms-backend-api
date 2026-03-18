@@ -1,24 +1,17 @@
-﻿using MS.Application.Common.Attributes;
-using MS.Domain.Enums.GeneralCodes;
-
-namespace MS.Application.Services.ManagerServices.GetFacilityPerformanceReportService
+﻿namespace MS.Application.Services.ManagerServices.GetFacilityPerformanceReportService
 {
     /// <summary>
-    /// Represents the request to get facility performance report.
+    /// Request model for retrieving facility performance report.
     /// </summary>
     public class GetFacilityPerformanceReportRequest
     {
-        /// <summary>The start date of the reporting period (optional).</summary>
+        /// <summary>Optional facility identifier for cross-validation; if omitted, the manager's assigned facility is used.</summary>
+        public Guid? FacilityId { get; set; }
+        /// <summary>Optional start date for filtering appointments (inclusive).</summary>
         public DateTime? StartDate { get; set; }
-
-        /// <summary>The end date of the reporting period (optional).</summary>
+        /// <summary>Optional end date for filtering appointments (inclusive).</summary>
         public DateTime? EndDate { get; set; }
-
-        /// <summary>The specific doctor ID to filter by (optional).</summary>
+        /// <summary>Optional doctor identifier to filter results for a specific doctor.</summary>
         public Guid? DoctorId { get; set; }
-
-        /// <summary>The facility ID for which the report is generated. This field is required.</summary>
-        [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        public Guid FacilityId { get; set; }
     }
 }

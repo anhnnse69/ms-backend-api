@@ -121,7 +121,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetDoctorById, GetDoctorByIdImpl>();
             services.AddScoped<IUpdateDoctor, UpdateDoctorImpl>();
             services.AddScoped<IUpdatePatientAppointment, UpdatePatientAppointmentImpl>();
-            services.AddScoped<IGetFacilityPerformanceReportRepository, GetFacilityPerformanceReportRepositoryImpl>();
+            services.AddScoped<IGetFacilityPerformanceReport, GetFacilityPerformanceReportImpl>();
             return services;
         }
     }

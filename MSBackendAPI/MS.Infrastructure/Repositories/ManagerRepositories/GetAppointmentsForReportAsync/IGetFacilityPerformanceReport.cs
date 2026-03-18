@@ -5,7 +5,7 @@ namespace MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentsForR
     /// <summary>
     /// Repository interface for retrieving appointment data used in facility performance report.
     /// </summary>
-    public interface IGetFacilityPerformanceReportRepository
+    public interface IGetFacilityPerformanceReport
     {
         /// <summary>
         /// Retrieves a list of appointments matching the specified criteria.
