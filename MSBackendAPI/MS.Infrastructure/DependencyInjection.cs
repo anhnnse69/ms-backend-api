@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Services.AdminServices.GetDoctorById;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
+using MS.Infrastructure.EmailVerifyService;
 using MS.Infrastructure.JwtService;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateDoctor;
@@ -46,6 +47,7 @@ using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
+using MS.Infrastructure.Repositories.PatientRepositories.CreatePasswordResetToken;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetAppointmentForReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking;
@@ -58,6 +60,8 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserIdForRe
 using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
+using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetToken;
+using MS.Infrastructure.Repositories.PatientRepositories.ResetPasswordTransactional;
 using MS.Infrastructure.Repositories.PatientRepositories.SearchDoctor;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
@@ -88,6 +92,7 @@ namespace MS.Infrastructure
             services.AddScoped<IUnitOfWork<AppDbContext>, UnitOfWork<AppDbContext>>();
             // Register Infrastructure Services (e.g., JWT, Guid services)
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IEmailVerifyService, EmailVerifyServiceImpl>();
             services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             // Register Repositories for data access
             // services.AddScoped<IPatientRepository, PatientRepository>();
@@ -148,6 +153,10 @@ namespace MS.Infrastructure
             services.AddScoped<ICreateReview, CreateReviewImpl>();
             services.AddScoped<IGetDoctorWithDetail, GetDoctorWithDetailImpl>();
             services.AddScoped<ISearchDoctor, SearchDoctorImpl>();
+            services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
+            services.AddScoped<ICreatePasswordResetToken, CreatePasswordResetTokenImpl>();
+            services.AddScoped<IGetValidPasswordResetToken, GetValidPasswordResetTokenImpl>();
+            services.AddScoped<IResetPasswordTransactional, ResetPasswordTransactionalImpl>();
             return services;
         }
     }
