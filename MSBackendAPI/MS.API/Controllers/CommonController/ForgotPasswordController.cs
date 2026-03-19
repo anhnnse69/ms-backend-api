@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.CommonServices.ForgotPasswordService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MS.API.Controllers.CommonController
 {
@@ -8,6 +9,7 @@ namespace MS.API.Controllers.CommonController
     /// </summary>
     [ApiController]
     [Route("api/v1/auth")]
+    [AllowAnonymous]
     public class ForgotPasswordController : ControllerBase
     {
         private readonly IForgotPasswordService _forgotPasswordService;
@@ -22,12 +24,12 @@ namespace MS.API.Controllers.CommonController
         }
 
         /// <summary>
-        /// Initiates a password reset by sending a reset link to the provided email address.
+        /// Initiates a password reset by sending a one-time verification code (OTP) to the provided email address.
         /// Always returns HTTP 200 regardless of whether the email exists to prevent enumeration.
         /// </summary>
         /// <param name="request">The request containing the user's email address.</param>
         /// <returns>
-        /// Returns a generic success message confirming the request was processed.
+        /// Returns a generic success message confirming that the OTP-based reset request was processed.
         /// </returns>
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)

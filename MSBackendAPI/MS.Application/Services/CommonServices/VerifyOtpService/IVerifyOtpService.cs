@@ -10,7 +10,7 @@ namespace MS.Application.Services.CommonServices.VerifyOtpService
         /// <summary>
         /// Processes the OTP verification request and issues a short-lived reset token on success.
         /// </summary>
-        /// <param name="request">The request containing the user's email and OTP code.</param>
+        /// <param name="request">The request containing the OTP code to verify.</param>
         /// <returns>
         /// An <see cref="ApiResponse{T}"/> containing a <see cref="VerifyOtpResponse"/>
         /// with a scoped reset JWT on success, or a failure response if validation fails.

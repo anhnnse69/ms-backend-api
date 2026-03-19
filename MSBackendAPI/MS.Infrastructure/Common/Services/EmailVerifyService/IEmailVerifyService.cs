@@ -6,9 +6,12 @@
     public interface IEmailVerifyService
     {
         /// <summary>
-        /// Builds the email subject line for an OTP password reset email.
+        /// Sends an OTP email to the specified user, typically for password reset or verification.
         /// </summary>
-        /// <returns>The subject string for the OTP email.</returns>
+        /// <param name="toEmail">The recipient email address.</param>
+        /// <param name="fullName">The full name of the recipient used in the email body.</param>
+        /// <param name="otpCode">The one-time password (OTP) code to include in the email.</param>
+        /// <returns>A task representing the asynchronous send operation.</returns>
         Task SendOtpEmailAsync(string toEmail, string fullName, string otpCode);
         /// <summary>
         /// Sends a password reset email containing a reset link to the specified user.

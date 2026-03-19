@@ -3,6 +3,7 @@ using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MS.Domain.Enums.GeneralCodes;
+using System.Net;
 
 namespace MS.Infrastructure.Common.Services.EmailVerifyService
 {
@@ -55,6 +56,9 @@ namespace MS.Infrastructure.Common.Services.EmailVerifyService
         /// <returns>An HTML string representing the OTP email body.</returns>
         private string BuildOtpEmailBody(string fullName, string otpCode)
         {
+            var encodedFullName = WebUtility.HtmlEncode(fullName ?? string.Empty);
+            var encodedOtpCode = WebUtility.HtmlEncode(otpCode ?? string.Empty);
+
             return $@"
 <!DOCTYPE html>
 <html>
@@ -74,11 +78,11 @@ namespace MS.Infrastructure.Common.Services.EmailVerifyService
   <div class=""container"">
     <div class=""header"">Password Reset OTP</div>
     <div class=""body-text"">
-      Hello <strong>{fullName}</strong>,<br /><br />
+      Hello <strong>{encodedFullName}</strong>,<br /><br />
       Use the OTP code below to reset your password.
       This code will expire in <strong>5 minutes</strong>.
     </div>
-    <div class=""otp-box"">{otpCode}</div>
+    <div class=""otp-box"">{encodedOtpCode}</div>
     <div class=""warning"">
       If you did not request a password reset, please ignore this email.
       Your password will not be changed.

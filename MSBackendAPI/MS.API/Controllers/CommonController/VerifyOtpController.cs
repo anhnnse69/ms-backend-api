@@ -24,7 +24,7 @@ namespace MS.API.Controllers.CommonController
         /// <summary>
         /// Verifies the submitted OTP code and returns a short-lived scoped reset JWT on success.
         /// </summary>
-        /// <param name="request">The request containing the user's email and OTP code.</param>
+        /// <param name="request">The request containing the OTP code to be verified.</param>
         /// <returns>
         /// Returns a scoped reset JWT if the OTP is valid; otherwise returns a failure response.
         /// </returns>

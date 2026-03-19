@@ -62,6 +62,7 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetToken;
+using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetTokenByOtp;
 using MS.Infrastructure.Repositories.PatientRepositories.MarkOtpUsed;
 using MS.Infrastructure.Repositories.PatientRepositories.ResetPasswordTransactional;
 using MS.Infrastructure.Repositories.PatientRepositories.SearchDoctor;
@@ -157,11 +158,11 @@ namespace MS.Infrastructure
             services.AddScoped<ICreateReview, CreateReviewImpl>();
             services.AddScoped<IGetDoctorWithDetail, GetDoctorWithDetailImpl>();
             services.AddScoped<ISearchDoctor, SearchDoctorImpl>();
-            services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             services.AddScoped<ICreatePasswordResetToken, CreatePasswordResetTokenImpl>();
             services.AddScoped<IGetValidPasswordResetToken, GetValidPasswordResetTokenImpl>();
+            services.AddScoped<IGetValidPasswordResetTokenByOtp, GetValidPasswordResetTokenByOtpImpl>();
             services.AddScoped<IResetPasswordTransactional, ResetPasswordTransactionalImpl>();
-            services.AddScoped<IMarkOtpUsed, MarkOtpUsedImpl>();
+            services.AddScopedIMarkOtpUsed, MarkOtpUsedImpl>();
             services.AddScoped<IUpdatePasswordHash, UpdatePasswordHashImpl>();
             return services;
         }

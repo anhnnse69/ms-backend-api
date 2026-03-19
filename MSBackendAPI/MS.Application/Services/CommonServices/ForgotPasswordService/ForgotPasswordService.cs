@@ -4,6 +4,7 @@ using MS.Domain.Enums.GeneralCodes;
 using MS.Infrastructure.Common.Services.EmailVerifyService;
 using MS.Infrastructure.Repositories.PatientRepositories.CreatePasswordResetToken;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
+using System.Security.Cryptography;
 
 namespace MS.Application.Services.CommonServices.ForgotPasswordService
 {
@@ -96,7 +97,7 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
             {
                 return null;
             }
-            var otpCode = Random.Shared.Next(100_000, 999_999).ToString();
+            var otpCode = RandomNumberGenerator.GetInt32(0, 1_000_000).ToString("D6");
             var resetToken = new PasswordResetToken
             {
                 UserId = user.Id,
@@ -137,7 +138,7 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
         {
             return new ForgotPasswordResponse
             {
-                Message = null!
+                Message = string.Empty
             };
         }
 

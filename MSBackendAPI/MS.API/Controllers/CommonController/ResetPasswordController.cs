@@ -22,12 +22,12 @@ namespace MS.API.Controllers.CommonController
         }
 
         /// <summary>
-        /// Resets the user's password using a valid email reset token.
-        /// Validates the token, updates the password hash, and marks the token as used.
+        /// Resets the user's password using a valid password reset token (for example, a scoped reset JWT).
+        /// Validates the token and updates the user's password according to the reset policy.
         /// </summary>
-        /// <param name="request">The request containing email, token, new password, and confirmation.</param>
+        /// <param name="request">The request containing the reset token and the new password (and confirmation, if required).</param>
         /// <returns>
-        /// Returns a success message if the password was reset; otherwise returns a validation error.
+        /// Returns a success payload if the password was reset; otherwise returns a validation or error response.
         /// </returns>
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)

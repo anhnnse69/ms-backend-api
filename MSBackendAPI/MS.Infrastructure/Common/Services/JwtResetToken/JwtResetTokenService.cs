@@ -89,7 +89,11 @@ namespace MS.Infrastructure.Common.Services.JwtResetToken
                 {
                     return null;
                 }
-                return (userId, email!);
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    return null;
+                }
+                return (userId, email);
             }
             catch
             {
