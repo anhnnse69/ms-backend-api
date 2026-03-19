@@ -1,10 +1,15 @@
-﻿namespace MS.Infrastructure.EmailVerifyService
+﻿namespace MS.Infrastructure.Common.Services.EmailVerifyService
 {
     /// <summary>
     /// Defines the contract for the email sending service.
     /// </summary>
     public interface IEmailVerifyService
     {
+        /// <summary>
+        /// Builds the email subject line for an OTP password reset email.
+        /// </summary>
+        /// <returns>The subject string for the OTP email.</returns>
+        Task SendOtpEmailAsync(string toEmail, string fullName, string otpCode);
         /// <summary>
         /// Sends a password reset email containing a reset link to the specified user.
         /// </summary>

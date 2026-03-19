@@ -1,49 +1,51 @@
 ﻿using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
-using MS.Infrastructure.EmailVerifyService;
+using MS.Domain.Shared.Utility;
+using MS.Infrastructure.Common.Services.EmailVerifyService;
+using MS.Infrastructure.Common.Services.JwtResetToken;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetToken;
 using MS.Infrastructure.Repositories.PatientRepositories.ResetPasswordTransactional;
+using MS.Infrastructure.Repositories.PatientRepositories.UpdatePasswordHash;
 
 namespace MS.Application.Services.CommonServices.ResetPasswordService
 {
     /// <summary>
-    /// Handles the business logic for resetting a user's password via an email token.
-    /// Uses a transactional repository to guarantee atomicity when updating password and invalidating token.
+    /// Handles the business logic for resetting a user's password via a scoped reset JWT.
+    /// Validates the JWT, updates the password hash, and sends a security notification email.
     /// </summary>
     public class ResetPasswordService : IResetPasswordService
     {
+        private readonly IJwtResetTokenService _jwtResetTokenService;
         private readonly IGetUserByEmail _getUserByEmail;
-        private readonly IGetValidPasswordResetToken _getValidPasswordResetToken;
-        private readonly IResetPasswordTransactional _resetPasswordTransactional;
+        private readonly IUpdatePasswordHash _updatePasswordHash;
         private readonly IEmailVerifyService _emailVerifyService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResetPasswordService"/> class.
         /// </summary>
+        /// <param name="jwtResetTokenService">Service responsible for validating scoped reset JWTs.</param>
         /// <param name="getUserByEmail">Repository responsible for retrieving a user by email.</param>
-        /// <param name="getValidPasswordResetToken">Repository responsible for retrieving a valid, unused, non-expired token.</param>
-        /// <param name="resetPasswordTransactional">Repository responsible for atomically updating the password and invalidating the token.</param>
+        /// <param name="updatePasswordHash">Repository responsible for updating the user's password hash.</param>
         /// <param name="emailVerifyService">Service responsible for sending notification emails.</param>
         public ResetPasswordService(
+            IJwtResetTokenService jwtResetTokenService,
             IGetUserByEmail getUserByEmail,
-            IGetValidPasswordResetToken getValidPasswordResetToken,
-            IResetPasswordTransactional resetPasswordTransactional,
+            IUpdatePasswordHash updatePasswordHash,
             IEmailVerifyService emailVerifyService)
         {
+            _jwtResetTokenService = jwtResetTokenService;
             _getUserByEmail = getUserByEmail;
-            _getValidPasswordResetToken = getValidPasswordResetToken;
-            _resetPasswordTransactional = resetPasswordTransactional;
+            _updatePasswordHash = updatePasswordHash;
             _emailVerifyService = emailVerifyService;
         }
 
         /// <summary>
-        /// Processes the password reset request by validating the user and token,
-        /// then atomically updating the password and invalidating the token.
-        /// Sends a security notification email on success.
+        /// Processes the password reset request by validating the scoped JWT, updating the
+        /// password hash atomically, and sending a security notification email on success.
         /// </summary>
-        /// <param name="request">The request containing the email, token, and new password.</param>
+        /// <param name="request">The request containing the scoped reset JWT and new password details.</param>
         /// <returns>
         /// An <see cref="ApiResponse{T}"/> with a success message if the reset succeeded,
         /// or a failure response with the corresponding error code.
@@ -51,114 +53,124 @@ namespace MS.Application.Services.CommonServices.ResetPasswordService
         public async Task<ApiResponse<ResetPasswordResponse>> Process(ResetPasswordRequest request)
         {
             // 1. Initialize validation flags
-            bool isUserValid = true;
             bool isTokenValid = true;
-            // 2. Retrieve user and token from repositories
-            var user = await RetrieveUser(request.Email);
-            ValidateUser(user, ref isUserValid);
-            var resetToken = await RetrieveValidToken(user, request.Token, isUserValid);
-            // 3. Validate token
-            ValidateToken(resetToken, ref isTokenValid);
-            // 4. Execute atomic password reset (update password + mark token used)
-            await ExecuteResetPassword(user, resetToken, request.NewPassword, isUserValid, isTokenValid);
-            // 5. Send security notification email
-            await ExecuteSendNotification(user, isUserValid, isTokenValid);
-            // 6. Map to response
+            bool isUserValid = true;
+            // 2. Validate and decode the scoped reset JWT
+            var claims = RetrieveResetTokenClaims(request.ResetToken);
+            // 3. Validate decoded claims
+            ValidateResetTokenClaims(claims, ref isTokenValid);
+            // 4. Retrieve user from decoded email claim
+            var user = await RetrieveUserByEmail(claims, isTokenValid);
+            // 5. Validate retrieved user matches token subject
+            ValidateUserMatchesToken(user, claims, ref isUserValid);
+            // 6. Execute atomic password update
+            await ExecuteUpdatePassword(user, request.NewPassword, isTokenValid, isUserValid);
+            // 7. Send security notification email
+            await ExecuteSendNotification(user, isTokenValid, isUserValid);
+            // 8. Map to response
             var response = MapToResponse();
-            // 7. Return API response
-            return CreateResponse(response, isUserValid, isTokenValid);
+            // 9. Return API response
+            return CreateResponse(response, isTokenValid, isUserValid);
         }
 
         /// <summary>
-        /// Retrieves a user entity by their email address.
+        /// Retrieves and decodes the userId and email claims from the scoped reset JWT.
         /// </summary>
-        /// <param name="email">The email address to search for.</param>
+        /// <param name="resetToken">The signed reset JWT string to decode.</param>
+        /// <returns>A tuple of userId and email if the token is valid; otherwise null.</returns>
+        private (Guid userId, string email)? RetrieveResetTokenClaims(string resetToken)
+        {
+            return _jwtResetTokenService.ValidateResetToken(resetToken);
+        }
+
+        /// <summary>
+        /// Retrieves a user entity by the email extracted from JWT claims.
+        /// Returns null immediately if the token flag is invalid to skip unnecessary DB calls.
+        /// </summary>
+        /// <param name="claims">The decoded JWT claims containing the email address.</param>
+        /// <param name="isTokenValid">Flag indicating whether the token was successfully decoded.</param>
         /// <returns>The <see cref="User"/> if found and not deleted; otherwise null.</returns>
-        private async Task<User?> RetrieveUser(string email)
+        private async Task<User?> RetrieveUserByEmail(
+            (Guid userId, string email)? claims,
+            bool isTokenValid)
         {
-            return await _getUserByEmail.Execute(email);
-        }
-
-        /// <summary>
-        /// Retrieves a valid, unused, non-expired password reset token for the specified user.
-        /// Returns null immediately if the user flag is invalid to skip unnecessary DB calls.
-        /// </summary>
-        /// <param name="user">The user entity resolved from the email.</param>
-        /// <param name="token">The raw token string provided in the request.</param>
-        /// <param name="isUserValid">Flag indicating whether the user was successfully resolved.</param>
-        /// <returns>The matching <see cref="PasswordResetToken"/> if found; otherwise null.</returns>
-        private async Task<PasswordResetToken?> RetrieveValidToken(User? user, string token, bool isUserValid)
-        {
-            if (!isUserValid || user == null)
+            if (!isTokenValid || claims == null)
             {
                 return null;
             }
-            return await _getValidPasswordResetToken.Execute(user.Id, token);
+            return await _getUserByEmail.Execute(claims.Value.email);
         }
 
         /// <summary>
-        /// Validates whether the user exists in the system.
+        /// Validates whether the reset JWT claims are present and successfully decoded.
         /// </summary>
-        /// <param name="user">The user entity to validate.</param>
-        /// <param name="isUserValid">Validation flag; set to false if the user is null.</param>
-        private void ValidateUser(User? user, ref bool isUserValid)
+        /// <param name="claims">The decoded JWT claims to validate.</param>
+        /// <param name="isTokenValid">Validation flag; set to false if claims are null.</param>
+        private void ValidateResetTokenClaims(
+            (Guid userId, string email)? claims,
+            ref bool isTokenValid)
         {
-            if (user == null)
-            {
-                isUserValid = false;
-            }
-        }
-
-        /// <summary>
-        /// Validates whether the password reset token is valid, unused, and not expired.
-        /// </summary>
-        /// <param name="resetToken">The token entity to validate.</param>
-        /// <param name="isTokenValid">Validation flag; set to false if the token is null.</param>
-        private void ValidateToken(PasswordResetToken? resetToken, ref bool isTokenValid)
-        {
-            if (resetToken == null)
+            if (claims == null)
             {
                 isTokenValid = false;
             }
         }
 
         /// <summary>
-        /// Executes the atomic password update and token invalidation when all validation flags are valid.
-        /// Delegates to the transactional repository which wraps both operations in a single DB transaction.
+        /// Validates whether the retrieved user exists and their Id matches the JWT subject claim.
+        /// </summary>
+        /// <param name="user">The user entity resolved from the email claim.</param>
+        /// <param name="claims">The decoded JWT claims containing the userId to match against.</param>
+        /// <param name="isUserValid">Validation flag; set to false if the user is null or Id mismatches.</param>
+        private void ValidateUserMatchesToken(
+            User? user,
+            (Guid userId, string email)? claims,
+            ref bool isUserValid)
+        {
+            if (user == null || claims == null || user.Id != claims.Value.userId)
+            {
+                isUserValid = false;
+            }
+        }
+
+        /// <summary>
+        /// Executes the password hash update when all validation flags are valid.
         /// </summary>
         /// <param name="user">The user whose password will be updated.</param>
-        /// <param name="resetToken">The token to be marked as used.</param>
         /// <param name="newPassword">The plain-text new password to be hashed and stored.</param>
-        /// <param name="isUserValid">Flag indicating whether the user is valid.</param>
         /// <param name="isTokenValid">Flag indicating whether the token is valid.</param>
-        private async Task ExecuteResetPassword(
+        /// <param name="isUserValid">Flag indicating whether the user is valid.</param>
+        private async Task ExecuteUpdatePassword(
             User? user,
-            PasswordResetToken? resetToken,
             string newPassword,
-            bool isUserValid,
-            bool isTokenValid)
+            bool isTokenValid,
+            bool isUserValid)
         {
-            if (!isUserValid || !isTokenValid || user == null || resetToken == null)
+            if (!isTokenValid || !isUserValid || user == null)
             {
                 return;
             }
-            var passwordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
-            await _resetPasswordTransactional.Execute(user, passwordHash, resetToken);
+            var passwordHash = PasswordHelper.HashPassword(newPassword);
+            await _updatePasswordHash.Execute(user, passwordHash);
         }
 
         /// <summary>
         /// Executes sending of a security notification email when all validation flags are valid.
         /// </summary>
         /// <param name="user">The user to notify about the password change.</param>
-        /// <param name="isUserValid">Flag indicating whether the user is valid.</param>
         /// <param name="isTokenValid">Flag indicating whether the token is valid.</param>
-        private async Task ExecuteSendNotification(User? user, bool isUserValid, bool isTokenValid)
+        /// <param name="isUserValid">Flag indicating whether the user is valid.</param>
+        private async Task ExecuteSendNotification(
+            User? user,
+            bool isTokenValid,
+            bool isUserValid)
         {
-            if (!isUserValid || !isTokenValid || user == null)
+            if (!isTokenValid || !isUserValid || user == null)
             {
                 return;
             }
-            await _emailVerifyService.SendPasswordChangedNotificationAsync(user.Email, user.FullName);
+            await _emailVerifyService.SendPasswordChangedNotificationAsync(
+                user.Email, user.FullName);
         }
 
         /// <summary>
@@ -177,21 +189,23 @@ namespace MS.Application.Services.CommonServices.ResetPasswordService
         /// Constructs the final <see cref="ApiResponse{T}"/> based on validation flags.
         /// </summary>
         /// <param name="response">The mapped response data.</param>
+        /// <param name="isTokenValid">Flag indicating whether the reset token is valid.</param>
         /// <param name="isUserValid">Flag indicating whether the user is valid.</param>
-        /// <param name="isTokenValid">Flag indicating whether the token is valid.</param>
         /// <returns>
         /// Success response if all flags are valid; otherwise a failure response
         /// with the corresponding error code.
         /// </returns>
         private ApiResponse<ResetPasswordResponse> CreateResponse(
             ResetPasswordResponse response,
-            bool isUserValid,
-            bool isTokenValid)
+            bool isTokenValid,
+            bool isUserValid)
         {
-            if (!isUserValid)
-                return ApiResponse<ResetPasswordResponse>.Fail(MessageCode.APP_MESSAGE_4020.ToString());
             if (!isTokenValid)
-                return ApiResponse<ResetPasswordResponse>.Fail(MessageCode.APP_MESSAGE_4019.ToString());
+                return ApiResponse<ResetPasswordResponse>.Fail(
+                    MessageCode.APP_MESSAGE_4019.ToString());
+            if (!isUserValid)
+                return ApiResponse<ResetPasswordResponse>.Fail(
+                    MessageCode.APP_MESSAGE_4020.ToString());
             return ApiResponse<ResetPasswordResponse>.Success(
                 MessageCode.APP_MESSAGE_2000.ToString(), response);
         }

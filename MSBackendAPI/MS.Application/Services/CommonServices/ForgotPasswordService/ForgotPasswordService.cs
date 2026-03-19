@@ -1,14 +1,15 @@
 ﻿using MS.Application.Common.Response;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
-using MS.Infrastructure.EmailVerifyService;
+using MS.Infrastructure.Common.Services.EmailVerifyService;
 using MS.Infrastructure.Repositories.PatientRepositories.CreatePasswordResetToken;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 
 namespace MS.Application.Services.CommonServices.ForgotPasswordService
 {
     /// <summary>
-    /// Handles the business logic for initiating a password reset request.
+    /// Handles the business logic for initiating a password reset request via OTP.
+    /// Always returns a success response to prevent email enumeration attacks.
     /// </summary>
     public class ForgotPasswordService : IForgotPasswordService
     {
@@ -20,8 +21,8 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
         /// Initializes a new instance of the <see cref="ForgotPasswordService"/> class.
         /// </summary>
         /// <param name="getUserByEmail">Repository responsible for retrieving a user by email.</param>
-        /// <param name="createPasswordResetToken">Repository responsible for persisting password reset tokens.</param>
-        /// <param name="emailVerifyService">Service responsible for sending emails.</param>
+        /// <param name="createPasswordResetToken">Repository responsible for persisting OTP tokens.</param>
+        /// <param name="emailVerifyService">Service responsible for sending OTP emails.</param>
         public ForgotPasswordService(
             IGetUserByEmail getUserByEmail,
             ICreatePasswordResetToken createPasswordResetToken,
@@ -33,9 +34,9 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
         }
 
         /// <summary>
-        /// Processes the forgot password request by looking up the user, generating a reset token,
-        /// persisting it, and sending a reset link via email.
-        /// Always returns a success response regardless of whether the email exists to prevent email enumeration.
+        /// Processes the forgot password request by looking up the user, generating a 6-digit OTP,
+        /// persisting it, and sending it via email.
+        /// Always returns a success response regardless of whether the email exists.
         /// </summary>
         /// <param name="request">The request containing the user's email address.</param>
         /// <returns>
@@ -44,15 +45,15 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
         public async Task<ApiResponse<ForgotPasswordResponse>> Process(ForgotPasswordRequest request)
         {
             // 1. Initialize validation flags
-            bool isRequestValid = true;
+            bool isUserValid = true;
             // 2. Retrieve user by email
             var user = await RetrieveUserByEmail(request.Email);
             // 3. Validate retrieved user (silent — do not expose email enumeration)
-            ValidateUserExists(user, ref isRequestValid);
-            // 4. Generate and persist password reset token
-            var token = await ExecuteCreateToken(user, isRequestValid);
-            // 5. Send reset email notification
-            await ExecuteSendEmail(user, token, request.Email, isRequestValid);
+            ValidateUserExists(user, ref isUserValid);
+            // 4. Generate and persist OTP token
+            var otpCode = await ExecuteCreateOtp(user, isUserValid);
+            // 5. Send OTP email notification
+            await ExecuteSendOtpEmail(user, otpCode, request.Email, isUserValid);
             // 6. Map to response
             var response = MapToResponse();
             // 7. Return API response
@@ -73,55 +74,59 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
         /// Validates whether the user exists in the system.
         /// </summary>
         /// <param name="user">The user entity to validate.</param>
-        /// <param name="isRequestValid">Validation flag; set to false if the user is null.</param>
-        private void ValidateUserExists(User? user, ref bool isRequestValid)
+        /// <param name="isUserValid">Validation flag; set to false if the user is null.</param>
+        private void ValidateUserExists(User? user, ref bool isUserValid)
         {
             if (user == null)
             {
-                isRequestValid = false;
+                isUserValid = false;
             }
         }
 
         /// <summary>
-        /// Executes creation and persistence of a password reset token when validation passes.
+        /// Executes generation and persistence of a 6-digit OTP token when validation passes.
+        /// The OTP is valid for 5 minutes and stored as a <see cref="PasswordResetToken"/>.
         /// </summary>
-        /// <param name="user">The user for whom the token is being generated.</param>
-        /// <param name="isRequestValid">Flag indicating whether the user is valid.</param>
-        /// <returns>The generated token string if created; otherwise null.</returns>
-        private async Task<string?> ExecuteCreateToken(User? user, bool isRequestValid)
+        /// <param name="user">The user for whom the OTP is generated.</param>
+        /// <param name="isUserValid">Flag indicating whether the user is valid.</param>
+        /// <returns>The generated 6-digit OTP string if created; otherwise null.</returns>
+        private async Task<string?> ExecuteCreateOtp(User? user, bool isUserValid)
         {
-            if (!isRequestValid || user == null)
+            if (!isUserValid || user == null)
             {
                 return null;
             }
-            var tokenValue = Guid.NewGuid().ToString("N");
+            var otpCode = Random.Shared.Next(100_000, 999_999).ToString();
             var resetToken = new PasswordResetToken
             {
                 UserId = user.Id,
-                Token = tokenValue,
+                Token = otpCode,
                 CreatedAt = DateTimeOffset.UtcNow,
-                ExpiresAt = DateTimeOffset.UtcNow.AddMinutes(30),
+                ExpiresAt = DateTimeOffset.UtcNow.AddMinutes(5),
                 IsUsed = false
             };
             await _createPasswordResetToken.Execute(resetToken);
-            return tokenValue;
+            return otpCode;
         }
 
         /// <summary>
-        /// Executes sending of the password reset email when validation passes.
+        /// Executes sending of the OTP email when validation passes.
         /// </summary>
-        /// <param name="user">The user receiving the reset email.</param>
-        /// <param name="token">The generated password reset token.</param>
+        /// <param name="user">The user receiving the OTP email.</param>
+        /// <param name="otpCode">The generated OTP code to send.</param>
         /// <param name="email">The destination email address.</param>
-        /// <param name="isRequestValid">Flag indicating whether the request is valid.</param>
-        private async Task ExecuteSendEmail(User? user, string? token, string email, bool isRequestValid)
+        /// <param name="isUserValid">Flag indicating whether the request is valid.</param>
+        private async Task ExecuteSendOtpEmail(
+            User? user,
+            string? otpCode,
+            string email,
+            bool isUserValid)
         {
-            if (!isRequestValid || user == null || token == null)
+            if (!isUserValid || user == null || otpCode == null)
             {
                 return;
             }
-            var resetLink = $"https://yourdomain.com/reset-password?email={Uri.EscapeDataString(email)}&token={token}";
-            await _emailVerifyService.SendPasswordResetEmailAsync(email, user.FullName, resetLink);
+            await _emailVerifyService.SendOtpEmailAsync(email, user.FullName, otpCode);
         }
 
         /// <summary>
@@ -132,7 +137,7 @@ namespace MS.Application.Services.CommonServices.ForgotPasswordService
         {
             return new ForgotPasswordResponse
             {
-                Message = MessageCode.APP_MESSAGE_2000.ToString()
+                Message = null!
             };
         }
 

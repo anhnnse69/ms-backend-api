@@ -1,6 +1,6 @@
 ﻿using MS.Domain.Entities;
 
-namespace MS.Infrastructure.JwtService
+namespace MS.Infrastructure.Common.Services.JwtService
 {
     /// <summary>
     /// Defines a service for generating JSON Web Tokens (JWT) for authenticated users.

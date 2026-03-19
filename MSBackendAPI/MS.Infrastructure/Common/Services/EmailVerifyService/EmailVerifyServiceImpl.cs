@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MS.Domain.Enums.GeneralCodes;
 
-namespace MS.Infrastructure.EmailVerifyService
+namespace MS.Infrastructure.Common.Services.EmailVerifyService
 {
     /// <summary>
     /// Provides email sending functionality for password reset and security notification workflows.
@@ -21,6 +21,75 @@ namespace MS.Infrastructure.EmailVerifyService
         public EmailVerifyServiceImpl(IConfiguration configuration)
         {
             _configuration = configuration;
+        }
+
+        /// <summary>
+        /// Sends a 6-digit OTP code to the specified user for password reset verification.
+        /// Throws an exception with <see cref="MessageCode.APP_MESSAGE_5003"/> code if the send operation fails.
+        /// </summary>
+        /// <param name="toEmail">The recipient email address.</param>
+        /// <param name="fullName">The full name of the recipient used in the email body.</param>
+        /// <param name="otpCode">The 6-digit OTP code to include in the email.</param>
+        /// <returns>A task representing the asynchronous send operation.</returns>
+        public async Task SendOtpEmailAsync(string toEmail, string fullName, string otpCode)
+        {
+            var subject = BuildOtpSubject();
+            var body = BuildOtpEmailBody(fullName, otpCode);
+            await SendEmailAsync(toEmail, fullName, subject, body);
+        }
+
+        /// <summary>
+        /// Builds the email subject line for an OTP password reset email.
+        /// </summary>
+        /// <returns>The subject string for the OTP email.</returns>
+        private string BuildOtpSubject()
+        {
+            return "[MS] Your Password Reset OTP Code";
+        }
+
+        /// <summary>
+        /// Builds the HTML email body containing the 6-digit OTP code.
+        /// </summary>
+        /// <param name="fullName">The recipient's full name to personalize the message.</param>
+        /// <param name="otpCode">The 6-digit OTP code to embed in the email.</param>
+        /// <returns>An HTML string representing the OTP email body.</returns>
+        private string BuildOtpEmailBody(string fullName, string otpCode)
+        {
+            return $@"
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=""UTF-8"" />
+  <style>
+    body {{ font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }}
+    .container {{ max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 8px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
+    .header {{ font-size: 22px; font-weight: bold; color: #2c3e50; margin-bottom: 16px; }}
+    .body-text {{ font-size: 15px; color: #444444; line-height: 1.6; }}
+    .otp-box {{ margin: 24px 0; text-align: center; font-size: 36px; font-weight: bold; letter-spacing: 12px; color: #3498db; background: #eaf4fb; padding: 20px; border-radius: 8px; }}
+    .warning {{ margin-top: 16px; font-size: 13px; color: #e74c3c; }}
+    .footer {{ margin-top: 32px; font-size: 12px; color: #aaaaaa; }}
+  </style>
+</head>
+<body>
+  <div class=""container"">
+    <div class=""header"">Password Reset OTP</div>
+    <div class=""body-text"">
+      Hello <strong>{fullName}</strong>,<br /><br />
+      Use the OTP code below to reset your password.
+      This code will expire in <strong>5 minutes</strong>.
+    </div>
+    <div class=""otp-box"">{otpCode}</div>
+    <div class=""warning"">
+      If you did not request a password reset, please ignore this email.
+      Your password will not be changed.
+    </div>
+    <div class=""footer"">
+      This is an automated message from the MS Medical Scheduling System.
+      Please do not reply to this email.
+    </div>
+  </div>
+</body>
+</html>";
         }
 
         /// <summary>

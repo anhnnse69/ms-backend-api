@@ -5,19 +5,14 @@ using System.ComponentModel.DataAnnotations;
 namespace MS.Application.Services.CommonServices.ResetPasswordService
 {
     /// <summary>
-    /// Represents the request payload for resetting a user's password via email token.
+    /// Represents the request payload for resetting a user's password via a scoped reset JWT.
     /// </summary>
     public class ResetPasswordRequest
     {
-        /// <summary>The email address of the user requesting the password reset.</summary>
-        [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        [EmailAddress(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
-        public string Email { get; set; }
-
-        /// <summary>The password reset token received via email.</summary>
+        /// <summary>The short-lived scoped reset JWT issued by the verify-otp endpoint.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
         [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
-        public string Token { get; set; }
+        public string ResetToken { get; set; }
 
         /// <summary>The new password to be set for the user account.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]

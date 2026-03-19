@@ -8,9 +8,9 @@ namespace MS.Application.Services.CommonServices.ResetPasswordService
     public interface IResetPasswordService
     {
         /// <summary>
-        /// Processes the request to reset a user's password using a valid reset token.
+        /// Processes the request to reset a user's password using a valid scoped reset JWT.
         /// </summary>
-        /// <param name="request">The request containing the email, token, and new password details.</param>
+        /// <param name="request">The request containing the scoped reset JWT and new password details.</param>
         /// <returns>
         /// An <see cref="ApiResponse{T}"/> containing a <see cref="ResetPasswordResponse"/>
         /// with a confirmation message on success, or an error response if validation fails.
