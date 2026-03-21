@@ -181,7 +181,7 @@ namespace MS.Application.Services.PatientServices.DeleteFavoriteService
             if (!isPatientValid)
                 return ApiResponse<DeleteFavoriteResponse>.Fail(MessageCode.APP_MESSAGE_4010.ToString());
             if (!isFavoriteValid)
-                return ApiResponse<DeleteFavoriteResponse>.Fail(MessageCode.APP_MESSAGE_4012.ToString());
+                return ApiResponse<DeleteFavoriteResponse>.Fail(MessageCode.APP_MESSAGE_4000.ToString());
             if (!isOwnerValid)
                 return ApiResponse<DeleteFavoriteResponse>.Fail(MessageCode.APP_MESSAGE_4014.ToString());
             return ApiResponse<DeleteFavoriteResponse>.Success(
