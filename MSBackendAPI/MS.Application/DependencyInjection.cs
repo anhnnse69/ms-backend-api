@@ -41,10 +41,13 @@ using MS.Application.Services.ManagerServices.GetFacilityPerformanceReportServic
 using MS.Application.Services.ManagerServices.PendingAppointmentPatientService;
 using MS.Application.Services.ManagerServices.SendNotificationService;
 using MS.Application.Services.ManagerServices.UpdateFacilityService;
+using MS.Application.Services.PatientServices.AddFavoriteService;
 using MS.Application.Services.PatientServices.BookAppointmentService;
 using MS.Application.Services.PatientServices.CancelAppointmentService;
 using MS.Application.Services.PatientServices.ChangePasswordService;
+using MS.Application.Services.PatientServices.DeleteFavoriteService;
 using MS.Application.Services.PatientServices.GetDoctorDetailService;
+using MS.Application.Services.PatientServices.GetFavoritesService;
 using MS.Application.Services.PatientServices.GetPatientAppointment;
 using MS.Application.Services.PatientServices.GetUserProfileService;
 using MS.Application.Services.PatientServices.SearchDoctorService;
@@ -120,6 +123,9 @@ namespace MS.Application
             services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
             services.AddScoped<IResetPasswordService, ResetPasswordService>();
             services.AddScoped<IVerifyOtpService, VerifyOtpService>();
+            services.AddScoped<IAddFavoriteService, AddFavoriteService>();
+            services.AddScoped<IDeleteFavoriteService, DeleteFavoriteService>();
+            services.AddScoped<IGetFavoritesService, GetFavoritesService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;

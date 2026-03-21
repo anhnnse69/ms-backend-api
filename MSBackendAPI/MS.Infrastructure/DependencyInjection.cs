@@ -46,6 +46,7 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetFacilityIdByManagerI
 using MS.Infrastructure.Repositories.ManagerRepositories.GetPendingAppointmentPatient;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
+using MS.Infrastructure.Repositories.PatientRepositories.AddFavorite;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
@@ -56,9 +57,12 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorWithDetail;
 using MS.Infrastructure.Repositories.PatientRepositories.GetExistingReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetFacilityForBooking;
+using MS.Infrastructure.Repositories.PatientRepositories.GetFavoriteById;
+using MS.Infrastructure.Repositories.PatientRepositories.GetFavoriteByTarget;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserId;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserIdForReview;
+using MS.Infrastructure.Repositories.PatientRepositories.GetPatientFavorites;
 using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
@@ -66,7 +70,9 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetTo
 using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetTokenByOtp;
 using MS.Infrastructure.Repositories.PatientRepositories.MarkOtpUsed;
 using MS.Infrastructure.Repositories.PatientRepositories.ResetPasswordTransactional;
+using MS.Infrastructure.Repositories.PatientRepositories.RestoreFavorite;
 using MS.Infrastructure.Repositories.PatientRepositories.SearchDoctor;
+using MS.Infrastructure.Repositories.PatientRepositories.SoftDeleteFavorite;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePasswordHash;
@@ -166,6 +172,12 @@ namespace MS.Infrastructure
             services.AddScoped<IMarkOtpUsed, MarkOtpUsedImpl>();
             services.AddScoped<IUpdatePasswordHash, UpdatePasswordHashImpl>();
             services.AddScoped<IGetFacilityIdByManagerId, GetFacilityIdByManagerIdImpl>();
+            services.AddScoped<IGetFavoriteByTarget, GetFavoriteByTargetImpl>();
+            services.AddScoped<IAddFavorite, AddFavoriteImpl>();
+            services.AddScoped<IRestoreFavorite, RestoreFavoriteImpl>();
+            services.AddScoped<IGetFavoriteById, GetFavoriteByIdImpl>();
+            services.AddScoped<ISoftDeleteFavorite, SoftDeleteFavoriteImpl>();
+            services.AddScoped<IGetPatientFavorites, GetPatientFavoritesImpl>();
             return services;
         }
     }
