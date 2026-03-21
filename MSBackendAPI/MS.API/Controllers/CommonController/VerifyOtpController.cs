@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.CommonServices.VerifyOtpService;
 
 namespace MS.API.Controllers.CommonController
@@ -8,6 +9,7 @@ namespace MS.API.Controllers.CommonController
     /// </summary>
     [ApiController]
     [Route("api/v1/auth")]
+    [AllowAnonymous]
     public class VerifyOtpController : ControllerBase
     {
         private readonly IVerifyOtpService _verifyOtpService;

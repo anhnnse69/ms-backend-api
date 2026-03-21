@@ -67,6 +67,8 @@ namespace MS.Infrastructure.Common.Services.JwtResetToken
                 var key = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!));
                 var handler = new JwtSecurityTokenHandler();
+                handler.InboundClaimTypeMap.Clear();
+
                 var principal = handler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -78,6 +80,10 @@ namespace MS.Infrastructure.Common.Services.JwtResetToken
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
                 }, out _);
+                foreach (var claim in principal.Claims)
+                {
+                    Console.WriteLine($"[DEBUG CLAIM] Type: {claim.Type} | Value: {claim.Value}");
+                }
                 var scope = principal.FindFirst("scope")?.Value;
                 if (scope != "password_reset")
                 {
@@ -85,18 +91,20 @@ namespace MS.Infrastructure.Common.Services.JwtResetToken
                 }
                 var userIdStr = principal.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
                 var email = principal.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
-                if (!Guid.TryParse(userIdStr, out var userId))
-                {
-                    return null;
-                }
-                if (string.IsNullOrWhiteSpace(email))
-                {
-                    return null;
-                }
+
+                if (!Guid.TryParse(userIdStr, out var userId)) return null;
+                if (string.IsNullOrWhiteSpace(email)) return null;
+
                 return (userId, email);
             }
-            catch
+            catch (SecurityTokenExpiredException ex)
             {
+                Console.WriteLine($"[DEBUG-EXPIRED] {ex.Expires} vs Now {DateTime.UtcNow}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[DEBUG-EXCEPTION] {ex.GetType().Name}: {ex.Message}");
                 return null;
             }
         }

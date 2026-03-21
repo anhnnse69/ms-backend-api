@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MS.Application.Services.CommonServices.ResetPasswordService;
 
 namespace MS.API.Controllers.CommonController
@@ -8,6 +9,7 @@ namespace MS.API.Controllers.CommonController
     /// </summary>
     [ApiController]
     [Route("api/v1/auth")]
+    [AllowAnonymous]
     public class ResetPasswordController : ControllerBase
     {
         private readonly IResetPasswordService _resetPasswordService;

@@ -15,6 +15,7 @@ namespace MS.API.Controllers.CommonController
     /// part of the application's API layer. All routes are prefixed with 'api/v1/auth'.</remarks>
     [Route("api/v1/auth")]
     [ApiController]
+    [AllowAnonymous]
     public class LoginController : ControllerBase
     {
         private readonly ILogger<LoginController> _logger;
@@ -39,7 +40,6 @@ namespace MS.API.Controllers.CommonController
         /// <returns>An <see cref="IActionResult"/> containing the result of the login operation. Returns a 200 OK response with
         /// the authentication result if successful; otherwise, returns a 400 Bad Request if the input is invalid.</returns>
         [HttpPost("login")]
-        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)

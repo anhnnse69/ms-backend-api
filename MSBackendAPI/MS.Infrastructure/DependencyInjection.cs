@@ -42,6 +42,7 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentsForRepor
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetFacilityIdByManagerId;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetPendingAppointmentPatient;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
@@ -162,8 +163,9 @@ namespace MS.Infrastructure
             services.AddScoped<IGetValidPasswordResetToken, GetValidPasswordResetTokenImpl>();
             services.AddScoped<IGetValidPasswordResetTokenByOtp, GetValidPasswordResetTokenByOtpImpl>();
             services.AddScoped<IResetPasswordTransactional, ResetPasswordTransactionalImpl>();
-            services.AddScopedIMarkOtpUsed, MarkOtpUsedImpl>();
+            services.AddScoped<IMarkOtpUsed, MarkOtpUsedImpl>();
             services.AddScoped<IUpdatePasswordHash, UpdatePasswordHashImpl>();
+            services.AddScoped<IGetFacilityIdByManagerId, GetFacilityIdByManagerIdImpl>();
             return services;
         }
     }
