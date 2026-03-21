@@ -4,7 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MS.Application.Services.AdminServices.GetDoctorById;
 using MS.Infrastructure.Common.Contracts;
 using MS.Infrastructure.Common.Contracts.Interfaces;
-using MS.Infrastructure.JwtService;
+using MS.Infrastructure.Common.Services.EmailVerifyService;
+using MS.Infrastructure.Common.Services.JwtResetToken;
+using MS.Infrastructure.Common.Services.JwtService;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateDoctor;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
@@ -40,12 +42,14 @@ using MS.Infrastructure.Repositories.ManagerRepositories.GetAppointmentsForRepor
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorDetailByFacility;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetDoctorScheduleByFacility;
+using MS.Infrastructure.Repositories.ManagerRepositories.GetFacilityIdByManagerId;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetPendingAppointmentPatient;
 using MS.Infrastructure.Repositories.ManagerRepositories.GetSpecialtiesByFacilityId;
 using MS.Infrastructure.Repositories.ManagerRepositories.SendNotification;
 using MS.Infrastructure.Repositories.PatientRepositories.CancelAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateNewAccount;
+using MS.Infrastructure.Repositories.PatientRepositories.CreatePasswordResetToken;
 using MS.Infrastructure.Repositories.PatientRepositories.CreateReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetAppointmentForReview;
 using MS.Infrastructure.Repositories.PatientRepositories.GetDoctorForBooking;
@@ -58,9 +62,14 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserIdForRe
 using MS.Infrastructure.Repositories.PatientRepositories.GetProfileById;
 using MS.Infrastructure.Repositories.PatientRepositories.GetSpecialtyForBooking;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
+using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetToken;
+using MS.Infrastructure.Repositories.PatientRepositories.GetValidPasswordResetTokenByOtp;
+using MS.Infrastructure.Repositories.PatientRepositories.MarkOtpUsed;
+using MS.Infrastructure.Repositories.PatientRepositories.ResetPasswordTransactional;
 using MS.Infrastructure.Repositories.PatientRepositories.SearchDoctor;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateAppointment;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdatePassword;
+using MS.Infrastructure.Repositories.PatientRepositories.UpdatePasswordHash;
 using MS.Infrastructure.Repositories.PatientRepositories.UpdateUserProfile;
 
 namespace MS.Infrastructure
@@ -88,6 +97,8 @@ namespace MS.Infrastructure
             services.AddScoped<IUnitOfWork<AppDbContext>, UnitOfWork<AppDbContext>>();
             // Register Infrastructure Services (e.g., JWT, Guid services)
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IJwtResetTokenService, JwtResetTokenService>();
+            services.AddScoped<IEmailVerifyService, EmailVerifyServiceImpl>();
             services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             // Register Repositories for data access
             // services.AddScoped<IPatientRepository, PatientRepository>();
@@ -148,6 +159,13 @@ namespace MS.Infrastructure
             services.AddScoped<ICreateReview, CreateReviewImpl>();
             services.AddScoped<IGetDoctorWithDetail, GetDoctorWithDetailImpl>();
             services.AddScoped<ISearchDoctor, SearchDoctorImpl>();
+            services.AddScoped<ICreatePasswordResetToken, CreatePasswordResetTokenImpl>();
+            services.AddScoped<IGetValidPasswordResetToken, GetValidPasswordResetTokenImpl>();
+            services.AddScoped<IGetValidPasswordResetTokenByOtp, GetValidPasswordResetTokenByOtpImpl>();
+            services.AddScoped<IResetPasswordTransactional, ResetPasswordTransactionalImpl>();
+            services.AddScoped<IMarkOtpUsed, MarkOtpUsedImpl>();
+            services.AddScoped<IUpdatePasswordHash, UpdatePasswordHashImpl>();
+            services.AddScoped<IGetFacilityIdByManagerId, GetFacilityIdByManagerIdImpl>();
             return services;
         }
     }

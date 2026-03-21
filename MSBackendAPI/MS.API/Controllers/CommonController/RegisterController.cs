@@ -17,6 +17,7 @@ namespace MS.API.Controllers.CommonController
     /// </remarks>
     [Route("api/v1/auth")]
     [ApiController]
+    [AllowAnonymous]
     public class RegisterController : ControllerBase
     {
         private readonly ILogger<RegisterController> _logger;
@@ -47,7 +48,6 @@ namespace MS.API.Controllers.CommonController
         /// otherwise, returns a 400 Bad Request if the input is invalid or email already exists.
         /// </returns>
         [HttpPost("register")]
-        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
         {
             if (!ModelState.IsValid)

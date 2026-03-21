@@ -18,8 +18,11 @@ using MS.Application.Services.AdminServices.UpdateDoctorService;
 using MS.Application.Services.AdminServices.UpdateFacilityService;
 using MS.Application.Services.AdminServices.UpdateSpecialtyService;
 using MS.Application.Services.AdminServices.UpdateUserService;
+using MS.Application.Services.CommonServices.ForgotPasswordService;
 using MS.Application.Services.CommonServices.LoginService;
 using MS.Application.Services.CommonServices.RegisterService;
+using MS.Application.Services.CommonServices.ResetPasswordService;
+using MS.Application.Services.CommonServices.VerifyOtpService;
 using MS.Application.Services.DoctorDetailByFacilityService;
 using MS.Application.Services.Doctors.GetDoctorAppointmentService;
 using MS.Application.Services.Doctors.GetDoctorAvailabilityService;
@@ -114,6 +117,9 @@ namespace MS.Application
             services.AddScoped<ISubmitReviewService, SubmitReviewService>();
             services.AddScoped<IGetDoctorDetailService, GetDoctorDetailService>();
             services.AddScoped<ISearchDoctorService, SearchDoctorService>();
+            services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
+            services.AddScoped<IResetPasswordService, ResetPasswordService>();
+            services.AddScoped<IVerifyOtpService, VerifyOtpService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;

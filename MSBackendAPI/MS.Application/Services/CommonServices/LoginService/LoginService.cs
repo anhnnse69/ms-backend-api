@@ -2,7 +2,7 @@
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Domain.Shared.Utility;
-using MS.Infrastructure.JwtService;
+using MS.Infrastructure.Common.Services.JwtService;
 using MS.Infrastructure.Repositories.PatientRepositories.GetUserByEmail;
 
 namespace MS.Application.Services.CommonServices.LoginService

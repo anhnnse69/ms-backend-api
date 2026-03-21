@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using MS.Domain.Entities;
 
-namespace MS.Infrastructure.JwtService
+namespace MS.Infrastructure.Common.Services.JwtService
 {
     /// <summary>
     /// Provides functionality for generating JSON Web Tokens (JWT) for authenticated users.
