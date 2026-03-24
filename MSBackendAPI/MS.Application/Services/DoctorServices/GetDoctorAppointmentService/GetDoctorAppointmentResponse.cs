@@ -24,5 +24,8 @@ namespace MS.Application.Services.Doctors.GetDoctorAppointmentService
 
         // Notes of the appointment
         public string? Notes { get; set; }
+
+        public string PatientPhoneNumber { get; set; }
+        public string PatientIdentityCard { get; set; }
     }
 }

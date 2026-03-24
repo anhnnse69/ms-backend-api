@@ -149,7 +149,10 @@ namespace MS.Application.Services.Doctors.GetDoctorAppointmentService
                 // Appointment status
                 Status = x.Status,
                 // Appointment notes
-                Notes = x.Notes
+                Notes = x.Notes,
+
+                PatientPhoneNumber = x.Patient?.PhoneNumber,
+                PatientIdentityCard = x.Patient?.IdentityCard
             });
         }
 
