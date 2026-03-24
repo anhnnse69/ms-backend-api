@@ -31,6 +31,7 @@ using MS.Application.Services.DoctorScheduleService;
 using MS.Application.Services.DoctorServices.ConfirmDoctorAppointmentService;
 using MS.Application.Services.DoctorServices.CreateMedicalRecordService;
 using MS.Application.Services.DoctorServices.GetDoctorPatientInfoService;
+using MS.Application.Services.DoctorServices.GetMedicalRecordService;
 using MS.Application.Services.DoctorServices.RejectDoctorAppointmentService;
 using MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusService;
 using MS.Application.Services.DoctorServices.UpdateDoctorMedicalRecordService;
@@ -130,6 +131,7 @@ namespace MS.Application
             services.AddScoped<IGetFavoritesService, GetFavoritesService>();
             services.AddScoped<ICreateMomoPaymentService, CreateMomoPaymentService>();
             services.AddScoped<IGetWeatherService, GetWeatherService>();
+            services.AddScoped<IGetMedicalRecordService, GetMedicalRecordService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;
