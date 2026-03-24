@@ -5,6 +5,8 @@
     /// </summary>
     public class GetAllSpecialtiesResponse
     {
+        /// Specialty ID
+        public Guid Id { get; set; }
         /// Vietnamese name
         public string NameVi { get; set; }
 
