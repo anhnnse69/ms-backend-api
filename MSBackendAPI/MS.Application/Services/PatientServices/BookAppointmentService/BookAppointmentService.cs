@@ -190,6 +190,8 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
             {
                 return null;
             }
+            // Retrieve doctor again to access the configured booking deposit amount
+            var doctor = await RetrieveDoctor(request.DoctorId);
             var appointment = new Appointment
             {
                 PatientId = patient!.Id,
@@ -198,6 +200,11 @@ namespace MS.Application.Services.PatientServices.BookAppointmentService
                 DoctorId = request.DoctorId,
                 AppointmentTime = request.AppointmentTime,
                 Notes = request.Notes,
+                // Copy per-doctor deposit to the appointment so that
+                // the required amount is frozen at booking time.
+                DepositAmount = doctor?.BookingDepositAmount,
+                IsDepositPaid = false,
+                PaymentMethod = null,
                 Status = AppointmentStatus.PendingConfirmation,
                 CreateBy = patient.Id.ToString()
             };

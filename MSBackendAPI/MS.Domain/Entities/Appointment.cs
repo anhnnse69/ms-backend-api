@@ -24,6 +24,22 @@ namespace MS.Domain.Entities
         public DateTimeOffset AppointmentTime { get; set; }
         public string? Notes { get; set; }
         public AppointmentStatus Status { get; set; }
+        /// <summary>
+        /// Deposit amount applied at the time of booking (copied from Doctor.BookingDepositAmount).
+        /// </summary>
+        public decimal? DepositAmount { get; set; }
+        /// <summary>
+        /// Indicates whether the required deposit has been successfully paid.
+        /// </summary>
+        public bool IsDepositPaid { get; set; }
+        /// <summary>
+        /// Payment method used for the deposit (e.g., "MoMo", "Hospital").
+        /// </summary>
+        public string? PaymentMethod { get; set; }
+        /// <summary>
+        /// External transaction identifier returned by the payment provider (e.g., MoMo orderId).
+        /// </summary>
+        public string? PaymentTransactionId { get; set; }
         public MedicalRecord? MedicalRecord { get; set; }
         public DateTimeOffset? CancelledAt { get; set; }
         public string? CancellationReason { get; set; }

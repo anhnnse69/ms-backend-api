@@ -34,6 +34,7 @@ namespace MS.Infrastructure.Persistence
             SeedData.SpecialtySeed.Seed(modelBuilder);
             SeedData.FacilitySeed.Seed(modelBuilder);
             SeedData.DoctorSeed.Seed(modelBuilder);
+            SeedData.DoctorFacilitySeed.Seed(modelBuilder);
             SeedData.PatientSeed.Seed(modelBuilder);
             SeedData.UserSeed.Seed(modelBuilder);
         }

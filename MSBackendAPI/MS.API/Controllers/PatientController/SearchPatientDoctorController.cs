@@ -9,7 +9,7 @@ namespace MS.API.Controllers.PatientController
     /// </summary>
     [ApiController]
     [Route("api/v1/patient/doctors")]
-    [Authorize(Roles = "Patient")]
+    [AllowAnonymous]
     public class SearchPatientDoctorController : ControllerBase
     {
         private readonly ISearchDoctorService _searchDoctorService;

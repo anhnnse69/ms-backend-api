@@ -47,8 +47,19 @@ namespace MS.Infrastructure.Common.Services.JwtService
             // 2. Create claims
             var claims = new List<Claim>
             {
+                // User identifier
                 new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+
+                // Role
                 new Claim(ClaimTypes.Role, user.Role.ToString()),
+
+                // Basic profile information for frontend display
+                new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
+                new Claim("UserName", user.Username ?? string.Empty),
+                new Claim("FullName", user.FullName ?? string.Empty),
+                new Claim("DisplayName", user.DisplayName ?? string.Empty),
+
+                // Token id
                 new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
             // 3. Create signing key

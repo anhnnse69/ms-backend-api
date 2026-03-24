@@ -7,6 +7,7 @@ using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.Common.Services.EmailVerifyService;
 using MS.Infrastructure.Common.Services.JwtResetToken;
 using MS.Infrastructure.Common.Services.JwtService;
+using MS.Infrastructure.Common.Services.MomoPaymentService;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateDoctor;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
@@ -105,6 +106,7 @@ namespace MS.Infrastructure
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IJwtResetTokenService, JwtResetTokenService>();
             services.AddScoped<IEmailVerifyService, EmailVerifyServiceImpl>();
+            services.AddScoped<IMomoPaymentService, MomoPaymentService>();
             services.AddScoped<IGetUserByEmail, GetUserByEmailImpl>();
             // Register Repositories for data access
             // services.AddScoped<IPatientRepository, PatientRepository>();
