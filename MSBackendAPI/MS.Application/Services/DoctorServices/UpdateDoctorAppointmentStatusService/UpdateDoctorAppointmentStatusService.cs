@@ -155,6 +155,7 @@ namespace MS.Application.Services.DoctorServices.UpdateDoctorAppointmentStatusSe
                     newStatus == AppointmentStatus.Cancelled,
                 AppointmentStatus.Confirmed =>
                     newStatus == AppointmentStatus.CheckedIn ||
+                    newStatus == AppointmentStatus.InProgress ||
                     newStatus == AppointmentStatus.Cancelled ||
                     newStatus == AppointmentStatus.NoShow,
                 AppointmentStatus.CheckedIn =>
