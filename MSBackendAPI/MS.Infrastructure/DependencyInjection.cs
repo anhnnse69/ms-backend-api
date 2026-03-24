@@ -7,6 +7,7 @@ using MS.Infrastructure.Common.Contracts.Interfaces;
 using MS.Infrastructure.Common.Services.EmailVerifyService;
 using MS.Infrastructure.Common.Services.JwtResetToken;
 using MS.Infrastructure.Common.Services.JwtService;
+using MS.Infrastructure.ExternalServices.Weather;
 using MS.Infrastructure.Persistence;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateDoctor;
 using MS.Infrastructure.Repositories.AdminRepositories.CreateFacility;
@@ -178,6 +179,7 @@ namespace MS.Infrastructure
             services.AddScoped<IGetFavoriteById, GetFavoriteByIdImpl>();
             services.AddScoped<ISoftDeleteFavorite, SoftDeleteFavoriteImpl>();
             services.AddScoped<IGetPatientFavorites, GetPatientFavoritesImpl>();
+            services.AddHttpClient<IGetWeatherExternal, GetWeatherExternalImpl>();
             return services;
         }
     }
