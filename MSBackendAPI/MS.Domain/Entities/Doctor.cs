@@ -27,6 +27,12 @@ namespace MS.Domain.Entities
         public string PhoneNumber { get; set; }
         public int YearsOfExperience { get; set; }
 
+        /// <summary>
+        /// Deposit amount required to book an appointment with this doctor.
+        /// This value is copied to each appointment at booking time.
+        /// </summary>
+        public decimal? BookingDepositAmount { get; set; }
+
         public ICollection<DoctorFacility> Facilities { get; set; } = new List<DoctorFacility>();
         public ICollection<DoctorAvailability> Availabilities { get; set; } = new List<DoctorAvailability>();
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();

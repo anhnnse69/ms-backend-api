@@ -51,6 +51,9 @@ namespace MS.Infrastructure.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal?>("DepositAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid?>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
@@ -58,6 +61,9 @@ namespace MS.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDepositPaid")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
@@ -71,6 +77,12 @@ namespace MS.Infrastructure.Migrations
 
                     b.Property<Guid>("PatientId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentTransactionId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("SpecialtyId")
                         .HasColumnType("uniqueidentifier");
@@ -117,6 +129,9 @@ namespace MS.Infrastructure.Migrations
 
                     b.Property<string>("BioVi")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("BookingDepositAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CreateBy")
                         .IsRequired()
@@ -191,6 +206,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.7999999999999998,
                             BioEn = "Internal medicine specialist with 15 years experience",
                             BioVi = "Bác sĩ chuyên khoa nội, 15 năm kinh nghiệm",
+                            BookingDepositAmount = 150000m,
                             CreateBy = "system",
                             CreateDate = new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Dr. John Doe",
@@ -214,6 +230,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.9000000000000004,
                             BioEn = "Cardiologist with 12 years experience",
                             BioVi = "Bác sĩ chuyên khoa tim mạch, 12 năm kinh nghiệm",
+                            BookingDepositAmount = 200000m,
                             CreateBy = "system",
                             CreateDate = new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Dr. Nguyễn Văn Anh",
@@ -236,6 +253,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 4.7000000000000002,
                             BioEn = "Pediatrician with 8 years experience",
                             BioVi = "Bác sĩ nhi khoa, 8 năm kinh nghiệm",
+                            BookingDepositAmount = 100000m,
                             CreateBy = "system",
                             CreateDate = new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Dr. Trần Hương",
@@ -258,6 +276,7 @@ namespace MS.Infrastructure.Migrations
                             AverageRating = 5.0,
                             BioEn = "Leading neurologist specialist",
                             BioVi = "Bác sĩ thần kinh, chuyên gia hàng đầu",
+                            BookingDepositAmount = 250000m,
                             CreateBy = "system",
                             CreateDate = new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DisplayName = "Dr. Lê Minh Tân",
@@ -349,6 +368,36 @@ namespace MS.Infrastructure.Migrations
                     b.HasIndex("FacilityId");
 
                     b.ToTable("DoctorFacilities");
+
+                    b.HasData(
+                        new
+                        {
+                            DoctorId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            FacilityId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            AssignedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPrimary = true
+                        },
+                        new
+                        {
+                            DoctorId = new Guid("11111111-1111-1111-1111-111111111112"),
+                            FacilityId = new Guid("33333333-3333-3333-3333-333333333334"),
+                            AssignedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPrimary = true
+                        },
+                        new
+                        {
+                            DoctorId = new Guid("11111111-1111-1111-1111-111111111113"),
+                            FacilityId = new Guid("33333333-3333-3333-3333-333333333335"),
+                            AssignedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPrimary = true
+                        },
+                        new
+                        {
+                            DoctorId = new Guid("11111111-1111-1111-1111-111111111114"),
+                            FacilityId = new Guid("33333333-3333-3333-3333-333333333336"),
+                            AssignedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsPrimary = true
+                        });
                 });
 
             modelBuilder.Entity("MS.Domain.Entities.DoctorLanguage", b =>
@@ -1245,7 +1294,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Administrator",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$hPHQDm2zqM20YuL2T6102uF401WQA2yQqNvjrbZ5mjQ/iiMErbkU2",
+                            PasswordHash = "$2a$12$AQ49Na2iSYHTy9/PW/aYeegDufyC8h.EtlCQqp9r6AAyDrruo1Oja",
                             PhoneNumber = "0999999999",
                             Role = 1,
                             Username = "admin"
@@ -1262,7 +1311,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Quản Lý Một",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$eWFpC9udI9eKvNZcH98QRecitNj9ZZDlrCzIw6AxmbfNChloCwJPO",
+                            PasswordHash = "$2a$12$lorR67sFmUHL4EGPPkqP1.d.vDoIB7VPKY1.gEU7MYpS2MuI6awoa",
                             PhoneNumber = "0987654311",
                             Role = 2,
                             Username = "manager1"
@@ -1279,7 +1328,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "John Doe",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$7HF8XZ62WQJG3dBpS5O9xOeBKcUOB5cFvZ4.CJlxiXRO5mP6CRfBK",
+                            PasswordHash = "$2a$12$f3sdOLkaHEpqxxV2mndJ.enItigjIJfjRK2XpOdT9iDtJ6EVKUxPy",
                             PhoneNumber = "0123456789",
                             Role = 4,
                             Username = "doctor1"
@@ -1295,7 +1344,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Nguyễn Văn A",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$tfznODrP8SZ4QDk.duH5DekqHENNxQR/.EbdgNly9pQWb0vPGzvCa",
+                            PasswordHash = "$2a$12$Whf3wkGONr6sbCfqCmgwBe6UbC2.LmLoeoQyD0mMuV/I.rjK757F2",
                             PhoneNumber = "0901234567",
                             Role = 3,
                             Username = "patient1"
@@ -1311,7 +1360,7 @@ namespace MS.Infrastructure.Migrations
                             FullName = "Trần Thị B",
                             IsDeleted = false,
                             LastModifiedBy = "system",
-                            PasswordHash = "$2a$12$gNDwCG/PxYSCWZ9p6UrWLuAy/57H/WzKfSo05UhaidjRN72hS7XzS",
+                            PasswordHash = "$2a$12$XNt2L0zjf4HgJQRHXd.PC.D4qbFdookQbROfBzyPi5kzhyur3Zrw6",
                             PhoneNumber = "0912345678",
                             Role = 3,
                             Username = "patient2"

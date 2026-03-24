@@ -165,6 +165,7 @@ namespace MS.Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     YearsOfExperience = table.Column<int>(type: "int", nullable: false),
+                    BookingDepositAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -340,6 +341,10 @@ namespace MS.Infrastructure.Migrations
                     AppointmentTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    DepositAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    IsDepositPaid = table.Column<bool>(type: "bit", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentTransactionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CancelledAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     CancellationReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -590,19 +595,19 @@ namespace MS.Infrastructure.Migrations
                 columns: new[] { "Id", "AvatarUrl", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FacilityId", "FullName", "IsDeleted", "LastLoginAt", "LastModifiedBy", "LastModifiedDate", "PasswordHash", "PhoneNumber", "Role", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("55555555-5555-5555-5555-555555555555"), "/assets/images/users/admin.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Admin User", "admin@example.com", null, "Administrator", false, null, "system", null, "$2a$12$hPHQDm2zqM20YuL2T6102uF401WQA2yQqNvjrbZ5mjQ/iiMErbkU2", "0999999999", 1, "admin" },
-                    { new Guid("55555555-5555-5555-5555-555555555558"), "/assets/images/users/patient1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Nguyễn Văn A", "nguyenvana@example.com", null, "Nguyễn Văn A", false, null, "system", null, "$2a$12$tfznODrP8SZ4QDk.duH5DekqHENNxQR/.EbdgNly9pQWb0vPGzvCa", "0901234567", 3, "patient1" },
-                    { new Guid("55555555-5555-5555-5555-555555555559"), "/assets/images/users/patient2.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Trần Thị B", "tranthib@example.com", null, "Trần Thị B", false, null, "system", null, "$2a$12$gNDwCG/PxYSCWZ9p6UrWLuAy/57H/WzKfSo05UhaidjRN72hS7XzS", "0912345678", 3, "patient2" }
+                    { new Guid("55555555-5555-5555-5555-555555555555"), "/assets/images/users/admin.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Admin User", "admin@example.com", null, "Administrator", false, null, "system", null, "$2a$12$AQ49Na2iSYHTy9/PW/aYeegDufyC8h.EtlCQqp9r6AAyDrruo1Oja", "0999999999", 1, "admin" },
+                    { new Guid("55555555-5555-5555-5555-555555555558"), "/assets/images/users/patient1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Nguyễn Văn A", "nguyenvana@example.com", null, "Nguyễn Văn A", false, null, "system", null, "$2a$12$Whf3wkGONr6sbCfqCmgwBe6UbC2.LmLoeoQyD0mMuV/I.rjK757F2", "0901234567", 3, "patient1" },
+                    { new Guid("55555555-5555-5555-5555-555555555559"), "/assets/images/users/patient2.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Trần Thị B", "tranthib@example.com", null, "Trần Thị B", false, null, "system", null, "$2a$12$XNt2L0zjf4HgJQRHXd.PC.D4qbFdookQbROfBzyPi5kzhyur3Zrw6", "0912345678", 3, "patient2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Doctors",
-                columns: new[] { "Id", "AcademicTitleEn", "AcademicTitleVi", "AvatarUrl", "AverageRating", "BioEn", "BioVi", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FullName", "IsDeleted", "LastModifiedBy", "LastModifiedDate", "PhoneNumber", "PhotoUrl", "RatingCount", "SpecialtyId", "UserId", "YearsOfExperience" },
+                columns: new[] { "Id", "AcademicTitleEn", "AcademicTitleVi", "AvatarUrl", "AverageRating", "BioEn", "BioVi", "BookingDepositAmount", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FullName", "IsDeleted", "LastModifiedBy", "LastModifiedDate", "PhoneNumber", "PhotoUrl", "RatingCount", "SpecialtyId", "UserId", "YearsOfExperience" },
                 values: new object[,]
                 {
-                    { new Guid("11111111-1111-1111-1111-111111111112"), "Master", "Thạc sĩ", "/assets/images/doctors/van_anh.png", 4.9000000000000004, "Cardiologist with 12 years experience", "Bác sĩ chuyên khoa tim mạch, 12 năm kinh nghiệm", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. Nguyễn Văn Anh", "van.anh@clinic.vn", "Nguyễn Văn Anh", false, "system", null, "0987654321", "/assets/images/doctors/van_anh.png", 250, new Guid("22222222-2222-2222-2222-222222222224"), null, 12 },
-                    { new Guid("11111111-1111-1111-1111-111111111113"), "Master", "Thạc sĩ", "/assets/images/doctors/tran_huong.png", 4.7000000000000002, "Pediatrician with 8 years experience", "Bác sĩ nhi khoa, 8 năm kinh nghiệm", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. Trần Hương", "huong.tran@clinic.vn", "Trần Hương", false, "system", null, "0912345678", "/assets/images/doctors/tran_huong.png", 180, new Guid("22222222-2222-2222-2222-222222222223"), null, 8 },
-                    { new Guid("11111111-1111-1111-1111-111111111114"), "PhD", "Tiến sĩ", "/assets/images/doctors/minh_tan.png", 5.0, "Leading neurologist specialist", "Bác sĩ thần kinh, chuyên gia hàng đầu", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. Lê Minh Tân", "minh.tan@hospital.vn", "Lê Minh Tân", false, "system", null, "0898765432", "/assets/images/doctors/minh_tan.png", 310, new Guid("22222222-2222-2222-2222-222222222225"), null, 20 }
+                    { new Guid("11111111-1111-1111-1111-111111111112"), "Master", "Thạc sĩ", "/assets/images/doctors/van_anh.png", 4.9000000000000004, "Cardiologist with 12 years experience", "Bác sĩ chuyên khoa tim mạch, 12 năm kinh nghiệm", 200000m, "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. Nguyễn Văn Anh", "van.anh@clinic.vn", "Nguyễn Văn Anh", false, "system", null, "0987654321", "/assets/images/doctors/van_anh.png", 250, new Guid("22222222-2222-2222-2222-222222222224"), null, 12 },
+                    { new Guid("11111111-1111-1111-1111-111111111113"), "Master", "Thạc sĩ", "/assets/images/doctors/tran_huong.png", 4.7000000000000002, "Pediatrician with 8 years experience", "Bác sĩ nhi khoa, 8 năm kinh nghiệm", 100000m, "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. Trần Hương", "huong.tran@clinic.vn", "Trần Hương", false, "system", null, "0912345678", "/assets/images/doctors/tran_huong.png", 180, new Guid("22222222-2222-2222-2222-222222222223"), null, 8 },
+                    { new Guid("11111111-1111-1111-1111-111111111114"), "PhD", "Tiến sĩ", "/assets/images/doctors/minh_tan.png", 5.0, "Leading neurologist specialist", "Bác sĩ thần kinh, chuyên gia hàng đầu", 250000m, "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. Lê Minh Tân", "minh.tan@hospital.vn", "Lê Minh Tân", false, "system", null, "0898765432", "/assets/images/doctors/minh_tan.png", 310, new Guid("22222222-2222-2222-2222-222222222225"), null, 20 }
                 });
 
             migrationBuilder.InsertData(
@@ -619,14 +624,29 @@ namespace MS.Infrastructure.Migrations
                 columns: new[] { "Id", "AvatarUrl", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FacilityId", "FullName", "IsDeleted", "LastLoginAt", "LastModifiedBy", "LastModifiedDate", "PasswordHash", "PhoneNumber", "Role", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("55555555-5555-5555-5555-555555555556"), "/assets/images/users/manager1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Manager One", "manager1@hospital.vn", new Guid("33333333-3333-3333-3333-333333333333"), "Quản Lý Một", false, null, "system", null, "$2a$12$eWFpC9udI9eKvNZcH98QRecitNj9ZZDlrCzIw6AxmbfNChloCwJPO", "0987654311", 2, "manager1" },
-                    { new Guid("55555555-5555-5555-5555-555555555557"), "/assets/images/users/doctor1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. John Doe", "john.doe@example.com", new Guid("33333333-3333-3333-3333-333333333333"), "John Doe", false, null, "system", null, "$2a$12$7HF8XZ62WQJG3dBpS5O9xOeBKcUOB5cFvZ4.CJlxiXRO5mP6CRfBK", "0123456789", 4, "doctor1" }
+                    { new Guid("55555555-5555-5555-5555-555555555556"), "/assets/images/users/manager1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Manager One", "manager1@hospital.vn", new Guid("33333333-3333-3333-3333-333333333333"), "Quản Lý Một", false, null, "system", null, "$2a$12$lorR67sFmUHL4EGPPkqP1.d.vDoIB7VPKY1.gEU7MYpS2MuI6awoa", "0987654311", 2, "manager1" },
+                    { new Guid("55555555-5555-5555-5555-555555555557"), "/assets/images/users/doctor1.png", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. John Doe", "john.doe@example.com", new Guid("33333333-3333-3333-3333-333333333333"), "John Doe", false, null, "system", null, "$2a$12$f3sdOLkaHEpqxxV2mndJ.enItigjIJfjRK2XpOdT9iDtJ6EVKUxPy", "0123456789", 4, "doctor1" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "DoctorFacilities",
+                columns: new[] { "DoctorId", "FacilityId", "AssignedDate", "IsPrimary" },
+                values: new object[,]
+                {
+                    { new Guid("11111111-1111-1111-1111-111111111112"), new Guid("33333333-3333-3333-3333-333333333334"), new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
+                    { new Guid("11111111-1111-1111-1111-111111111113"), new Guid("33333333-3333-3333-3333-333333333335"), new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true },
+                    { new Guid("11111111-1111-1111-1111-111111111114"), new Guid("33333333-3333-3333-3333-333333333336"), new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true }
                 });
 
             migrationBuilder.InsertData(
                 table: "Doctors",
-                columns: new[] { "Id", "AcademicTitleEn", "AcademicTitleVi", "AvatarUrl", "AverageRating", "BioEn", "BioVi", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FullName", "IsDeleted", "LastModifiedBy", "LastModifiedDate", "PhoneNumber", "PhotoUrl", "RatingCount", "SpecialtyId", "UserId", "YearsOfExperience" },
-                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), "PhD", "Tiến sĩ", "/assets/images/doctors/john_doe.png", 4.7999999999999998, "Internal medicine specialist with 15 years experience", "Bác sĩ chuyên khoa nội, 15 năm kinh nghiệm", "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. John Doe", "john.doe@example.com", "John Doe", false, "system", null, "0123456789", "/assets/images/doctors/john_doe.png", 120, new Guid("22222222-2222-2222-2222-222222222222"), new Guid("55555555-5555-5555-5555-555555555557"), 15 });
+                columns: new[] { "Id", "AcademicTitleEn", "AcademicTitleVi", "AvatarUrl", "AverageRating", "BioEn", "BioVi", "BookingDepositAmount", "CreateBy", "CreateDate", "DeletedAt", "DeletedBy", "DisplayName", "Email", "FullName", "IsDeleted", "LastModifiedBy", "LastModifiedDate", "PhoneNumber", "PhotoUrl", "RatingCount", "SpecialtyId", "UserId", "YearsOfExperience" },
+                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), "PhD", "Tiến sĩ", "/assets/images/doctors/john_doe.png", 4.7999999999999998, "Internal medicine specialist with 15 years experience", "Bác sĩ chuyên khoa nội, 15 năm kinh nghiệm", 150000m, "system", new DateTimeOffset(new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Dr. John Doe", "john.doe@example.com", "John Doe", false, "system", null, "0123456789", "/assets/images/doctors/john_doe.png", 120, new Guid("22222222-2222-2222-2222-222222222222"), new Guid("55555555-5555-5555-5555-555555555557"), 15 });
+
+            migrationBuilder.InsertData(
+                table: "DoctorFacilities",
+                columns: new[] { "DoctorId", "FacilityId", "AssignedDate", "IsPrimary" },
+                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), new Guid("33333333-3333-3333-3333-333333333333"), new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_AppointmentTime",
