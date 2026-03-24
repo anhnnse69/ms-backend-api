@@ -17,5 +17,6 @@
         public string PhoneNumber { get; set; } = string.Empty;
         /// <summary>The avatar URL of the user.</summary>
         public string? AvatarUrl { get; set; }
+        public Guid? FacilityId { get; set; }
     }
 }
