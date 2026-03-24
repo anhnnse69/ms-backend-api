@@ -96,6 +96,7 @@ namespace MS.Application.Services.AdminServices.GetAllSpecialtiesService
         {
             return specialties.Select(x => new GetAllSpecialtiesResponse
             {
+                Id = x.Id,
                 NameVi = x.NameVi,
                 NameEn = x.NameEn,
                 DescriptionVi = x.DescriptionVi,
