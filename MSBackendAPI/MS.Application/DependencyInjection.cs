@@ -55,6 +55,7 @@ using MS.Application.Services.PatientServices.SubmitReviewService;
 using MS.Application.Services.PatientServices.UpdateAppointment;
 using MS.Application.Services.PatientServices.UpdateUserProfileService;
 using MS.Application.Services.PaymentServices.Momo;
+using MS.Application.Services.WeatherServices.GetWeatherService;
 
 namespace MS.Application
 {
@@ -128,6 +129,7 @@ namespace MS.Application
             services.AddScoped<IDeleteFavoriteService, DeleteFavoriteService>();
             services.AddScoped<IGetFavoritesService, GetFavoritesService>();
             services.AddScoped<ICreateMomoPaymentService, CreateMomoPaymentService>();
+            services.AddScoped<IGetWeatherService, GetWeatherService>();
             // Register MediatR pipeline behaviors for Data Annotation validation
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DataAnnotationValidationBehavior<,>));
             return services;

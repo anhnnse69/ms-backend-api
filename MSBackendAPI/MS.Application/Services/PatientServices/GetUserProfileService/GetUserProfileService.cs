@@ -84,7 +84,8 @@ namespace MS.Application.Services.PatientServices.GetUserProfileService
                 FullName = user.FullName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                AvatarUrl = user.AvatarUrl
+                AvatarUrl = user.AvatarUrl,
+                FacilityId = user.FacilityId,
             };
         }
 
