@@ -9,6 +9,6 @@ namespace MS.Application.Services.PatientServices.GetPatientAppointment
     public class GetPatientAppointmentsRequest
     {
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
-        public Guid PatientId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

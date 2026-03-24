@@ -3,6 +3,7 @@ using MS.Application.Services.PatientServices.GetPatientAppointment;
 using MS.Domain.Entities;
 using MS.Domain.Enums.GeneralCodes;
 using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
+using MS.Infrastructure.Repositories.PatientRepositories.GetPatientByUserId;
 
 /// <summary>
 /// Service implementation for retrieving current and past appointments of a patient
@@ -10,28 +11,41 @@ using MS.Infrastructure.Repositories.PatientRepositories.GetPatientAppointment;
 public class GetPatientAppointmentsService : IGetPatientAppointmentsService
 {
     private readonly IGetAppointmentsByPatientId _getAppointmentsByPatientId;
+    private readonly IGetPatientByUserId _getPatientByUserId;
 
     /// <summary>
     /// Constructor for GetPatientAppointmentsService
     /// </summary>
-    /// <param name="getAppointmentsByPatientId"></param>
-    public GetPatientAppointmentsService(IGetAppointmentsByPatientId getAppointmentsByPatientId)
+    /// <param name="getAppointmentsByPatientId">Repository to fetch appointments by patient id.</param>
+    /// <param name="getPatientByUserId">Repository to fetch patient entity by linked user id.</param>
+    public GetPatientAppointmentsService(
+        IGetAppointmentsByPatientId getAppointmentsByPatientId,
+        IGetPatientByUserId getPatientByUserId)
     {
         _getAppointmentsByPatientId = getAppointmentsByPatientId;
+        _getPatientByUserId = getPatientByUserId;
     }
 
     /// <summary>
     /// Process the request to get patient appointments
     /// </summary>
-    /// <param name="request">The request containing patient ID</param>
+    /// <param name="request">The request containing authenticated user ID</param>
     /// <returns>API Response with a list of appointment data</returns>
     public async Task<ApiResponse<List<GetPatientAppointmentsResponse>>> Process(GetPatientAppointmentsRequest request)
     {
-        // 1. Retrieve appointments data from database
-        var appointments = await RetrieveAppointments(request.PatientId);
-        // 2. Map domain entities directly to a list of responses
+        // 1. Resolve patient entity from the authenticated user id
+        var patient = await _getPatientByUserId.Execute(request.UserId);
+        if (patient == null)
+        {
+            // No patient profile linked to this user yet -> no appointments
+            return CreateResponse(new List<GetPatientAppointmentsResponse>());
+        }
+
+        // 2. Retrieve appointments data from database using the patient id
+        var appointments = await RetrieveAppointments(patient.Id);
+        // 3. Map domain entities directly to a list of responses
         var responseData = MapToResponse(appointments);
-        // 3. Create response
+        // 4. Create response
         return CreateResponse(responseData);
     }
 

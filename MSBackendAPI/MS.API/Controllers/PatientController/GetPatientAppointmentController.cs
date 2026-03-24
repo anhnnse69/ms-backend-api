@@ -26,7 +26,9 @@ namespace MS.API.Controllers.PatientController
         }
 
         /// <summary>
-        /// Retrieves the current and past appointments of the currently authenticated patient
+        /// Retrieves the current and past appointments of the currently authenticated patient.
+        /// The authenticated user's identifier from the JWT is first resolved to the linked
+        /// patient record, then appointments are queried by that patient id.
         /// </summary>
         /// <returns>A list of appointments wrapped in a standardized API response</returns>
         [HttpGet("me/appointments")]
@@ -34,10 +36,10 @@ namespace MS.API.Controllers.PatientController
         [ProducesResponseType(401)] // Unauthorized if token is missing/invalid
         public async Task<ActionResult<ApiResponse<GetPatientAppointmentsResponse>>> GetMyAppointments()
         {
-            // Extract the Patient ID (or User ID) from the JWT Token Claims
-            // Note: Update "ClaimTypes.NameIdentifier" if your token uses a custom claim like "PatientId"
+            // Extract the User ID from the JWT Token Claims
+            // Note: Update "ClaimTypes.NameIdentifier" if your token uses a custom claim like a custom user id.
             var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!Guid.TryParse(userIdString, out Guid patientId))
+            if (!Guid.TryParse(userIdString, out Guid userId))
             {
                 // Return 401 Unauthorized if the ID cannot be extracted or parsed
                 return Unauthorized(ApiResponse<GetPatientAppointmentsResponse>.Fail("APP_MESSAGE_0002"));
@@ -45,7 +47,7 @@ namespace MS.API.Controllers.PatientController
             // 1. Initialize the request model for the Application layer
             var request = new GetPatientAppointmentsRequest
             {
-                PatientId = patientId
+                UserId = userId
             };
             // 2. Execute the Process() method of the Service to handle the entire flow
             var response = await _getPatientAppointmentsService.Process(request);
