@@ -18,13 +18,6 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
         [StringLength(50, MinimumLength = 3, ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         public string Username { get; set; } = string.Empty;
 
-        /// <summary>The new password for the user (optional). If provided, must meet strength requirements.</summary>
-        [PasswordStrength(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
-        [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
-        [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
-        [StringLength(100, MinimumLength = 8, ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
-        public string PasswordHash { get; set; } = string.Empty;
-
         /// <summary>The full name of the user.</summary>
         [Required(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
         [NotBlank(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4003))]
@@ -42,10 +35,8 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
         public string DisplayName { get; set; } = string.Empty;
 
         /// <summary>The avatar URL of the user (optional).</summary>
-        [Url(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         [NoHtml(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4024))]
         [NoSqlInjection(ErrorMessage = nameof(MessageCode.APP_MESSAGE_4025))]
-        [StringLength(500, ErrorMessage = nameof(MessageCode.APP_MESSAGE_4019))]
         public string AvatarUrl { get; set; } = string.Empty;
 
         /// <summary>The email address of the user.</summary>

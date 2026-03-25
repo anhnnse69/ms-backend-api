@@ -134,9 +134,6 @@ namespace MS.Application.Services.AdminServices.UpdateUserService
             user.Email = request.Email.ToLower();
             user.PhoneNumber = request.PhoneNumber;
             user.Role = request.Role;
-            user.PasswordHash = !string.IsNullOrEmpty(request.PasswordHash)
-                ? PasswordHelper.HashPassword(request.PasswordHash)
-                : user.PasswordHash;
             user.LastModifiedBy = "system";
             user.LastModifiedDate = DateTimeOffset.UtcNow;
             UpdateDeletionMetadata(user, request.IsDeleted);
