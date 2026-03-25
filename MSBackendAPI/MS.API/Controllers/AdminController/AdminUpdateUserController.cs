@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MS.Application.Common.Response;
 using MS.Application.Services.AdminServices.UpdateUserService;
+using MS.Domain.Enums.GeneralCodes;
+using System.Security.Claims;
 
 namespace MS.API.Controllers.AdminController
 {
@@ -44,6 +47,13 @@ namespace MS.API.Controllers.AdminController
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUserRequest request)
         {
+            // Prevent an admin from updating their own account
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out var currentUserId) && currentUserId == id)
+            {
+                var forbiddenResponse = ApiResponse<bool>.Fail(MessageCode.APP_MESSAGE_4014.ToString());
+                return Ok(forbiddenResponse);
+            }
             var result = await _service.Process(id, request);
             return Ok(result);
         }

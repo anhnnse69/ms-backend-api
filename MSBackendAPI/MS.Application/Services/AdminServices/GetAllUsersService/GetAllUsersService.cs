@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MS.Application.Common.Response;
 using MS.Domain.Entities;
+using MS.Domain.Enums.Roles;
 using MS.Infrastructure.Repositories.AdminRepositories.GetAllUsers;
 
 namespace MS.Application.Services.AdminServices.GetAllUsersService
@@ -50,7 +51,9 @@ namespace MS.Application.Services.AdminServices.GetAllUsersService
         /// </summary>
         private IQueryable<User> RetrieveQuery()
         {
-            return _getAllUsers.Execute();
+            // Exclude ITAdmin accounts from the listing for security reasons
+            return _getAllUsers.Execute()
+                .Where(u => u.Role != SystemRole.ITAdmin);
         }
 
         /// <summary>
